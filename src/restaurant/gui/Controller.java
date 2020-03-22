@@ -1,4 +1,4 @@
-package resturant.gui;
+package restaurant.gui;
 
 public class Controller {
 }

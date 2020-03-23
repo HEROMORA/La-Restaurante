@@ -5,15 +5,23 @@ public class Table {
     private int numberOfSeats;
     private boolean isSmoking;
     private boolean isAvailable;
+
     public boolean getAvailability(){
         return this.isAvailable;
     }
+
     public int getTableNumber(){
         return this.tableNumber;
     }
+
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
+
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }

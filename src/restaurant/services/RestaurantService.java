@@ -32,7 +32,7 @@ public class RestaurantService {
         }
     }
 
-    public ArrayList<Table> readTables() {
+    ArrayList<Table> readTables() {
 
         ArrayList<Table> tableList = new ArrayList<Table>();
 
@@ -62,7 +62,7 @@ public class RestaurantService {
     }
 
 
-    public ArrayList<Dish> readDishes() {
+    ArrayList<Dish> readDishes() {
 
         ArrayList<Dish> dishesList = new ArrayList<>();
 
@@ -102,7 +102,7 @@ public class RestaurantService {
         return dishesList;
     }
 
-    public ArrayList<User> readUsers() {
+    ArrayList<User> readUsers() {
         ArrayList<User> usersList = new ArrayList<>();
 
         Document doc = connect();

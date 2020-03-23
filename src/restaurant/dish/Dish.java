@@ -1,30 +1,34 @@
 package restaurant.dish;
 
-import java.util.Currency;
+
+import java.math.BigDecimal;
 
 public abstract class Dish {
-    private int id;
     private String name;
-    private dishType dishType;
-    private Currency price;
+    private DishType dishType;
+    private BigDecimal price;
 
     public static double taxes;
 
-    public Dish(int id, String name, dishType dishType, Currency price) {
-        this.id = id;
+    public Dish(String name, DishType dishType, BigDecimal price) {
         this.name = name;
         this.dishType = dishType;
         this.price = price;
     }
 
-    public Currency getPrice()
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getPrice()
     {
         return price;
     }
 
-    public restaurant.dish.dishType getDishType() {
+    public DishType getDishType() {
         return dishType;
     }
+
 
     @Override
     public String toString()

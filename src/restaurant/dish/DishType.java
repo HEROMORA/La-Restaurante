@@ -1,6 +1,6 @@
 package restaurant.dish;
 
-public enum dishType {
+public enum DishType {
     MAINDISH,
     APPETIZER,
     DESERT

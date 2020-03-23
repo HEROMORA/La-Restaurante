@@ -14,7 +14,7 @@ public class Reservation {
     }
     public void makeResevation(int numberOfSeats,boolean isSmoking){
         Table table = new Table();
-        if(table.getAvailability(numberOfSeats,isSmoking)){
+        if(table.getAvailability()){
             this.tableID = table.getTableNumber();
         }
         else

@@ -38,10 +38,4 @@ public class Order {
         }
         return tax;
     }
-
-
-
-
-
-
 }

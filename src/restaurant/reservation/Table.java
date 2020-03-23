@@ -11,4 +11,18 @@ public class Table {
     public int getTableNumber(){
         return this.tableNumber;
     }
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    public void setSmoking(boolean smoking) {
+        isSmoking = smoking;
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
+    }
 }

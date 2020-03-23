@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import restaurant.dish.Dish;
+import restaurant.services.RestaurantService;
+
+import java.util.ArrayList;
 
 public class Main extends Application {
 

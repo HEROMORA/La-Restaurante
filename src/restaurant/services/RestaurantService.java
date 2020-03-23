@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import restaurant.dish.*;
 import restaurant.reservation.Table;
+import restaurant.users.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -100,4 +101,57 @@ public class RestaurantService {
 
         return dishesList;
     }
+
+    public ArrayList<User> readUsers() {
+        ArrayList<User> usersList = new ArrayList<>();
+
+        Document doc = connect();
+        assert doc != null;
+        doc.getDocumentElement().normalize();
+        NodeList nodeList = doc.getElementsByTagName("user");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                Element e = (Element) node;
+                User user;
+
+                switch (e.getElementsByTagName("role").item(0).getTextContent()) {
+                    case "Client":
+                        user = new Customer();
+                        user.setUserRole(UserRole.CUSTOMER);
+                        break;
+
+                    case "Manager":
+                        user = new Manager();
+                        user.setUserRole(UserRole.MANAGER);
+                        break;
+
+                    case "Cooker":
+                        user = new Cook();
+                        user.setUserRole(UserRole.COOK);
+                        break;
+
+                    case "Waiter":
+                        user = new Customer();
+                        user.setUserRole(UserRole.WAITER);
+                        break;
+
+                    default:
+                        throw new Error("Invalid role type");
+                }
+
+                user.setName(e.getElementsByTagName("name").item(0).getTextContent());
+                user.setUsername(e.getElementsByTagName("username").item(0).getTextContent());
+                user.setPassword(e.getElementsByTagName("password").item(0).getTextContent());
+
+                usersList.add(user);
+            }
+        }
+
+        return usersList;
+    }
+
 }

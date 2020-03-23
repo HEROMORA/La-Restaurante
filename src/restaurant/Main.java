@@ -4,11 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import restaurant.dish.Dish;
 import restaurant.services.RestaurantService;
+import restaurant.users.User;
 
 import java.util.ArrayList;
 
@@ -24,6 +22,14 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        RestaurantService rs = new RestaurantService();
+        ArrayList<User> users = rs.readUsers();
+
+        for (User s:users)
+        {
+            System.out.println(s.getName());
+        }
+
+        //launch(args);
     }
 }

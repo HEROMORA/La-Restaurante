@@ -8,6 +8,14 @@ public class OrderDetails {
     private int quantity;
     private Dish dish;
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getDishName() {
+        return dish.getName();
+    }
+
     public BigDecimal calculateSubTotal()
     {
         return dish.getPrice().multiply(new BigDecimal(quantity));

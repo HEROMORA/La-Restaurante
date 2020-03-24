@@ -5,6 +5,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import restaurant.dish.*;
+import restaurant.order.Order;
+import restaurant.order.OrderDetails;
 import restaurant.reservation.Reservation;
 import restaurant.reservation.Table;
 import restaurant.users.*;
@@ -12,7 +14,6 @@ import restaurant.users.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -167,6 +168,8 @@ public class RestaurantService {
 
         return usersList;
     }
+
+
     void writeUser(User user) throws TransformerException {
         Document doc = connect();
         assert doc != null;
@@ -219,6 +222,8 @@ public class RestaurantService {
         StreamResult result = new StreamResult(file);
         transformer.transform(source,result);
     }
+
+
     public void writeReservation(Reservation res) throws TransformerException {
         Document doc = connect();
         assert doc != null;
@@ -227,7 +232,14 @@ public class RestaurantService {
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
         String dateString = df.format(date);
 
-        Element root = doc.getDocumentElement();
+        NodeList nodeList = doc.getElementsByTagName("reservations");
+        Element root;
+
+        if (nodeList.getLength() == 0)
+            root = doc.createElement("reservations");
+        else
+            root = (Element) nodeList.item(0);
+
 
         Element newReservation = doc.createElement("reservation");
 
@@ -248,6 +260,66 @@ public class RestaurantService {
         newReservation.appendChild(resDate);
 
         root.appendChild(newReservation);
+
+        DOMSource source = new DOMSource(doc);
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        StreamResult result = new StreamResult(file);
+        transformer.transform(source,result);
+    }
+
+    public void writeOrder(Order order) throws TransformerException {
+
+        Document doc = connect();
+        assert doc != null;
+
+        NodeList nodeList = doc.getElementsByTagName("orders");
+        Element root;
+
+        if (nodeList.getLength() == 0)
+            root = doc.createElement("orders");
+        else
+            root = (Element) nodeList.item(0);
+
+        Element newOrder = doc.createElement("order");
+
+        Element dateElement = doc.createElement("date");
+
+        Date date = order.getDate();
+        DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
+        String dateString = df.format(date);
+
+        dateElement.appendChild(doc.createTextNode(dateString));
+        newOrder.appendChild(dateElement);
+
+        Element orderStatusElement = doc.createElement("orderStatus");
+        orderStatusElement.appendChild(doc.createTextNode(order.getOrderStatus().toString()));
+        newOrder.appendChild(orderStatusElement);
+
+        Element totalPriceElement = doc.createElement("totalPrice");
+        totalPriceElement.appendChild(doc.createTextNode(String.valueOf(order.calculateTotalPrice())));
+        newOrder.appendChild(totalPriceElement);
+
+        Element orderDetails = doc.createElement("orderDetails");
+
+        for(OrderDetails orderDetail:order.getOrdersDetails())
+        {
+            Element orderDetailElement = doc.createElement("orderDetail");
+
+            Element quantityElement = doc.createElement("quantity");
+            quantityElement.appendChild(doc.createTextNode(String.valueOf(orderDetail.getQuantity())));
+            orderDetailElement.appendChild(quantityElement);
+
+            Element dishNameElement = doc.createElement("dishName");
+            quantityElement.appendChild(doc.createTextNode(orderDetail.getDishName()));
+            orderDetailElement.appendChild(dishNameElement);
+
+            orderDetails.appendChild(orderDetailElement);
+        }
+
+        newOrder.appendChild(orderDetails);
+        root.appendChild(newOrder);
 
         DOMSource source = new DOMSource(doc);
 

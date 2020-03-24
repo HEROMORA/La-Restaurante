@@ -17,6 +17,18 @@ public class Order {
         this.ordersDetails = orderDetails;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public ArrayList<OrderDetails> getOrdersDetails() {
+        return ordersDetails;
+    }
+
     public BigDecimal calculateTotalPrice()
     {
         BigDecimal total = new BigDecimal("0.00");

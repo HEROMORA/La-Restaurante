@@ -5,21 +5,35 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import restaurant.dish.*;
+import restaurant.reservation.Reservation;
 import restaurant.reservation.Table;
 import restaurant.users.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RestaurantService {
+    private File file;
+    public RestaurantService(){
+        file = new File("data.xml");
+    }
 
     private Document connect() {
 
         try {
-            File file = new File("data.xml");
+
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(file);
@@ -153,5 +167,93 @@ public class RestaurantService {
 
         return usersList;
     }
+    void writeUser(User user) throws TransformerException {
+        Document doc = connect();
+        assert doc != null;
 
+        String roleString;
+        switch (user.getUserRole()){
+            case MANAGER:
+                roleString = "Manager";
+                break;
+            case WAITER:
+                roleString = "Waiter";
+                break;
+            case COOK:
+                roleString ="Cooker";
+                break;
+            case CUSTOMER:
+                roleString ="Client";
+                break;
+            default:
+                roleString= "";
+        }
+
+        NodeList nodeList = doc.getElementsByTagName("users");
+        Element root = (Element) nodeList.item(0);
+
+        Element newUser = doc.createElement("user");
+
+        Element name = doc.createElement("name");
+        name.appendChild(doc.createTextNode(user.getName()));
+        newUser.appendChild(name);
+
+        Element role = doc.createElement("role");
+        role.appendChild(doc.createTextNode(roleString));
+        newUser.appendChild(role);
+
+        Element username = doc.createElement("username");
+        username.appendChild(doc.createTextNode(user.getUsername()));
+        newUser.appendChild(username);
+
+        Element password = doc.createElement("password");
+        password.appendChild(doc.createTextNode(user.getPassword()));
+        newUser.appendChild(password);
+
+        root.appendChild(newUser);
+
+        DOMSource source = new DOMSource(doc);
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        StreamResult result = new StreamResult(file);
+        transformer.transform(source,result);
+    }
+    public void writeReservation(Reservation res) throws TransformerException {
+        Document doc = connect();
+        assert doc != null;
+
+        Date date = res.getReservationDate();
+        DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
+        String dateString = df.format(date);
+
+        Element root = doc.getDocumentElement();
+
+        Element newReservation = doc.createElement("reservation");
+
+        Element resID = doc.createElement("id");
+        resID.appendChild(doc.createTextNode(String.valueOf(res.getId())));
+        newReservation.appendChild(resID);
+
+        Element tableNo = doc.createElement("table_number");
+        tableNo.appendChild(doc.createTextNode(String.valueOf(res.getTableNum())));
+        newReservation.appendChild(tableNo);
+
+        Element username = doc.createElement("customer_username");
+        username.appendChild(doc.createTextNode(res.getCustomerUserName()));
+        newReservation.appendChild(username);
+
+        Element resDate = doc.createElement("date");
+        resDate.appendChild(doc.createTextNode(dateString));
+        newReservation.appendChild(resDate);
+
+        root.appendChild(newReservation);
+
+        DOMSource source = new DOMSource(doc);
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        StreamResult result = new StreamResult(file);
+        transformer.transform(source,result);
+    }
 }

@@ -5,20 +5,53 @@ import java.util.Date;
 
 public class Reservation {
     private int id;
-    private int tableID;
-    private int customerID;
+    private int tableNum;
+    private String customerUserName;
     private Date reservationDate;
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public Date getReservationDate() {
+        return reservationDate;
     }
-    public void makeResevation(int numberOfSeats,boolean isSmoking){
+
+    public int getId() {
+        return id;
+    }
+
+    public int getTableNum() {
+        return tableNum;
+    }
+
+    public String getCustomerUserName() {
+        return customerUserName;
+    }
+
+    public void setCustomerID(String customerUserName) {
+        this.customerUserName = customerUserName;
+    }
+
+    public void setReservationDate(Date reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public void setCustomerUserName(String customerUserName) {
+        this.customerUserName = customerUserName;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTableNum(int tableNum) {
+        this.tableNum = tableNum;
+    }
+
+    public void makeReservation(int numberOfSeats, boolean isSmoking){
         Table table = new Table();
         if(table.getAvailability()){
-            this.tableID = table.getTableNumber();
+            this.tableNum = table.getTableNumber();
         }
         else
-            this.tableID = Integer.parseInt(null);
+            this.tableNum = Integer.parseInt(null);
 
     }
 }

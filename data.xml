@@ -1,4 +1,4 @@
-<restaurant>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><restaurant>
     <users>
         <user>
             <name>Adam Smith</name>
@@ -30,7 +30,7 @@
             <username>hobbens_tom</username>
             <password>cooker_pass</password>
         </user>
-    </users>
+    <user><name>Michael</name><role>Client</role><username>michaelmohamed</username><password>abcdefg</password></user></users>
     <tables>
         <table>
             <number>1</number>

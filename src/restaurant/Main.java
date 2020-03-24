@@ -5,6 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import restaurant.reservation.Reservation;
+import restaurant.services.RestaurantService;
+import restaurant.users.Manager;
+import restaurant.users.User;
+import restaurant.users.UserRole;
+
+import javax.xml.transform.TransformerException;
+import java.util.Calendar;
 
 public class Main extends Application {
 
@@ -17,7 +25,7 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TransformerException {
         launch(args);
     }
 }

@@ -2,32 +2,60 @@ package resturantTests.servicesTests;
 
 import org.junit.jupiter.api.Test;
 import restaurant.services.UserRepository;
+import restaurant.users.Customer;
+import restaurant.users.User;
 import restaurant.users.UserRole;
+
+import javax.xml.transform.TransformerException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserRepositoryTest {
 
-    private UserRepository userRepository = new UserRepository();
+    private UserRepository userRepository;
 
     @Test
     public void testLogin()
     {
-        var username1 = "brian";
-        var password1 = "mdir@admj%ar5qX2";
+        userRepository = new UserRepository();
+        var username = "brian";
+        var password = "mdir@admj%ar5qX2";
 
-        var username2 = "invalidUser";
-        var password2 = "invalidPassword";
+        var result = userRepository.login(username, password);
 
-        var result1 = userRepository.login(username1, password1);
-        var result2 = userRepository.login(username2, password2);
-        assertTrue(result1);
-        assertFalse(result2);
+        assertTrue(result);
+
+    }
+    @Test
+    public void testFalseLogin(){
+        userRepository = new UserRepository();
+        var username = "invalidUser";
+        var password = "invalidPassword";
+
+        var result = userRepository.login(username, password);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSignUp() throws TransformerException {
+        userRepository = new UserRepository();
+        var username = "mostafa";
+        var password = "123456";
+        var name = "mostafaadell";
+        var role = UserRole.CUSTOMER;
+
+        User user = userRepository.signUp(username,password,name,role);
+        User userAdded = userRepository.getUserByUsername(username);
+
+        assertEquals(user.getUsername(),userAdded.getUsername());
+        assertEquals(user.getPassword(),userAdded.getPassword());
     }
 
     @Test
     public void getUserByUsername()
     {
+        userRepository = new UserRepository();
         var username = "brian";
         var user = userRepository.getUserByUsername(username);
 

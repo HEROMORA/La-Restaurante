@@ -1,7 +1,8 @@
 package restaurant.services;
 
-import restaurant.users.User;
+import restaurant.users.*;
 
+import javax.xml.transform.TransformerException;
 import java.util.ArrayList;
 
 public class UserRepository {
@@ -35,6 +36,45 @@ public class UserRepository {
         return false;
     }
 
+    public User signUp(String username, String password, String name, UserRole role) throws TransformerException {
+        if(getUserByUsername(username) == null){
+            return null;
+        }
+        User user;
+        switch (role) {
+            case CUSTOMER:
+                user = new Customer();
+                user.setUserRole(UserRole.CUSTOMER);
+                break;
+
+            case MANAGER:
+                user = new Manager();
+                user.setUserRole(UserRole.MANAGER);
+                break;
+
+            case COOK:
+                user = new Cook();
+                user.setUserRole(UserRole.COOK);
+                break;
+
+            case WAITER:
+                user = new Customer();
+                user.setUserRole(UserRole.WAITER);
+                break;
+
+            default:
+                throw new Error("Invalid role type");
+        }
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setName(name);
+
+        RestaurantService rs = new RestaurantService();
+        rs.writeUser(user);
+
+        populateList();
+        return user;
+    }
     public User getUserByUsername(String username)
     {
         for(User user:users)

@@ -66,7 +66,4 @@ public class TableRepositoryTest {
             assertFalse(table.isSmoking());
         }
     }
-
-
-
 }

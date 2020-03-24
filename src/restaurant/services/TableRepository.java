@@ -59,4 +59,28 @@ public class TableRepository {
 
         return _tables;
     }
+
+    public ArrayList<Table> getSmokingTables()
+    {
+        ArrayList<Table> _tables = new ArrayList<>();
+        for (Table table:tables)
+        {
+            if (table.isSmoking())
+                _tables.add(table);
+        }
+
+        return _tables;
+    }
+
+    public ArrayList<Table> getNonSmokingTables()
+    {
+        ArrayList<Table> _tables = new ArrayList<>();
+        for (Table table:tables)
+        {
+            if (!table.isSmoking())
+                _tables.add(table);
+        }
+
+        return _tables;
+    }
 }

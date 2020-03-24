@@ -18,6 +18,10 @@ public class Table {
         return numberOfSeats;
     }
 
+    public boolean isSmoking() {
+        return isSmoking;
+    }
+
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
@@ -33,4 +37,5 @@ public class Table {
     public void setTableNumber(int tableNumber) {
         this.tableNumber = tableNumber;
     }
+
 }

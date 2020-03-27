@@ -24,6 +24,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 public class RestaurantService {
     private File file;
     public RestaurantService(){
@@ -45,7 +46,6 @@ public class RestaurantService {
             return null;
         }
     }
-
 
     ArrayList<Table> readTables() {
 
@@ -116,7 +116,6 @@ public class RestaurantService {
 
         return dishesList;
     }
-
 
     ArrayList<User> readUsers() {
         ArrayList<User> usersList = new ArrayList<>();
@@ -224,19 +223,51 @@ public class RestaurantService {
         transformer.transform(source,result);
     }
 
-    /*
-    * Adds reservations to the XML file using JAXB library
-    * */
-    public void writeReservation(Reservation res) {
+
+    public void writeReservation(Reservation res) throws TransformerException {
+        Document doc = connect();
+        assert doc != null;
 
         Date date = res.getReservationDate();
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
         String dateString = df.format(date);
 
+        NodeList nodeList = doc.getElementsByTagName("reservations");
+        Element root;
+
+        if (nodeList.getLength() == 0)
+            root = doc.createElement("reservations");
+        else
+            root = (Element) nodeList.item(0);
 
 
+        Element newReservation = doc.createElement("reservation");
+
+        Element resID = doc.createElement("id");
+        resID.appendChild(doc.createTextNode(String.valueOf(res.getId())));
+        newReservation.appendChild(resID);
+
+        Element tableNo = doc.createElement("table_number");
+        tableNo.appendChild(doc.createTextNode(String.valueOf(res.getTableNum())));
+        newReservation.appendChild(tableNo);
+
+        Element username = doc.createElement("customer_username");
+        username.appendChild(doc.createTextNode(res.getCustomerUserName()));
+        newReservation.appendChild(username);
+
+        Element resDate = doc.createElement("date");
+        resDate.appendChild(doc.createTextNode(dateString));
+        newReservation.appendChild(resDate);
+
+        root.appendChild(newReservation);
+
+        DOMSource source = new DOMSource(doc);
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        StreamResult result = new StreamResult(file);
+        transformer.transform(source,result);
     }
-
 
     public void writeOrder(Order order) throws TransformerException {
 

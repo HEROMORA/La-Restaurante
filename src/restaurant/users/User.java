@@ -6,6 +6,13 @@ public abstract class User {
     private String password;
     private UserRole userRole;
 
+    protected abstract void setRole();
+
+    public User()
+    {
+        setRole();
+    }
+
     public String getName() {
         return name;
     }
@@ -41,5 +48,18 @@ public abstract class User {
     public boolean isEmployee()
     {
         return userRole != UserRole.CUSTOMER;
+    }
+
+
+    protected void setRole(UserRole userRole)
+    {
+        this.userRole = userRole;
+    }
+
+    public void setUserData(String name, String username, String password)
+    {
+        setName(name);
+        setUsername(username);
+        setPassword(password);
     }
 }

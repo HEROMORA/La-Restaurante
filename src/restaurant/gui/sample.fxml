@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <GridPane fx:controller="restaurant.gui.MainPageController"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
+            styleClass="root">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 
-    <Text text="Welcome to the Restaurant"
+    <Text id="welcome-text" text="Welcome to the Restaurant"
           GridPane.columnIndex="0" GridPane.rowIndex ="0"
           GridPane.columnSpan="2"/>
 
@@ -43,4 +44,7 @@
         <Button text="Sign Up"
                 onAction="#handleSignUpActionButton"/>
     </HBox>
+    <stylesheets>
+        <URL value="@MainPageCss.css" />
+    </stylesheets>
 </GridPane>

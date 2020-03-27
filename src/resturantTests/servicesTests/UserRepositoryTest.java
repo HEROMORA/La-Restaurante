@@ -2,11 +2,8 @@ package resturantTests.servicesTests;
 
 import org.junit.jupiter.api.Test;
 import restaurant.services.UserRepository;
-import restaurant.users.Customer;
 import restaurant.users.User;
 import restaurant.users.UserRole;
-
-import javax.xml.transform.TransformerException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,9 +35,9 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testSignUp() throws TransformerException {
+    public void testSignUp() {
         userRepository = new UserRepository();
-        var username = "mostafa";
+        var username = "amostafa";
         var password = "123456";
         var name = "mostafaadell";
         var role = UserRole.CUSTOMER;

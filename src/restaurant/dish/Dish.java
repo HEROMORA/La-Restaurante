@@ -1,13 +1,8 @@
 package restaurant.dish;
 
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
-@XmlRootElement(name = "dish")
-@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Dish {
     private String name;
     private DishType dishType;

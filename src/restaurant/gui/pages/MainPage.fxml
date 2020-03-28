@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<GridPane fx:controller="restaurant.gui.MainPageController"
+<GridPane fx:controller="restaurant.gui.pages.MainPageController"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
             styleClass="root">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
@@ -45,6 +45,6 @@
                 onAction="#handleSignUpActionButton"/>
     </HBox>
     <stylesheets>
-        <URL value="@styles/MainPageStyleSheet.css" />
+        <URL value="@../styles/MainPageStyleSheet.css" />
     </stylesheets>
 </GridPane>

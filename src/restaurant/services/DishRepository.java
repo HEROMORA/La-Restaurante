@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class DishRepository {
 
     private RestaurantService restaurantService = new RestaurantService();
-    private RestService restService = new RestService();
     private ArrayList<Dish> dishes;
 
     public DishRepository()
@@ -19,8 +18,7 @@ public class DishRepository {
 
     private void populateList()
     {
-        //dishes = restaurantService.readDishes();
-        dishes = restService.readDishes();
+        dishes = restaurantService.readDishes();
     }
 
     // READING FUNCTIONS

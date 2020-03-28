@@ -1,9 +1,10 @@
-package restaurant.gui;
+package restaurant.gui.pages;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import restaurant.gui.utils.Alerts;
+import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
 import restaurant.services.UserRepository;
 
@@ -14,6 +15,7 @@ public class MainPageController {
 
     private Validations validations = new Validations();
     private Alerts alerts = new Alerts();
+    private Utilities utilities = new Utilities();
 
     private UserRepository userRepository = new UserRepository();
 
@@ -35,6 +37,6 @@ public class MainPageController {
     }
 
     public void handleSignUpActionButton(ActionEvent actionEvent) {
-        //TODO: NAVIGATE TO THE SIGN UP PAGE
+        utilities.showPage("../pages/RegisterPage.fxml", "Register", 1200, 700);
     }
 }

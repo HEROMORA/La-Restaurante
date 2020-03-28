@@ -45,6 +45,6 @@
                 onAction="#handleSignUpActionButton"/>
     </HBox>
     <stylesheets>
-        <URL value="@MainPageCss.css" />
+        <URL value="@styles/MainPageStyleSheet.css" />
     </stylesheets>
 </GridPane>

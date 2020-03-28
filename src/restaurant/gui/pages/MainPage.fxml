@@ -41,7 +41,7 @@
 
     <HBox spacing="10" alignment="CENTER"
           GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
-        <Button text="Sign Up"
+        <Button fx:id="signUpBtn" text="Sign Up"
                 onAction="#handleSignUpActionButton"/>
     </HBox>
     <stylesheets>

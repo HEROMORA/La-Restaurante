@@ -11,16 +11,15 @@ public class Utilities {
 
     private Alerts alerts = new Alerts();
 
-    public void showPage(String fileName ,String title, int width, int height)
+    public void showPage(String fileName ,String title, int width, int height, Stage stage)
     {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource(fileName));
-            Stage detailsStage = new Stage();
-            detailsStage.setTitle(title);
+            stage.setTitle(title);
             Scene sc = new Scene(root, width, height);
-            detailsStage.setScene(sc);
-            detailsStage.show();
+            stage.setScene(sc);
+            stage.show();
         } catch (IOException ex) {
             alerts.showErrorAlert("Data Error", "Something wrong happened!");
         }

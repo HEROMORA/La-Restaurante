@@ -1,17 +1,23 @@
 package restaurant.gui.pages;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import restaurant.gui.utils.Alerts;
 import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
 import restaurant.services.UserRepository;
 
 public class MainPageController {
-
-    public TextField usernameTextField;
-    public PasswordField passwordTextField;
+    @FXML
+    private Button signUpBtn;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private PasswordField passwordTextField;
 
     private Validations validations = new Validations();
     private Alerts alerts = new Alerts();
@@ -37,6 +43,8 @@ public class MainPageController {
     }
 
     public void handleSignUpActionButton(ActionEvent actionEvent) {
-        utilities.showPage("../pages/RegisterPage.fxml", "Register", 1200, 700);
+        Stage stage;
+        stage = (Stage)signUpBtn.getScene().getWindow();
+        utilities.showPage("../pages/RegisterPage.fxml", "Register", 1200, 700, stage);
     }
 }

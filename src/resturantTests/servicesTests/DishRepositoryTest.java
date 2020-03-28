@@ -36,8 +36,7 @@ public class DishRepositoryTest {
         var dishType = DishType.APPETIZER;
         var dishes = dishRepository.getDishesByType(dishType);
 
-        for (Dish dish:dishes)
-        {
+        for (Dish dish:dishes) {
             assertEquals(dishType, dish.getDishType());
         }
     }

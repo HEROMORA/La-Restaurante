@@ -11,13 +11,11 @@ import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
 import restaurant.services.UserRepository;
 
-public class MainPageController {
-    @FXML
-    private Button signUpBtn;
-    @FXML
-    private TextField usernameTextField;
-    @FXML
-    private PasswordField passwordTextField;
+public class LoginPageController {
+
+    public Button signUpBtn;
+    public TextField usernameTextField;
+    public PasswordField passwordTextField;
 
     private Validations validations = new Validations();
     private Alerts alerts = new Alerts();
@@ -25,12 +23,10 @@ public class MainPageController {
 
     private UserRepository userRepository = new UserRepository();
 
-    public void handleSubmitActionButton(ActionEvent actionEvent) {
+    @FXML
+    private void handleSubmitActionButton(ActionEvent actionEvent) {
 
-        var v1 = validations.validateEmptyTextField(usernameTextField);
-        var v2 = validations.validateEmptyTextField(passwordTextField);
-
-        if (!v1 || !v2) return;
+        if (!validateForm()) return;
 
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
@@ -42,9 +38,17 @@ public class MainPageController {
 
     }
 
-    public void handleSignUpActionButton(ActionEvent actionEvent) {
-        Stage stage;
-        stage = (Stage)signUpBtn.getScene().getWindow();
+    @FXML
+    private void handleSignUpActionButton(ActionEvent actionEvent) {
+        Stage stage = (Stage)signUpBtn.getScene().getWindow();
         utilities.showPage("../pages/RegisterPage.fxml", "Register", 1200, 700, stage);
+    }
+
+    private boolean validateForm()
+    {
+        var v1 = validations.validateEmptyTextField(usernameTextField);
+        var v2 = validations.validateEmptyTextField(passwordTextField);
+
+        return v1 && v2;
     }
 }

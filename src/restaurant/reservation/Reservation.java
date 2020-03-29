@@ -4,17 +4,24 @@ import java.util.Date;
 
 
 public class Reservation {
-    private int id;
     private int tableNum;
     private String customerUserName;
     private Date reservationDate;
 
-    public Date getReservationDate() {
-        return reservationDate;
+    public Reservation()
+    {
+
     }
 
-    public int getId() {
-        return id;
+    public Reservation(int tableNum, String customerUserName, Date reservationDate)
+    {
+        this.tableNum = tableNum;
+        this.customerUserName = customerUserName;
+        this.reservationDate = reservationDate;
+    }
+
+    public Date getReservationDate() {
+        return reservationDate;
     }
 
     public int getTableNum() {
@@ -25,20 +32,12 @@ public class Reservation {
         return customerUserName;
     }
 
-    public void setCustomerID(String customerUserName) {
-        this.customerUserName = customerUserName;
-    }
-
     public void setReservationDate(Date reservationDate) {
         this.reservationDate = reservationDate;
     }
 
     public void setCustomerUserName(String customerUserName) {
         this.customerUserName = customerUserName;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setTableNum(int tableNum) {

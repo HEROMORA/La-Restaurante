@@ -30,7 +30,7 @@
             <username>hobbens_tom</username>
             <password>cooker_pass</password>
         </user>
-    </users>
+    <user><name>Fady Muhammed</name><role>Client</role><username>FadyMo</username><password>fady123fady</password></user><user><name>Omar</name><role>Client</role><username>omaralaa</username><password>aaaaaa</password></user></users>
     <tables>
         <table>
             <number>1</number>

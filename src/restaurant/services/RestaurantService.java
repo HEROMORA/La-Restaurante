@@ -21,6 +21,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -169,8 +170,48 @@ public class RestaurantService {
         return usersList;
     }
 
+    ArrayList<Reservation> readReservations() {
 
-    void writeUser(User user) throws TransformerException {
+        ArrayList<Reservation> reservationArrayList = new ArrayList<>();
+
+        Document doc = connect();
+        assert doc != null;
+        doc.getDocumentElement().normalize();
+        NodeList nodeList = doc.getElementsByTagName("reservation");
+
+        for(int i = 0; i < nodeList.getLength(); i++) {
+
+            Node node = nodeList.item(i);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                Element e = (Element)node;
+                Reservation reserv = new Reservation();
+
+                reserv.setCustomerUserName(e.getElementsByTagName("customer_username").item(0).getTextContent());
+
+                Date date = null;
+
+                try {
+                    date = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss")
+                            .parse(e.getElementsByTagName("date").item(0).getTextContent());
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                }
+
+                reserv.setReservationDate(date);
+
+                reserv.setTableNum(Integer.parseInt(e.getElementsByTagName("table_number").item(0).getTextContent()));
+
+                reservationArrayList.add(reserv);
+            }
+        }
+
+        return reservationArrayList;
+    }
+
+
+    void writeUser(User user) {
         Document doc = connect();
         assert doc != null;
 
@@ -217,14 +258,19 @@ public class RestaurantService {
 
         DOMSource source = new DOMSource(doc);
 
+        try {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         StreamResult result = new StreamResult(file);
-        transformer.transform(source,result);
+
+            transformer.transform(source,result);
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void writeReservation(Reservation res) throws TransformerException {
+    public void writeReservation(Reservation res) {
         Document doc = connect();
         assert doc != null;
 
@@ -243,10 +289,6 @@ public class RestaurantService {
 
         Element newReservation = doc.createElement("reservation");
 
-        Element resID = doc.createElement("id");
-        resID.appendChild(doc.createTextNode(String.valueOf(res.getId())));
-        newReservation.appendChild(resID);
-
         Element tableNo = doc.createElement("table_number");
         tableNo.appendChild(doc.createTextNode(String.valueOf(res.getTableNum())));
         newReservation.appendChild(tableNo);
@@ -264,9 +306,13 @@ public class RestaurantService {
         DOMSource source = new DOMSource(doc);
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        StreamResult result = new StreamResult(file);
-        transformer.transform(source,result);
+        try {
+            Transformer transformer = transformerFactory.newTransformer();
+            StreamResult result = new StreamResult(file);
+            transformer.transform(source,result);
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 
     public void writeOrder(Order order) throws TransformerException {

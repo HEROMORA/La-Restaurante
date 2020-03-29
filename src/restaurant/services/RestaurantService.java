@@ -279,12 +279,13 @@ public class RestaurantService {
         String dateString = df.format(date);
 
         NodeList nodeList = doc.getElementsByTagName("reservations");
-        Element root;
+        Element root = doc.getDocumentElement();
 
+        Element reservations;
         if (nodeList.getLength() == 0)
-            root = doc.createElement("reservations");
+            reservations = doc.createElement("reservations");
         else
-            root = (Element) nodeList.item(0);
+            reservations = (Element) nodeList.item(0);
 
 
         Element newReservation = doc.createElement("reservation");
@@ -301,7 +302,8 @@ public class RestaurantService {
         resDate.appendChild(doc.createTextNode(dateString));
         newReservation.appendChild(resDate);
 
-        root.appendChild(newReservation);
+        reservations.appendChild(newReservation);
+        root.appendChild(reservations);
 
         DOMSource source = new DOMSource(doc);
 

@@ -10,6 +10,7 @@ import restaurant.gui.utils.Alerts;
 import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
 import restaurant.services.UserRepository;
+import restaurant.users.User;
 
 public class LoginPageController {
 
@@ -32,18 +33,21 @@ public class LoginPageController {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
 
-        var res = userRepository.login(username, password);
-        if (res == null) { alerts.showErrorAlert("False Credentials", "Wrong username or password"); }
+        User res = userRepository.login(username, password);
+        if (res == null) { alerts.showErrorAlert("False Credentials", "Wrong username or password"); return;}
+        Stage stage = (Stage)signInBtn.getScene().getWindow();
 
+        utilities.setLoggedInUser(res);
         // TODO: NAVIGATE TO THE DASHBOARD
         switch (res.getUserRole()){
             case CUSTOMER:
-                Stage stage = (Stage)signInBtn.getScene().getWindow();
                 utilities.showPage("../pages/CustomerDashBoardPage.fxml", "Hello Customer", 1200, 700, stage);
                 break;
             case COOK:
+
                 break;
             case WAITER:
+                utilities.showPage("../pages/WaiterDashboardPage.fxml", "Hello Waiter", 1200, 700, stage);
                 break;
             case MANAGER:
                 break;

@@ -26,15 +26,15 @@ public class UserRepository {
 
     // READ FUNCTIONS
 
-    public boolean login(String username, String password)
+    public User login(String username, String password)
     {
         for (User user:users)
         {
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
-                return true;
+                return user;
         }
 
-        return false;
+        return null;
     }
 
     public User signUp(String username, String password, String name, UserRole role) {

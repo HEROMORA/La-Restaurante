@@ -20,7 +20,8 @@ public class UserRepositoryTest {
 
         var result = userRepository.login(username, password);
 
-        assertTrue(result);
+        assertEquals(result.getUsername(),username);
+        assertEquals(result.getPassword(),password);
 
     }
     @Test
@@ -31,7 +32,8 @@ public class UserRepositoryTest {
 
         var result = userRepository.login(username, password);
 
-        assertFalse(result);
+        assertNull(result.getUsername());
+        assertNull(result.getPassword());
     }
 
     @Test

@@ -28,7 +28,7 @@
 
     <HBox spacing="10" alignment="CENTER"
           GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
-          <Button text="Sign In"
+          <Button fx:id="signInBtn" text="Sign In"
                   onAction="#handleSubmitActionButton"/>
     </HBox>
 

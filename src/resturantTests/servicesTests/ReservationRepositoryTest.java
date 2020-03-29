@@ -7,7 +7,7 @@ import restaurant.services.ReservationRepository;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReservationRepositoryTest {
     private ReservationRepository reservationRepository = new ReservationRepository();

@@ -16,6 +16,7 @@ public class LoginPageController {
     public Button signUpBtn;
     public TextField usernameTextField;
     public PasswordField passwordTextField;
+    public Button signInBtn;
 
     private Validations validations = new Validations();
     private Alerts alerts = new Alerts();
@@ -32,9 +33,21 @@ public class LoginPageController {
         String password = passwordTextField.getText();
 
         var res = userRepository.login(username, password);
-        if (!res) { alerts.showErrorAlert("False Credentials", "Wrong username or password"); }
+        if (res == null) { alerts.showErrorAlert("False Credentials", "Wrong username or password"); }
 
         // TODO: NAVIGATE TO THE DASHBOARD
+        switch (res.getUserRole()){
+            case CUSTOMER:
+                Stage stage = (Stage)signInBtn.getScene().getWindow();
+                utilities.showPage("../pages/CustomerDashBoardPage.fxml", "Hello Customer", 1200, 700, stage);
+                break;
+            case COOK:
+                break;
+            case WAITER:
+                break;
+            case MANAGER:
+                break;
+        }
 
     }
 

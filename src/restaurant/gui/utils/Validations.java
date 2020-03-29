@@ -1,5 +1,7 @@
 package restaurant.gui.utils;
 
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class Validations {
@@ -27,5 +29,33 @@ public class Validations {
         }
 
         return true;
+    }
+
+    public boolean validateEmptyComboBox(ComboBox comboBox)
+    {
+        try {
+            String text = comboBox.getValue().toString();
+            int x = Integer.parseInt(text);
+        } catch (NullPointerException | NumberFormatException ex) {
+            alerts.showErrorAlert("Empty Combobox", "Please make sure you've filled all the combo boxes");
+            return false;
+        }
+        return  true;
+    }
+
+    public boolean validateSmokingType(boolean isSmoking)
+    {
+        return isSmoking != Boolean.parseBoolean(null);
+    }
+
+    public boolean validateDate(DatePicker datePicker)
+    {
+        try {
+            String text = datePicker.getValue().toString();
+        } catch (NullPointerException ex) {
+            alerts.showErrorAlert("Empty Date Picker", "You should select a date");
+            return false;
+        }
+        return  true;
     }
 }

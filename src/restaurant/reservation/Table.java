@@ -1,14 +1,9 @@
 package restaurant.reservation;
 
-public class Table {
+public class Table implements Comparable<Table> {
     private int tableNumber;
     private int numberOfSeats;
     private boolean isSmoking;
-    private boolean isAvailable;
-
-    public boolean getAvailability(){
-        return this.isAvailable;
-    }
 
     public int getTableNumber(){
         return this.tableNumber;
@@ -20,10 +15,6 @@ public class Table {
 
     public boolean isSmoking() {
         return isSmoking;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
     }
 
     public void setNumberOfSeats(int numberOfSeats) {
@@ -38,4 +29,9 @@ public class Table {
         this.tableNumber = tableNumber;
     }
 
+    @Override
+    public int compareTo(Table table) {
+        if (getNumberOfSeats() == table.getNumberOfSeats()) return 0;
+        return getNumberOfSeats() > table.getNumberOfSeats() ? 1 : -1;
+    }
 }

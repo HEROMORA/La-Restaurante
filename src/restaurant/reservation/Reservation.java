@@ -44,13 +44,4 @@ public class Reservation {
         this.tableNum = tableNum;
     }
 
-    public void makeReservation(int numberOfSeats, boolean isSmoking){
-        Table table = new Table();
-        if(table.getAvailability()){
-            this.tableNum = table.getTableNumber();
-        }
-        else
-            this.tableNum = Integer.parseInt(null);
-
-    }
 }

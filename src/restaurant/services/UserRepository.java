@@ -47,12 +47,7 @@ public class UserRepository {
         user.setUserData(name, username, password);
 
         RestaurantService rs = new RestaurantService();
-        try {
-            rs.writeUser(user);
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
-
+        rs.writeUser(user);
         populateList();
         return user;
     }

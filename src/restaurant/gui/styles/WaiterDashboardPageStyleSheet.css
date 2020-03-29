@@ -1,0 +1,18 @@
+root {
+    display:block;
+}
+.root {
+    -fx-background-image: url("../images/WaiterBackground.jpg");
+    -fx-background-size: cover;
+}
+
+#welcome-text {
+    -fx-font-size: 40px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #ff0000;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+#reservations-listview {
+
+}

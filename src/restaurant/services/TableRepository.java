@@ -48,12 +48,12 @@ public class TableRepository {
         return _tables;
     }
 
-    public ArrayList<Table> getTablesByEligibleNumberOfSeats(int numberOfSeats)
+    public ArrayList<Table> getTablesByEligibleNumberOfSeatsAndSmoking(int numberOfSeats, boolean isSmoking)
     {
         ArrayList<Table> _tables = new ArrayList<>();
         for (Table table:tables)
         {
-            if (table.getNumberOfSeats() >= numberOfSeats)
+            if (table.getNumberOfSeats() >= numberOfSeats && table.getIsSmoking() == isSmoking)
                 _tables.add(table);
         }
 

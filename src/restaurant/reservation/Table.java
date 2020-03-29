@@ -21,6 +21,10 @@ public class Table implements Comparable<Table> {
         this.numberOfSeats = numberOfSeats;
     }
 
+    public boolean getIsSmoking() {
+        return isSmoking;
+    }
+
     public void setSmoking(boolean smoking) {
         isSmoking = smoking;
     }

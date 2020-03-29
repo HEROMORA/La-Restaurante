@@ -1,17 +1,17 @@
 package restaurant.gui.pages;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import restaurant.appUtils.AppUtilities;
 import restaurant.gui.utils.Alerts;
 import restaurant.gui.utils.Validations;
 import restaurant.services.ReservationRepository;
 import restaurant.users.User;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 public class CustomerDashBoardPageController {
 
@@ -25,29 +25,37 @@ public class CustomerDashBoardPageController {
     public Button nonSmokingBtn;
     public Button reserveBtn;
 
-    private boolean isSmoking;
+    private Boolean isSmoking = null;
 
     private Validations validations = new Validations();
     private Alerts alerts = new Alerts();
     private ReservationRepository reservationRepository = new ReservationRepository();
 
-    User user;
+    private User user;
 
     public CustomerDashBoardPageController(User user)
     {
         this.user = user;
     }
 
-
-    public void handleSubmitActionButton(ActionEvent actionEvent) {
+    @FXML
+    private void handleSubmitActionButton(ActionEvent actionEvent) {
         if (!validateInput()) return;
 
         String username = user.getUsername();
         int numberOfSeats = Integer.parseInt(numberOfSeatsComboBox.getValue().toString());
-        LocalDate localDate = datePicker.getValue();
-        Date reservationDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        int fromHours = Integer.parseInt(fromHoursComboBox.getValue().toString());
+        int fromMinutes = Integer.parseInt(fromMinsComboBox.getValue().toString());
+        int toHours = Integer.parseInt(toHoursComboBox.getValue().toString());
+        int toMinutes = Integer.parseInt(toMinsComboBox.getValue().toString());
 
-        var reservation = reservationRepository.makeReservation(username, numberOfSeats, reservationDate);
+        LocalDate localDate = datePicker.getValue();
+
+        var reservationDate = AppUtilities.getFullDate(localDate, fromHours, fromMinutes);
+        var endReservationDate = AppUtilities.getFullDate(localDate, toHours, toMinutes);
+
+        var reservation = reservationRepository.makeReservation
+                (username, numberOfSeats, reservationDate, endReservationDate, isSmoking);
         if (reservation == null) {
             alerts.showErrorAlert("FULLY BOOKED", "We apologize for not having a table that meets this requirements");
             return;
@@ -55,6 +63,18 @@ public class CustomerDashBoardPageController {
         reservationRepository.saveReservation(reservation);
         alerts.showSuccessAlert("Booking Completed", "You've booked successfully!");
     }
+
+    @FXML
+    private void handleOnSmokingBtnClick(ActionEvent actionEvent) {
+        isSmoking = true;
+    }
+
+    @FXML
+    private void handleOnNonSmokingBtnClick(ActionEvent actionEvent) {
+        isSmoking = false;
+    }
+
+
 
     private boolean validateInput()
     {

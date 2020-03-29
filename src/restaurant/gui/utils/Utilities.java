@@ -1,11 +1,10 @@
 package restaurant.gui.utils;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import restaurant.gui.pages.CustomerDashBoardPageController;
 import restaurant.gui.pages.WaiterDashboardController;
 import restaurant.users.User;
 
@@ -34,19 +33,45 @@ public class Utilities {
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
+
     private GridPane createControllerInstance(User user , FXMLLoader loader) throws IOException {
+
         switch (user.getUserRole()){
+
             case CUSTOMER:
+                CustomerDashBoardPageController cdc = new CustomerDashBoardPageController(user);
+                loader.setController(cdc);
                 break;
+
             case WAITER:
                 WaiterDashboardController wdc = new WaiterDashboardController(user);
                 loader.setController(wdc);
                 break;
+
             case MANAGER:
                 break;
             case COOK:
                 break;
         }
         return loader.load();
+    }
+
+    public void showPageByRole(User user, Stage stage) {
+        int width = 1200;
+        int height = 700;
+
+        switch (user.getUserRole()) {
+            case CUSTOMER:
+                showPage("../pages/CustomerDashBoardPage.fxml", "Hello Customer", width, height, stage);
+                break;
+            case COOK:
+
+                break;
+            case WAITER:
+                showPage("../pages/WaiterDashboardPage.fxml", "Hello Waiter", width, height, stage);
+                break;
+            case MANAGER:
+                break;
+        }
     }
 }

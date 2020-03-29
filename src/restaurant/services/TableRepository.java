@@ -36,24 +36,24 @@ public class TableRepository {
         return null;
     }
 
-    public ArrayList<Table> getAvailableTables()
-    {
-        ArrayList<Table> _tables = new ArrayList<>();
-        for (Table table:tables)
-        {
-            if (table.getAvailability())
-                _tables.add(table);
-        }
-
-        return _tables;
-    }
-
     public ArrayList<Table> getTablesByNumberOfSeats(int numberOfSeats)
     {
         ArrayList<Table> _tables = new ArrayList<>();
         for (Table table:tables)
         {
             if (table.getNumberOfSeats() == numberOfSeats)
+                _tables.add(table);
+        }
+
+        return _tables;
+    }
+
+    public ArrayList<Table> getTablesByEligibleNumberOfSeats(int numberOfSeats)
+    {
+        ArrayList<Table> _tables = new ArrayList<>();
+        for (Table table:tables)
+        {
+            if (table.getNumberOfSeats() >= numberOfSeats)
                 _tables.add(table);
         }
 

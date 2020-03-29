@@ -38,12 +38,13 @@ public class TableRepositoryTest {
     }
 
     @Test
-    public void testGetTablesByAvailability()
+    public void testGetTablesByEligibleSeatNumbers()
     {
-        var tables = tableRepository.getAvailableTables();
-        for(Table table:tables)
+        var numberOfSeats = 6;
+        var tables = tableRepository.getTablesByEligibleNumberOfSeats(numberOfSeats);
+        for (Table table:tables)
         {
-            assertTrue(table.getAvailability());
+            assertTrue(table.getNumberOfSeats() >= numberOfSeats);
         }
     }
 

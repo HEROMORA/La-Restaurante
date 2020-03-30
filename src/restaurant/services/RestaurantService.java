@@ -280,7 +280,7 @@ public class RestaurantService {
         Date date = res.getReservationDate();
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
         String dateString = df.format(date);
-        String endDateString = df.format(res.getEndDate());
+        String endDateString = df.format(res.getEndReservationDate());
 
         NodeList nodeList = doc.getElementsByTagName("reservations");
         Element root = doc.getDocumentElement();

@@ -1,9 +1,10 @@
 package restaurant.gui.pages;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import restaurant.gui.utils.Utilities;
 import restaurant.reservation.Reservation;
 import restaurant.services.ReservationRepository;
 import restaurant.users.User;
@@ -15,7 +16,6 @@ import java.util.ResourceBundle;
 public class WaiterDashboardController implements Initializable {
     public Label welcomeLabel;
     public ListView<String> reservationsListView;
-    private Utilities utilities= new Utilities();
 
     private ReservationRepository reservationRepository = new ReservationRepository();
     private User user;
@@ -36,6 +36,12 @@ public class WaiterDashboardController implements Initializable {
     private void fillList()
     {
         ArrayList<Reservation> reservations = reservationRepository.getTodayReservations();
-        utilities.populateListView(reservationsListView, reservations);
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (Reservation res:reservations)
+        {
+            items.add(res.toString());
+        }
+
+        reservationsListView.setItems(items);
     }
 }

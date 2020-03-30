@@ -1,10 +1,7 @@
 package restaurant.gui.utils;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import restaurant.gui.pages.CustomerDashBoardPageController;
@@ -12,7 +9,6 @@ import restaurant.gui.pages.WaiterDashboardController;
 import restaurant.users.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Utilities {
 
@@ -79,14 +75,4 @@ public class Utilities {
         }
     }
 
-    public void populateListView(ListView<String> listView, ArrayList dataArrayList)
-    {
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for (Object obj:dataArrayList)
-        {
-            items.add(obj.toString());
-        }
-
-        listView.setItems(items);
-    }
 }

@@ -1,5 +1,7 @@
 package restaurant.reservation;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -52,5 +54,16 @@ public class Reservation {
 
     public void setEndReservationDate(Date endReservationDate) {
         this.endReservationDate = endReservationDate;
+    }
+
+    @Override
+    public String toString()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        String reservationTime = dateFormat.format(reservationDate);
+        String endTime = dateFormat.format(endReservationDate);
+
+        return String.format("Customer Name: %s, Table Number: %d, from: %s to: %s",
+                customerUserName, tableNum, reservationTime, endTime);
     }
 }

@@ -191,10 +191,13 @@ public class RestaurantService {
                 reserv.setCustomerUserName(e.getElementsByTagName("customer_username").item(0).getTextContent());
 
                 Date date = null;
+                Date endDate = null;
 
                 try {
                     date = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss")
-                            .parse(e.getElementsByTagName("date").item(0).getTextContent());
+                            .parse(e.getElementsByTagName("start_date").item(0).getTextContent());
+                    endDate = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss")
+                            .parse(e.getElementsByTagName("end_date").item(0).getTextContent());
                 } catch (ParseException ex) {
                     ex.printStackTrace();
                 }
@@ -277,6 +280,7 @@ public class RestaurantService {
         Date date = res.getReservationDate();
         DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
         String dateString = df.format(date);
+        String endDateString = df.format(res.getEndDate());
 
         NodeList nodeList = doc.getElementsByTagName("reservations");
         Element root = doc.getDocumentElement();
@@ -298,9 +302,14 @@ public class RestaurantService {
         username.appendChild(doc.createTextNode(res.getCustomerUserName()));
         newReservation.appendChild(username);
 
-        Element resDate = doc.createElement("date");
+        Element resDate = doc.createElement("start_date");
         resDate.appendChild(doc.createTextNode(dateString));
         newReservation.appendChild(resDate);
+
+        Element endDate = doc.createElement("end_date");
+        endDate.appendChild(doc.createTextNode(endDateString));
+        newReservation.appendChild(endDate);
+
 
         reservations.appendChild(newReservation);
         root.appendChild(reservations);

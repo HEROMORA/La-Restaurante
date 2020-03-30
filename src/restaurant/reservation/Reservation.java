@@ -7,18 +7,22 @@ public class Reservation {
     private int tableNum;
     private String customerUserName;
     private Date reservationDate;
+    private Date endDate;
 
     public Reservation()
     {
 
     }
 
-    public Reservation(int tableNum, String customerUserName, Date reservationDate)
+    public Reservation(int tableNum, String customerUserName, Date reservationDate, Date endDate)
     {
         this.tableNum = tableNum;
         this.customerUserName = customerUserName;
         this.reservationDate = reservationDate;
+        this.endDate = endDate;
     }
+
+    public Date getEndDate() { return endDate; }
 
     public Date getReservationDate() {
         return reservationDate;

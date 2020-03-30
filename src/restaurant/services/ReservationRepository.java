@@ -64,7 +64,7 @@ public class ReservationRepository {
         return null;
     }
 
-    public Reservation makeReservation(String username, int numberOfSeats, Date reservationDate)
+    public Reservation makeReservation(String username, int numberOfSeats, Date reservationDate , Date endDate)
     {
         ArrayList<Reservation> _reservations = getUpcomingReservations();
 
@@ -88,7 +88,7 @@ public class ReservationRepository {
 
         if (tableNumber == -1) return null;
 
-        return new Reservation(tableNumber, username, reservationDate);
+        return new Reservation(tableNumber, username, reservationDate,endDate);
     }
 
 

@@ -47,7 +47,7 @@ public class CustomerDashBoardPageController {
         LocalDate localDate = datePicker.getValue();
         Date reservationDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        var reservation = reservationRepository.makeReservation(username, numberOfSeats, reservationDate);
+        var reservation = reservationRepository.makeReservation(username, numberOfSeats, reservationDate,reservationDate);
         if (reservation == null) {
             alerts.showErrorAlert("FULLY BOOKED", "We apologize for not having a table that meets this requirements");
             return;

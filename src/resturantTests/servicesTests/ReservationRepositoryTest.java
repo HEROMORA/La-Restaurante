@@ -19,8 +19,9 @@ public class ReservationRepositoryTest {
         int tableNumber = 5;
         String customerName = "brian";
         Date date = Calendar.getInstance().getTime();
+        Date endDate = Calendar.getInstance().getTime();
 
-        Reservation reservation = new Reservation(tableNumber, customerName, date);
+        Reservation reservation = new Reservation(tableNumber, customerName, date,endDate);
         reservationRepository.saveReservation(reservation);
         var res = reservationRepository.getReservationByCustomerUsername(customerName);
         assertEquals(tableNumber, res.getTableNum());

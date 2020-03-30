@@ -1,5 +1,7 @@
 package restaurant.appUtils;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -50,5 +52,13 @@ public class AppUtilities {
         if (cal1.get(Calendar.YEAR) < cal2.get(Calendar.YEAR)) return true;
         if (cal1.get(Calendar.YEAR) > cal2.get(Calendar.YEAR)) return false;
         return cal1.get(Calendar.DAY_OF_YEAR) < cal2.get(Calendar.DAY_OF_YEAR);
+    }
+
+    public static Date getFullDate(LocalDate localDate, int hours, int mins)
+    {
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        long time = mins * 60 * 1000 + hours * 60 * 60 * 1000;
+        date.setTime(time);
+        return date;
     }
 }

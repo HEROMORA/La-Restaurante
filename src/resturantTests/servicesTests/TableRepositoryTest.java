@@ -13,9 +13,10 @@ public class TableRepositoryTest {
     @Test
     public void testAllTablesExist()
     {
+        var numberOfTables = 7; // Bad Practice and in testing should be sit to constants
         var tables = tableRepository.getTables();
 
-        assertEquals(7, tables.size());
+        assertEquals(numberOfTables, tables.size());
     }
 
     @Test
@@ -38,13 +39,14 @@ public class TableRepositoryTest {
     }
 
     @Test
-    public void testGetTablesByEligibleSeatNumbers()
+    public void testGetTablesByEligibleSeatNumbersAndSmoking()
     {
         var numberOfSeats = 6;
-        var tables = tableRepository.getTablesByEligibleNumberOfSeats(numberOfSeats);
+        var isSmoking = false;
+        var tables = tableRepository.getTablesByEligibleNumberOfSeatsAndSmoking(numberOfSeats, isSmoking);
         for (Table table:tables)
         {
-            assertTrue(table.getNumberOfSeats() >= numberOfSeats);
+            assertTrue(table.getNumberOfSeats() >= numberOfSeats && table.getIsSmoking() == isSmoking);
         }
     }
 

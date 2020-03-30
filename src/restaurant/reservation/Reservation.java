@@ -7,22 +7,20 @@ public class Reservation {
     private int tableNum;
     private String customerUserName;
     private Date reservationDate;
-    private Date endDate;
+    private Date endReservationDate;
 
     public Reservation()
     {
 
     }
 
-    public Reservation(int tableNum, String customerUserName, Date reservationDate, Date endDate)
+    public Reservation(int tableNum, String customerUserName, Date reservationDate, Date endReservationDate)
     {
         this.tableNum = tableNum;
         this.customerUserName = customerUserName;
         this.reservationDate = reservationDate;
-        this.endDate = endDate;
+        this.endReservationDate = endReservationDate;
     }
-
-    public Date getEndDate() { return endDate; }
 
     public Date getReservationDate() {
         return reservationDate;
@@ -48,4 +46,11 @@ public class Reservation {
         this.tableNum = tableNum;
     }
 
+    public Date getEndReservationDate() {
+        return endReservationDate;
+    }
+
+    public void setEndReservationDate(Date endReservationDate) {
+        this.endReservationDate = endReservationDate;
+    }
 }

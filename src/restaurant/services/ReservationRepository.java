@@ -64,11 +64,12 @@ public class ReservationRepository {
         return null;
     }
 
-    public Reservation makeReservation(String username, int numberOfSeats, Date reservationDate , Date endDate)
+    public Reservation makeReservation(String username, int numberOfSeats,
+                                       Date reservationDate, Date endReservationDate, boolean isSmoking)
     {
         ArrayList<Reservation> _reservations = getUpcomingReservations();
 
-        var eligibleTables = tableRepository.getTablesByEligibleNumberOfSeats(numberOfSeats);
+        var eligibleTables = tableRepository.getTablesByEligibleNumberOfSeatsAndSmoking(numberOfSeats, isSmoking);
         Collections.sort(eligibleTables);
 
         HashSet<Integer> reservedTablesSet = new HashSet<>();
@@ -88,7 +89,7 @@ public class ReservationRepository {
 
         if (tableNumber == -1) return null;
 
-        return new Reservation(tableNumber, username, reservationDate,endDate);
+        return new Reservation(tableNumber, username, reservationDate, endReservationDate);
     }
 
 

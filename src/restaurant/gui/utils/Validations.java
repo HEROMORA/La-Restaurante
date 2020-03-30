@@ -43,9 +43,15 @@ public class Validations {
         return  true;
     }
 
-    public boolean validateSmokingType(boolean isSmoking)
+    public boolean validateSmokingType(Boolean isSmoking)
     {
-        return isSmoking != Boolean.parseBoolean(null);
+        if (isSmoking == null) {
+            alerts.showSuccessAlert("Smoking Type is Required",
+                    "Please select whether you want to sit in smoking area or not");
+            return  false;
+        }
+
+        return true;
     }
 
     public boolean validateDate(DatePicker datePicker)

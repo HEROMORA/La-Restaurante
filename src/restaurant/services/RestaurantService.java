@@ -14,6 +14,7 @@ import restaurant.users.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -214,6 +215,51 @@ public class RestaurantService {
         return reservationArrayList;
     }
 
+    ArrayList<Order> readOrders()
+    {
+        ArrayList<Order> ordersArrayList = new ArrayList<>();
+
+        Document doc = connect();
+        assert doc != null;
+        doc.getDocumentElement().normalize();
+        NodeList nodeList = doc.getElementsByTagName("orders");
+
+        for(int i = 0; i < nodeList.getLength(); i++) {
+
+            Node node = nodeList.item(i);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                Element e = (Element) node;
+                Order order = new Order();
+
+                order.setOrderStatus(e.getElementsByTagName("orderStatus").item(0).getTextContent());
+                order.setTableNumber(Integer.parseInt(e.getElementsByTagName("tableNumber").item(0).getTextContent()));
+
+                Date date = null;
+
+                try {
+                    date = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss")
+                            .parse(e.getElementsByTagName("date").item(0).getTextContent());
+
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                }
+
+                order.setDate(date);
+
+                ArrayList<OrderDetails> orderDetails = new ArrayList<>();
+                //TODO: ADD ORDER DETAILS TO THE ORDER
+
+                order.setOrdersDetails(orderDetails);
+
+                ordersArrayList.add(order);
+            }
+        }
+
+        return ordersArrayList;
+    }
+
 
     void writeUser(User user) {
         Document doc = connect();
@@ -327,7 +373,7 @@ public class RestaurantService {
         }
     }
 
-    public void writeOrder(Order order) throws TransformerException {
+    public void writeOrder(Order order) {
 
         Document doc = connect();
         assert doc != null;
@@ -359,6 +405,10 @@ public class RestaurantService {
         totalPriceElement.appendChild(doc.createTextNode(String.valueOf(order.calculateTotalPrice())));
         newOrder.appendChild(totalPriceElement);
 
+        Element tableNumberElement = doc.createElement("totalNumberElement");
+        tableNumberElement.appendChild(doc.createTextNode(String.valueOf(order.getTableNumber())));
+        newOrder.appendChild(tableNumberElement);
+
         Element orderDetails = doc.createElement("orderDetails");
 
         for(OrderDetails orderDetail:order.getOrdersDetails())
@@ -382,8 +432,17 @@ public class RestaurantService {
         DOMSource source = new DOMSource(doc);
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
+        Transformer transformer = null;
+        try {
+            transformer = transformerFactory.newTransformer();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        }
         StreamResult result = new StreamResult(file);
-        transformer.transform(source,result);
+        try {
+            transformer.transform(source,result);
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 }

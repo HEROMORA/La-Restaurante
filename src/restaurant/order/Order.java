@@ -7,13 +7,20 @@ import java.util.Date;
 public class Order {
     private Date date;
     private OrderStatus orderStatus;
+    private int tableNumber;
 
     private ArrayList<OrderDetails> ordersDetails;
 
-    public Order(Date date, OrderStatus orderStatus, ArrayList<OrderDetails> orderDetails)
+    public Order()
+    {
+
+    }
+
+    public Order(Date date, OrderStatus orderStatus, int tableNumber, ArrayList<OrderDetails> orderDetails)
     {
         this.date = date;
         this.orderStatus = orderStatus;
+        this.tableNumber = tableNumber;
         this.ordersDetails = orderDetails;
     }
 
@@ -21,12 +28,54 @@ public class Order {
         return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
+    public void setOrderStatus(String orderStatus)
+    {
+        OrderStatus result;
+        switch (orderStatus.toLowerCase())
+        {
+            case "waiting":
+                result = OrderStatus.WAITING;
+                break;
+            case "ongoing":
+                result = OrderStatus.ONGOING;
+                break;
+            case "finished":
+                result = OrderStatus.FINISHED;
+                break;
+            default:
+                result = null;
+        }
+
+        setOrderStatus(result);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public ArrayList<OrderDetails> getOrdersDetails() {
         return ordersDetails;
+    }
+
+    public void setOrdersDetails(ArrayList<OrderDetails> ordersDetails) {
+        this.ordersDetails = ordersDetails;
+    }
+
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
     }
 
     public BigDecimal calculateTotalPrice()
@@ -50,4 +99,5 @@ public class Order {
         }
         return tax;
     }
+
 }

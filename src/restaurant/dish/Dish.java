@@ -29,6 +29,7 @@ public abstract class Dish {
         return dishType;
     }
 
+    public void setName(String name) { this.name = name; }
 
     @Override
     public String toString()

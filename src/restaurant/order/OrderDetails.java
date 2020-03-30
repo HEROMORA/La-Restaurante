@@ -16,6 +16,10 @@ public class OrderDetails {
         return dish.getName();
     }
 
+    public void setDishName(String dish) { this.dish.setName(dish); }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
     public BigDecimal calculateSubTotal()
     {
         return dish.getPrice().multiply(new BigDecimal(quantity));

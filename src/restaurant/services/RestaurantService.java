@@ -239,7 +239,7 @@ public class RestaurantService {
                 Date date = null;
 
                 try {
-                    date = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss")
+                    date = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
                             .parse(e.getElementsByTagName("date").item(0).getTextContent());
 
                 } catch (ParseException ex) {
@@ -249,7 +249,17 @@ public class RestaurantService {
                 order.setDate(date);
 
                 ArrayList<OrderDetails> orderDetails = new ArrayList<>();
-                //TODO: ADD ORDER DETAILS TO THE ORDER
+                NodeList details = e.getElementsByTagName("orderDetail");
+                for(i=0;i<details.getLength();i++){
+                    Element orderDetailElement =(Element) details.item(i);
+
+                    OrderDetails orderDetail = new OrderDetails();
+
+                    orderDetail.setQuantity(Integer.parseInt(orderDetailElement.getElementsByTagName("quantity").item(0).getTextContent()));
+                    orderDetail.setDishName(orderDetailElement.getElementsByTagName("dishName").item(0).getTextContent());
+
+                    orderDetails.add(orderDetail);
+                }
 
                 order.setOrdersDetails(orderDetails);
 
@@ -391,7 +401,7 @@ public class RestaurantService {
         Element dateElement = doc.createElement("date");
 
         Date date = order.getDate();
-        DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         String dateString = df.format(date);
 
         dateElement.appendChild(doc.createTextNode(dateString));

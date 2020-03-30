@@ -1,7 +1,11 @@
 package restaurant.appUtils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -54,11 +58,12 @@ public class AppUtilities {
         return cal1.get(Calendar.DAY_OF_YEAR) < cal2.get(Calendar.DAY_OF_YEAR);
     }
 
-    public static Date getFullDate(LocalDate localDate, int hours, int mins)
-    {
-        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        long time = mins * 60 * 1000 + hours * 60 * 60 * 1000;
-        date.setTime(time);
+    public static Date getFullDate(LocalDate localDate, int hours, int mins) throws ParseException {
+        String dateString = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String timeString = hours +":"+ mins +":00";
+        String fullDate = dateString + " " + timeString;
+        Date date =  new SimpleDateFormat("d-MM-yyyy hh:mm:ss").parse(fullDate);
+
         return date;
     }
 }

@@ -11,6 +11,7 @@ import restaurant.gui.utils.Validations;
 import restaurant.services.ReservationRepository;
 import restaurant.users.User;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 
 public class CustomerDashBoardPageController {
@@ -39,7 +40,7 @@ public class CustomerDashBoardPageController {
     }
 
     @FXML
-    private void handleSubmitActionButton(ActionEvent actionEvent) {
+    private void handleSubmitActionButton(ActionEvent actionEvent) throws ParseException {
         if (!validateInput()) return;
 
         String username = user.getUsername();

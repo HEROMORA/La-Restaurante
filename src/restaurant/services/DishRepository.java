@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class DishRepository {
 
     private RestaurantService restaurantService = new RestaurantService();
+    private OrderRepository orderRepository = new OrderRepository();
     private ArrayList<Dish> dishes;
 
     public DishRepository()

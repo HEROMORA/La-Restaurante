@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import restaurant.gui.pages.CookDashBoardController;
 import restaurant.gui.pages.CustomerDashBoardPageController;
+import restaurant.gui.pages.ManagerDashBoardController;
 import restaurant.gui.pages.WaiterDashboardController;
 import restaurant.users.User;
 
@@ -50,6 +51,8 @@ public class Utilities {
                 break;
 
             case MANAGER:
+                ManagerDashBoardController mdc = new ManagerDashBoardController(user);
+                loader.setController(mdc);
                 break;
 
             case COOK:
@@ -75,6 +78,7 @@ public class Utilities {
                 showPage("../pages/WaiterDashboardPage.fxml", "Hello Waiter", width, height, stage);
                 break;
             case MANAGER:
+                showPage("../pages/ManagerDashBoardPage.fxml", "Hello Manager", width, height, stage);
                 break;
         }
     }

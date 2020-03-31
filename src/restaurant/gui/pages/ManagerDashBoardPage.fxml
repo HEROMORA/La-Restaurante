@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<GridPane xmlns:fx="http://javafx.com/fxml" hgap="10" vgap="10"
+          styleClass="root">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+
+    <Label fx:id="welcomeLabel" id="welcomeLabel" text="Hello, Manager" GridPane.rowIndex="0" GridPane.columnIndex="0" >
+        <padding><Insets right="40"/>  </padding>
+    </Label>
+    <TableView fx:id="reservationTableView" id="reservationTableView" prefWidth="1000"
+               GridPane.columnIndex="0" GridPane.columnSpan="5"
+               GridPane.rowIndex="1" GridPane.rowSpan="4" >
+        <columns>
+            <TableColumn text="Customer">
+                <cellValueFactory>
+                    <PropertyValueFactory property="customerUserName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Table Number">
+                <cellValueFactory>
+                    <PropertyValueFactory property="tableNum" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="From">
+                <cellValueFactory>
+                    <PropertyValueFactory property="reservationDate" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="To">
+                <cellValueFactory>
+                    <PropertyValueFactory property="endReservationDate" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <Label id="money-label" text="Total Paid:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <Label id="moneyValue-label" fx:id="reservationPaidPriceLabel" text="Money" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+    <TableView fx:id="ordersTableView" id="reservationTableView" prefWidth="1000"
+               GridPane.columnIndex="0" GridPane.columnSpan="5"
+               GridPane.rowIndex="6" GridPane.rowSpan="3" >
+        <columns>
+            <TableColumn text="Dish Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="getDishName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Dish Type">
+                <cellValueFactory>
+                    <PropertyValueFactory property="getDishType" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Quantity">
+                <cellValueFactory>
+                    <PropertyValueFactory property="quantity" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Price">
+                <cellValueFactory>
+                    <PropertyValueFactory property="getSubTotal" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <Label id="money-label" text="Total Today Income:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+    <Label id="moneyValue-label" fx:id="totalTodayIncomeLabel" text="Money" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+    <stylesheets>
+        <URL value="@../styles/ManagerPageStyleSheet.css" />
+    </stylesheets>
+</GridPane>

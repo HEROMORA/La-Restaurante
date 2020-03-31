@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import restaurant.gui.pages.CookDashBoardController;
 import restaurant.gui.pages.CustomerDashBoardPageController;
 import restaurant.gui.pages.WaiterDashboardController;
 import restaurant.users.User;
@@ -50,7 +51,10 @@ public class Utilities {
 
             case MANAGER:
                 break;
+
             case COOK:
+                CookDashBoardController cookdc = new CookDashBoardController(user);
+                loader.setController(cookdc);
                 break;
         }
         return loader.load();
@@ -65,7 +69,7 @@ public class Utilities {
                 showPage("../pages/CustomerDashBoardPage.fxml", "Hello Customer", width, height, stage);
                 break;
             case COOK:
-
+                showPage("../pages/CookDashBoardPage.fxml", "Hello Cook", width, height, stage);
                 break;
             case WAITER:
                 showPage("../pages/WaiterDashboardPage.fxml", "Hello Waiter", width, height, stage);

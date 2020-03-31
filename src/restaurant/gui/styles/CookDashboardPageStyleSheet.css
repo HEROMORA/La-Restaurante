@@ -1,0 +1,8 @@
+root {
+    display:block;
+}
+.root {
+    -fx-background-image: url("../images/CookBackground.jpg");
+    -fx-background-size: cover;
+}
+

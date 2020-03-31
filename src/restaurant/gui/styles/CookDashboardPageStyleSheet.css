@@ -5,4 +5,15 @@ root {
     -fx-background-image: url("../images/CookBackground.jpg");
     -fx-background-size: cover;
 }
-
+#welcomeLabel{
+    -fx-font-size: 32px;
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: #f0b11b;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+#text1{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}

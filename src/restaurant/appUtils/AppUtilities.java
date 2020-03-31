@@ -1,10 +1,11 @@
 package restaurant.appUtils;
 
-import java.text.DateFormat;
+import restaurant.order.Order;
+import restaurant.order.OrderDetails;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,5 +66,17 @@ public class AppUtilities {
         Date date =  new SimpleDateFormat("d-MM-yyyy hh:mm:ss").parse(fullDate);
 
         return date;
+    }
+
+    // TILL HANDLING IT IN THE VIEW WITH MORE FRIENDLY WAY
+    public String getOrderDetailsForCook(Order order)
+    {
+        String s = String.format("Table: %d", order.getTableNumber());
+        for (OrderDetails orderDetail:order.getOrdersDetails())
+        {
+            s += String.format(", Dish: %s, Quantity: %d", orderDetail.getDishName(), orderDetail.getQuantity());
+        }
+
+        return s;
     }
 }

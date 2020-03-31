@@ -204,7 +204,7 @@ public class RestaurantService {
                 }
 
                 reserv.setReservationDate(date);
-                reserv.setEndReservationDate(date);
+                reserv.setEndReservationDate(endDate);
 
                 reserv.setTableNum(Integer.parseInt(e.getElementsByTagName("table_number").item(0).getTextContent()));
 

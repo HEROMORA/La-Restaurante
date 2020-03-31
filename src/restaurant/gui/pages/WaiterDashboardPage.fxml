@@ -21,6 +21,7 @@
           GridPane.columnIndex="0" GridPane.rowIndex="10" GridPane.columnSpan="4" GridPane.halignment="CENTER"/>
 
     <ListView id="#reservations-listview" fx:id="reservationsListView"
+              prefWidth="750"
         GridPane.rowIndex="0" GridPane.columnIndex="0"
         GridPane.rowSpan="8" GridPane.columnSpan="4"/>
 

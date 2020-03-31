@@ -11,7 +11,8 @@
 
     <Label fx:id="welcomeLabel" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-    <ListView fx:id="todayOrdersListView" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <ListView fx:id="todayOrdersListView" GridPane.columnIndex="0" GridPane.rowIndex="1"
+            prefWidth="1000"/>
 
     <stylesheets>
         <URL value="@../styles/CookDashboardPageStyleSheet.css" />

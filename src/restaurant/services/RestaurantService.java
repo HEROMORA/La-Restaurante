@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class RestaurantService {
+    private DishRepository dr;
     private File file;
     public RestaurantService(){
         file = new File("data.xml");
@@ -80,6 +81,7 @@ public class RestaurantService {
 
 
     ArrayList<Dish> readDishes() {
+        dr = new DishRepository();
 
         ArrayList<Dish> dishesList = new ArrayList<>();
 
@@ -253,10 +255,13 @@ public class RestaurantService {
                 for(i=0;i<details.getLength();i++){
                     Element orderDetailElement =(Element) details.item(i);
 
+                    Dish dish;
                     OrderDetails orderDetail = new OrderDetails();
 
                     orderDetail.setQuantity(Integer.parseInt(orderDetailElement.getElementsByTagName("quantity").item(0).getTextContent()));
-                    orderDetail.setDishName(orderDetailElement.getElementsByTagName("dishName").item(0).getTextContent());
+                    dish = dr.getDishByName(orderDetailElement.getElementsByTagName("dishName").item(0).getTextContent());
+
+                    orderDetail.setDish(dish);
 
                     orderDetails.add(orderDetail);
                 }

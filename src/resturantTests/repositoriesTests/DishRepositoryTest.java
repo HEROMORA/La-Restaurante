@@ -1,4 +1,4 @@
-package resturantTests.servicesTests;
+package resturantTests.repositoriesTests;
 
 import org.junit.jupiter.api.Test;
 import restaurant.dish.Dish;

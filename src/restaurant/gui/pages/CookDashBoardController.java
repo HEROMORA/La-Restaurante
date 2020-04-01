@@ -4,10 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import restaurant.appUtils.AppUtilities;
-import restaurant.order.Order;
+import javafx.scene.control.TableView;
 import restaurant.data.repositories.OrderRepository;
+import restaurant.data.repositories.ReservationRepository;
+import restaurant.gui.utils.Alerts;
+import restaurant.order.OrderDetails;
+import restaurant.reservation.Reservation;
 import restaurant.users.User;
 
 import java.net.URL;
@@ -15,11 +17,13 @@ import java.util.ResourceBundle;
 
 public class CookDashBoardController implements Initializable {
     public Label welcomeLabel;
-    public ListView<String> todayOrdersListView;
+    public TableView<Reservation> reservationTableView;
+    public TableView<OrderDetails> ordersTableView;
 
     private User user;
-    private AppUtilities appUtilities = new AppUtilities();
-    private OrderRepository ordersRepository = new OrderRepository();
+    private Alerts alerts = new Alerts();
+    private ReservationRepository reservationRepository = new ReservationRepository();
+    private OrderRepository orderRepository = new OrderRepository();
 
     public CookDashBoardController(User user)
     {
@@ -30,6 +34,7 @@ public class CookDashBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         greet();
         fillList();
+        listenForSelections();
     }
 
     private void greet()
@@ -41,15 +46,28 @@ public class CookDashBoardController implements Initializable {
 
     private void fillList()
     {
-        var orders = ordersRepository.getTodayOrders();
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for (Order order:orders)
+        try {
+            ObservableList<Reservation> data = FXCollections.observableArrayList(reservationRepository.getTodayReservations());
+            reservationTableView.setItems(data);
+        } catch (NullPointerException ex)
         {
-            String orderString = appUtilities.getOrderDetailsForCook(order);
-            items.add(orderString);
+            alerts.showInfoAlert("No Data", "No Reservations is made for today yet");
         }
+    }
 
-        todayOrdersListView.setItems(items);
+    private void listenForSelections()
+    {
+        reservationTableView.setOnMouseClicked(event -> {
+            try {
+                var reservation = reservationTableView.getSelectionModel().getSelectedItem();
+                var order = orderRepository.getOrderByCustomerName(reservation.getCustomerUserName());
+
+                ObservableList<OrderDetails> data = FXCollections.observableArrayList(order.getOrdersDetails());
+                ordersTableView.setItems(data);
+            } catch (NullPointerException ex) {
+                //User may have not ordered yet
+            }
+        });
     }
 }
 

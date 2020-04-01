@@ -5,6 +5,7 @@ root {
     -fx-background-image: url("../images/ManagerBackground.jpg");
     -fx-background-size: cover;
 }
+
 #welcomeLabel{
     -fx-font-size: 32px;
     -fx-font-family: "Arial Black";

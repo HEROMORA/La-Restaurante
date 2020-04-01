@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 import restaurant.appUtils.AppUtilities;
 import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.utils.Alerts;
@@ -66,7 +67,8 @@ public class CustomerDashBoardPageController {
         }
         reservationRepository.saveReservation(reservation);
 
-        //utilities.showOrdersPage("../pages/OrderPage.fxml","Make an Order",1200,700,(Stage)reserveBtn.getScene().getWindow());
+        utilities.setLoggedInUser(user);
+        utilities.showOrdersPage("../pages/OrderPage.fxml","Make an Order",1200,700,(Stage)reserveBtn.getScene().getWindow(),reservation);
 
         alerts.showSuccessAlert("Booking Completed", "You've booked successfully!");
     }

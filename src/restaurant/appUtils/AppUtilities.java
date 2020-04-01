@@ -36,7 +36,7 @@ public class AppUtilities {
         return isSameDay(date, Calendar.getInstance().getTime());
     }
 
-    public static boolean isBeforeDay(Date date1, Date date2) {
+    public boolean isBeforeDay(Date date1, Date date2) {
         if (date1 == null || date2 == null) {
             throw new IllegalArgumentException("The dates must not be null");
         }
@@ -48,7 +48,7 @@ public class AppUtilities {
     }
 
 
-    public static boolean isBeforeDay(Calendar cal1, Calendar cal2) {
+    public boolean isBeforeDay(Calendar cal1, Calendar cal2) {
         if (cal1 == null || cal2 == null) {
             throw new IllegalArgumentException("The dates must not be null");
         }
@@ -59,13 +59,31 @@ public class AppUtilities {
         return cal1.get(Calendar.DAY_OF_YEAR) < cal2.get(Calendar.DAY_OF_YEAR);
     }
 
-    public static Date getFullDate(LocalDate localDate, int hours, int mins) throws ParseException {
+    public Date getFullDate(LocalDate localDate, int hours, int mins) throws ParseException {
         String dateString = localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         String timeString = hours +":"+ mins +":00";
         String fullDate = dateString + " " + timeString;
         Date date =  new SimpleDateFormat("d-MM-yyyy hh:mm:ss").parse(fullDate);
 
         return date;
+    }
+
+    // FIXME
+    public boolean isTimeBetween(Date first, Date last, Date middle)
+    {
+
+        Calendar cFirst = Calendar.getInstance();
+        cFirst.setTime(first);
+
+        Calendar cLast = Calendar.getInstance();
+        cLast.setTime(last);
+
+        Calendar cMiddle = Calendar.getInstance();
+        cMiddle.setTime(middle);
+
+        if (cMiddle.after(first.getTime()) && cMiddle.before(last.getTime()) && cMiddle.getTime().equals(cFirst.getTime()))
+            return middle.after(first) && middle.before(last) && !middle.equals(first);
+        return false;
     }
 
     // TILL HANDLING IT IN THE VIEW WITH MORE FRIENDLY WAY
@@ -79,4 +97,6 @@ public class AppUtilities {
 
         return s;
     }
+
+
 }

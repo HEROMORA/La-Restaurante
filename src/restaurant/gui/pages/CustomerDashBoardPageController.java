@@ -30,6 +30,7 @@ public class CustomerDashBoardPageController {
 
     private Validations validations = new Validations();
     private Alerts alerts = new Alerts();
+    private AppUtilities appUtilities = new AppUtilities();
     private ReservationRepository reservationRepository = new ReservationRepository();
 
     private User user;
@@ -52,8 +53,8 @@ public class CustomerDashBoardPageController {
 
         LocalDate localDate = datePicker.getValue();
 
-        var reservationDate = AppUtilities.getFullDate(localDate, fromHours, fromMinutes);
-        var endReservationDate = AppUtilities.getFullDate(localDate, toHours, toMinutes);
+        var reservationDate = appUtilities.getFullDate(localDate, fromHours, fromMinutes);
+        var endReservationDate = appUtilities.getFullDate(localDate, toHours, toMinutes);
 
         var reservation = reservationRepository.makeReservation
                 (username, numberOfSeats, reservationDate, endReservationDate, isSmoking);

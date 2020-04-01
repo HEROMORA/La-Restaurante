@@ -15,6 +15,9 @@ public abstract class Dish {
         this.dishType = dishType;
         this.price = price;
     }
+    public Dish(){
+
+    }
 
     public String getName() {
         return name;

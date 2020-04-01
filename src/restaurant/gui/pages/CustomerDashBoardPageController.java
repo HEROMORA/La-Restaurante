@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 import restaurant.appUtils.AppUtilities;
 import restaurant.gui.utils.Alerts;
+import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
 import restaurant.data.repositories.ReservationRepository;
 import restaurant.users.User;
@@ -32,6 +34,7 @@ public class CustomerDashBoardPageController {
     private Alerts alerts = new Alerts();
     private AppUtilities appUtilities = new AppUtilities();
     private ReservationRepository reservationRepository = new ReservationRepository();
+    private Utilities utilities = new Utilities();
 
     private User user;
 
@@ -63,6 +66,9 @@ public class CustomerDashBoardPageController {
             return;
         }
         reservationRepository.saveReservation(reservation);
+
+        utilities.showOrdersPage("../pages/OrderPage.fxml","Make an Order",1200,700,(Stage)reserveBtn.getScene().getWindow());
+
         alerts.showSuccessAlert("Booking Completed", "You've booked successfully!");
     }
 

@@ -22,4 +22,13 @@ public class Alerts {
         alert.showAndWait();
     }
 
+    public void showInfoAlert(String header, String errorMsg)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Info!");
+        alert.setHeaderText(header);
+        alert.setContentText(errorMsg);
+        alert.showAndWait();
+    }
+
 }

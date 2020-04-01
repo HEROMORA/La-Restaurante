@@ -1,7 +1,5 @@
 package restaurant.gui.pages;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,11 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import restaurant.data.repositories.DishRepository;
 import restaurant.dish.Dish;
 import restaurant.dish.DishType;
-import restaurant.gui.utils.Utilities;
 import restaurant.order.OrderDetails;
-import restaurant.services.DishRepository;
 
 import java.net.URL;
 import java.util.ArrayList;

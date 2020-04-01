@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 import restaurant.gui.pages.CookDashBoardController;
 import restaurant.gui.pages.CustomerDashBoardPageController;
 import restaurant.gui.pages.OrderController;
-import restaurant.gui.pages.ManagerDashBoardController;
 import restaurant.gui.pages.WaiterDashboardController;
 import restaurant.users.User;
 
@@ -52,8 +51,6 @@ public class Utilities {
                 break;
 
             case MANAGER:
-                ManagerDashBoardController mdc = new ManagerDashBoardController(user);
-                loader.setController(mdc);
                 break;
 
             case COOK:
@@ -79,9 +76,21 @@ public class Utilities {
                 showPage("../pages/WaiterDashboardPage.fxml", "Hello Waiter", width, height, stage);
                 break;
             case MANAGER:
-                showPage("../pages/ManagerDashBoardPage.fxml", "Hello Manager", width, height, stage);
                 break;
         }
     }
-
+    public void showOrdersPage(String fileName ,String title, int width, int height, Stage stage){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
+            OrderController oc = new OrderController();
+            loader.setController(oc);
+            GridPane grid = loader.load();
+            stage.setTitle(title);
+            Scene sc = new Scene(grid, width, height);
+            stage.setScene(sc);
+            stage.show();
+        } catch (IOException ex) {
+            alerts.showErrorAlert("Data Error", "Something wrong happened!");
+        }
+    }
 }

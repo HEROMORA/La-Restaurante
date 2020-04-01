@@ -41,16 +41,6 @@ public class OrderRepository {
         return _orders;
     }
 
-    public Order getOrderByCustomerName(String customerName)
-    {
-        for (Order order:orders) {
-            if (order.getCustomerName().equals(customerName))
-                return order;
-        }
-
-        return null;
-    }
-
     public ArrayList<Order> getTodayOrders()
     {
         ArrayList<Order> _orders = new ArrayList<>();

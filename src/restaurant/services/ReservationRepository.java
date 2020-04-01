@@ -46,7 +46,7 @@ public class ReservationRepository {
         ArrayList<Reservation> _reservations = new ArrayList<>();
         for (Reservation reservation:getReservations())
         {
-            if (!appUtilities.isBeforeDay(reservation.getReservationDate(), Calendar.getInstance().getTime()))
+            if (!AppUtilities.isBeforeDay(reservation.getReservationDate(), Calendar.getInstance().getTime()))
                 _reservations.add(reservation);
         }
 
@@ -72,26 +72,16 @@ public class ReservationRepository {
         var eligibleTables = tableRepository.getTablesByEligibleNumberOfSeatsAndSmoking(numberOfSeats, isSmoking);
         Collections.sort(eligibleTables);
 
-        HashMap<Integer, Reservation> reservedTablesMap = new HashMap<>();
+        HashSet<Integer> reservedTablesSet = new HashSet<>();
 
         for(Reservation res: _reservations)
-            reservedTablesMap.put(res.getTableNum(), res);
+            reservedTablesSet.add(res.getTableNum());
 
         int tableNumber = -1;
 
         for (Table table:eligibleTables)
         {
-
-            if (reservedTablesMap.containsKey(table.getTableNumber()))
-            {
-                var res = reservedTablesMap.get(table.getTableNumber());
-                if(!appUtilities.isTimeBetween(res.getReservationDate(), res.getEndReservationDate(), reservationDate)) {
-                    tableNumber = table.getTableNumber();
-                    break;
-                }
-            }
-
-            if(!reservedTablesMap.containsKey(table.getTableNumber())) {
+            if(!reservedTablesSet.contains(table.getTableNumber())) {
                 tableNumber = table.getTableNumber();
                 break;
             }

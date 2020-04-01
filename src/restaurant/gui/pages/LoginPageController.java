@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import restaurant.gui.utils.Alerts;
 import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
-import restaurant.services.UserRepository;
+import restaurant.data.repositories.UserRepository;
 import restaurant.users.User;
 
 public class LoginPageController {

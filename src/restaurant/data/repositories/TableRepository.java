@@ -1,11 +1,13 @@
-package restaurant.services;
+package restaurant.data.repositories;
 
+import restaurant.data.services.Service;
+import restaurant.data.services.TableService;
 import restaurant.reservation.Table;
 
 import java.util.ArrayList;
 
 public class TableRepository {
-    private RestaurantService restaurantService = new RestaurantService();
+    private Service<Table> tableService = new TableService();
     private ArrayList<Table> tables;
 
     public TableRepository()
@@ -15,7 +17,7 @@ public class TableRepository {
 
     private void populateList()
     {
-        tables = restaurantService.readTables();
+        tables = tableService.readData();
     }
 
     // READING FUNCTIONS

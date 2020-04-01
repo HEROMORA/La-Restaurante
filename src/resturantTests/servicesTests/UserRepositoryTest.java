@@ -1,7 +1,7 @@
 package resturantTests.servicesTests;
 
 import org.junit.jupiter.api.Test;
-import restaurant.services.UserRepository;
+import restaurant.data.repositories.UserRepository;
 import restaurant.users.User;
 import restaurant.users.UserRole;
 

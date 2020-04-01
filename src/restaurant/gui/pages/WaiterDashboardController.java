@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import restaurant.reservation.Reservation;
-import restaurant.services.ReservationRepository;
+import restaurant.data.repositories.ReservationRepository;
 import restaurant.users.User;
 
 import java.net.URL;

@@ -3,7 +3,7 @@ package resturantTests.servicesTests;
 import org.junit.jupiter.api.Test;
 import restaurant.dish.Dish;
 import restaurant.dish.DishType;
-import restaurant.services.DishRepository;
+import restaurant.data.repositories.DishRepository;
 
 import java.math.BigDecimal;
 

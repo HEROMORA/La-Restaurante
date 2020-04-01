@@ -1,6 +1,8 @@
-package restaurant.services;
+package restaurant.data.repositories;
 
 import restaurant.appUtils.AppUtilities;
+import restaurant.data.services.OrderService;
+import restaurant.data.services.Service;
 import restaurant.order.Order;
 import restaurant.order.OrderStatus;
 
@@ -10,7 +12,7 @@ import java.util.Calendar;
 
 public class OrderRepository {
 
-    private RestaurantService restaurantService = new RestaurantService();
+    private Service<Order> orderService = new OrderService();
     private AppUtilities appUtilities = new AppUtilities();
     private ArrayList<Order> orders;
 
@@ -21,7 +23,7 @@ public class OrderRepository {
 
     private void loadOrders()
     {
-        orders = restaurantService.readOrders();
+        orders = orderService.readData();
     }
 
     public ArrayList<Order> getOrders()
@@ -81,6 +83,6 @@ public class OrderRepository {
 
     public void saveOrder(Order order)
     {
-        restaurantService.writeOrder(order);
+        orderService.writeData(order);
     }
 }

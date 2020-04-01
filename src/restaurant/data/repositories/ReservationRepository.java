@@ -1,6 +1,8 @@
-package restaurant.services;
+package restaurant.data.repositories;
 
 import restaurant.appUtils.AppUtilities;
+import restaurant.data.services.ReservationService;
+import restaurant.data.services.Service;
 import restaurant.reservation.Reservation;
 import restaurant.reservation.Table;
 
@@ -8,7 +10,7 @@ import java.util.*;
 
 public class ReservationRepository {
 
-    private RestaurantService restaurantService = new RestaurantService();
+    private Service<Reservation> reservationService = new ReservationService();
     private TableRepository tableRepository = new TableRepository();
     private ArrayList<Reservation> reservations;
     private AppUtilities appUtilities = new AppUtilities();
@@ -25,7 +27,7 @@ public class ReservationRepository {
 
     private void loadReservations()
     {
-        reservations = restaurantService.readReservations();
+        reservations = reservationService.readData();
     }
 
     public ArrayList<Reservation> getTodayReservations()
@@ -105,7 +107,7 @@ public class ReservationRepository {
 
     public void saveReservation(Reservation reservation)
     {
-        restaurantService.writeReservation(reservation);
+        reservationService.writeData(reservation);
         loadReservations();
     }
 }

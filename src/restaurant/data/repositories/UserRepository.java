@@ -1,12 +1,13 @@
-package restaurant.services;
+package restaurant.data.repositories;
 
+import restaurant.data.services.Service;
+import restaurant.data.services.UserService;
 import restaurant.users.*;
 
-import javax.xml.transform.TransformerException;
 import java.util.ArrayList;
 
 public class UserRepository {
-    private RestaurantService restaurantService = new RestaurantService();
+    private Service<User> userService = new UserService();
     private UserFactory userFactory = new UserFactory();
 
     // In Real-World App (Database-wise) this is not a good practice and a direct call should be made to the api
@@ -21,7 +22,7 @@ public class UserRepository {
 
     private void populateList()
     {
-        users = restaurantService.readUsers();
+        users = userService.readData();
     }
 
     // READ FUNCTIONS
@@ -46,8 +47,8 @@ public class UserRepository {
         User user = userFactory.createUser(role.toString());
         user.setUserData(name, username, password);
 
-        RestaurantService rs = new RestaurantService();
-        rs.writeUser(user);
+        Service<User> us = new UserService();
+        us.writeData(user);
         populateList();
         return user;
     }

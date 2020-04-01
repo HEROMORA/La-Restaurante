@@ -8,7 +8,7 @@ import javafx.scene.control.DatePicker;
 import restaurant.appUtils.AppUtilities;
 import restaurant.gui.utils.Alerts;
 import restaurant.gui.utils.Validations;
-import restaurant.services.ReservationRepository;
+import restaurant.data.repositories.ReservationRepository;
 import restaurant.users.User;
 
 import java.text.ParseException;

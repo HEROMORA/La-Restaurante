@@ -1,4 +1,6 @@
-package restaurant.services;
+/*
+
+package restaurant.data;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -461,3 +463,5 @@ public class RestaurantService {
         }
     }
 }
+
+ */

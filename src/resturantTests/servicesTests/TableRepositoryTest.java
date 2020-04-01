@@ -2,7 +2,7 @@ package resturantTests.servicesTests;
 
 import org.junit.jupiter.api.Test;
 import restaurant.reservation.Table;
-import restaurant.services.TableRepository;
+import restaurant.data.repositories.TableRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 

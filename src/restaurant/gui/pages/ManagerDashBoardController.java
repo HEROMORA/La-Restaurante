@@ -8,8 +8,8 @@ import javafx.scene.control.TableView;
 import restaurant.gui.utils.Alerts;
 import restaurant.order.OrderDetails;
 import restaurant.reservation.Reservation;
-import restaurant.services.OrderRepository;
-import restaurant.services.ReservationRepository;
+import restaurant.data.repositories.OrderRepository;
+import restaurant.data.repositories.ReservationRepository;
 import restaurant.users.User;
 
 import java.math.BigDecimal;

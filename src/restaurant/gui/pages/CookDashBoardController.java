@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import restaurant.appUtils.AppUtilities;
 import restaurant.order.Order;
-import restaurant.services.OrderRepository;
+import restaurant.data.repositories.OrderRepository;
 import restaurant.users.User;
 
 import java.net.URL;

@@ -1,6 +1,8 @@
-package restaurant.services;
+package restaurant.data.repositories;
 
 
+import restaurant.data.services.DishService;
+import restaurant.data.services.Service;
 import restaurant.dish.Dish;
 import restaurant.dish.DishType;
 
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 
 public class DishRepository {
 
-    private RestaurantService restaurantService = new RestaurantService();
+    private Service<Dish> dishService = new DishService();
     private OrderRepository orderRepository = new OrderRepository();
     private ArrayList<Dish> dishes;
 
@@ -19,7 +21,7 @@ public class DishRepository {
 
     private void populateList()
     {
-        dishes = restaurantService.readDishes();
+        dishes = dishService.readData();
     }
 
     // READING FUNCTIONS

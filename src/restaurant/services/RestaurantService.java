@@ -237,10 +237,7 @@ public class RestaurantService {
 
                 order.setOrderStatus(e.getElementsByTagName("orderStatus").item(0).getTextContent());
                 order.setTableNumber(Integer.parseInt(e.getElementsByTagName("tableNumber").item(0).getTextContent()));
-
-                //FIXME
-
-                //order.setCustomerName(e.getElementsByTagName("customerName").item(0).getTextContent());
+                order.setCustomerName(e.getElementsByTagName("customerName").item(0).getTextContent());
 
                 Date date = null;
 
@@ -421,10 +418,7 @@ public class RestaurantService {
         newOrder.appendChild(orderStatusElement);
 
         Element customerNameElement = doc.createElement("customerName");
-
-        //FIXME
-
-        //customerNameElement.appendChild(doc.createTextNode(order.getCustomerName()));
+        customerNameElement.appendChild(doc.createTextNode(order.getCustomerName()));
         newOrder.appendChild(customerNameElement);
 
         Element totalPriceElement = doc.createElement("totalPrice");

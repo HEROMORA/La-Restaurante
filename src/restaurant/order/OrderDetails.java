@@ -17,9 +17,11 @@ public class OrderDetails {
         return dish.getName();
     }
 
+    public String getDishType() {return dish.getDishType().toString(); }
+
     public void setDishName(String dish) { this.dish.setName(dish);
 
-    this.dishName = dish; }
+        this.dishName = dish; }
 
     public void setDish(Dish dish) {
         this.dish = dish;
@@ -38,9 +40,10 @@ public class OrderDetails {
         return calculateSubTotal().multiply(new BigDecimal(dish.taxes));
     }
 
-    public String getOrderDetails()
+    @Override
+    public String toString()
     {
-        return String.format("Dish: %s, Quantity: %d, Price: %s", dish.getName(), quantity, dish.getPrice());
+        return String.format("Dish: %s, Type: %s, Quantity: %d, Price: %s", dish.getName(),dish.getDishType(), quantity, dish.getPrice());
     }
 
 }

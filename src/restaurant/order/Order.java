@@ -7,6 +7,7 @@ import java.util.Date;
 public class Order {
     private Date date;
     private OrderStatus orderStatus;
+    private String customerName;
     private int tableNumber;
 
     private ArrayList<OrderDetails> ordersDetails;
@@ -100,4 +101,11 @@ public class Order {
         return tax;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 }

@@ -26,12 +26,14 @@ public class OrderService extends BaseService<Order> {
         assert doc != null;
 
         NodeList nodeList = doc.getElementsByTagName("orders");
-        Element root;
+        Element root = doc.getDocumentElement();
+
+        Element orders;
 
         if (nodeList.getLength() == 0)
-            root = doc.createElement("orders");
+            orders = doc.createElement("orders");
         else
-            root = (Element) nodeList.item(0);
+            orders = (Element) nodeList.item(0);
 
         Element newOrder = doc.createElement("order");
 
@@ -56,7 +58,7 @@ public class OrderService extends BaseService<Order> {
         totalPriceElement.appendChild(doc.createTextNode(String.valueOf(order.calculateTotalPrice())));
         newOrder.appendChild(totalPriceElement);
 
-        Element tableNumberElement = doc.createElement("totalNumberElement");
+        Element tableNumberElement = doc.createElement("tableNumberElement");
         tableNumberElement.appendChild(doc.createTextNode(String.valueOf(order.getTableNumber())));
         newOrder.appendChild(tableNumberElement);
 
@@ -71,26 +73,23 @@ public class OrderService extends BaseService<Order> {
             orderDetailElement.appendChild(quantityElement);
 
             Element dishNameElement = doc.createElement("dishName");
-            quantityElement.appendChild(doc.createTextNode(orderDetail.getDishName()));
+            dishNameElement.appendChild(doc.createTextNode(orderDetail.getDishName()));
             orderDetailElement.appendChild(dishNameElement);
 
             orderDetails.appendChild(orderDetailElement);
         }
 
         newOrder.appendChild(orderDetails);
-        root.appendChild(newOrder);
+        orders.appendChild(newOrder);
+
+        root.appendChild(orders);
 
         DOMSource source = new DOMSource(doc);
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = null;
         try {
-            transformer = transformerFactory.newTransformer();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        }
-        StreamResult result = new StreamResult(file);
-        try {
+            Transformer transformer = transformerFactory.newTransformer();
+            StreamResult result = new StreamResult(file);
             transformer.transform(source,result);
         } catch (TransformerException e) {
             e.printStackTrace();

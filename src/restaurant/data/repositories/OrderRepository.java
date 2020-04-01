@@ -4,11 +4,13 @@ import restaurant.appUtils.AppUtilities;
 import restaurant.data.services.OrderService;
 import restaurant.data.services.Service;
 import restaurant.order.Order;
+import restaurant.order.OrderDetails;
 import restaurant.order.OrderStatus;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class OrderRepository {
 
@@ -84,5 +86,12 @@ public class OrderRepository {
     public void saveOrder(Order order)
     {
         orderService.writeData(order);
+    }
+
+    public Order makeOrder(Date date, String customerName, int tableNum, ArrayList<OrderDetails> orderDetails){
+        Order order = new Order(date,OrderStatus.WAITING,tableNum,orderDetails);
+        order.setCustomerName(customerName);
+
+        return order;
     }
 }

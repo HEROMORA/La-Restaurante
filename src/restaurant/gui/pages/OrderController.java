@@ -11,10 +11,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import restaurant.data.repositories.DishRepository;
+import restaurant.data.repositories.OrderRepository;
 import restaurant.dish.Dish;
 import restaurant.dish.DishType;
+import restaurant.gui.utils.Alerts;
+import restaurant.order.Order;
 import restaurant.order.OrderDetails;
+import restaurant.reservation.Reservation;
+import restaurant.users.User;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -30,9 +36,15 @@ public class OrderController implements Initializable {
     public TableView<OrderDetails> cartTableView;
     private Dish selectedDish;
     private ObservableList<OrderDetails> oOrderDetails= FXCollections.observableArrayList();
-    private OrderDetails orderDetails = new OrderDetails();
+    private Reservation reservation;
+    private Alerts alerts = new Alerts();
 
     private DishRepository dr = new DishRepository();
+
+    public OrderController(Reservation reservation)
+    {
+        this.reservation = reservation;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,6 +89,7 @@ public class OrderController implements Initializable {
 
     @FXML
     private void handleAddToCartBtnClick(ActionEvent actionEvent){
+        OrderDetails orderDetails = new OrderDetails();
 
         orderDetails.setDish(selectedDish);
         orderDetails.setQuantity(Integer.parseInt(quantityTextField.getText()));
@@ -84,11 +97,24 @@ public class OrderController implements Initializable {
         oOrderDetails.add(orderDetails);
 
         cartTableView.setItems(oOrderDetails);
+
+        BigDecimal totalPrice = BigDecimal.valueOf(Double.parseDouble( totalPriceLabel.getText()));
+        totalPrice = totalPrice.add(orderDetails.calculateSubTotal());
+
+        totalPriceLabel.setText(totalPrice.toString());
     }
 
     @FXML
     private void handleOrderActionBtnClick(ActionEvent actionEvent){
-        
+        OrderRepository orderRepository = new OrderRepository();
+
+        ArrayList<OrderDetails> orderDetails = new ArrayList<OrderDetails>(oOrderDetails);
+
+        Order order = orderRepository.makeOrder(reservation.getReservationDate(),reservation.getCustomerUserName(),reservation.getTableNum(),orderDetails);
+
+        orderRepository.saveOrder(order);
+
+        alerts.showSuccessAlert("Order Completed", "You've ordered successfully!");
     }
 
 }

@@ -5,8 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import restaurant.models.reservation.Reservation;
+import javafx.scene.control.TableView;
 import restaurant.data.repositories.ReservationRepository;
+import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
 
 import java.net.URL;
@@ -15,6 +16,7 @@ import java.util.ResourceBundle;
 
 public class WaiterDashboardController implements Initializable {
     public Label welcomeLabel;
+    public TableView<Reservation> reservationsTableView;
     public ListView<String> reservationsListView;
 
     private ReservationRepository reservationRepository = new ReservationRepository();
@@ -36,12 +38,7 @@ public class WaiterDashboardController implements Initializable {
     private void fillList()
     {
         ArrayList<Reservation> reservations = reservationRepository.getTodayReservations();
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for (Reservation res:reservations)
-        {
-            items.add(res.toString());
-        }
-
-        reservationsListView.setItems(items);
+        ObservableList<Reservation> items = FXCollections.observableArrayList(reservations);
+        reservationsTableView.setItems(items);
     }
 }

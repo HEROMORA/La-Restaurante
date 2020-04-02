@@ -2,7 +2,7 @@ root {
     display:block;
 }
 .root {
-    -fx-background-image: url("../images/CustomerBackground.jpg");
+    -fx-background-image: url("../images/WaiterBackground.jpg");
     -fx-background-size: cover;
 }
 #welcomeLabel{

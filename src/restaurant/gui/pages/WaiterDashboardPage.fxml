@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import java.net.URL?>
-
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
+<?import java.net.URL?>
 <GridPane fx:id="root" alignment="CENTER"
           xmlns:fx="http://javafx.com/fxml" hgap="10" vgap="10"
           styleClass="root" prefWidth="1200" prefHeight="700">
@@ -20,10 +22,33 @@
     <Text id="text1" text="Here are today's reservations"
           GridPane.columnIndex="0" GridPane.rowIndex="10" GridPane.columnSpan="4" GridPane.halignment="CENTER"/>
 
-    <ListView id="#reservations-listview" fx:id="reservationsListView"
-              prefWidth="750"
-        GridPane.rowIndex="0" GridPane.columnIndex="0"
-        GridPane.rowSpan="8" GridPane.columnSpan="4"/>
+    <TableView id="reservations-tableView" fx:id="reservationsTableView"
+               prefWidth="750"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"
+               GridPane.rowSpan="8" GridPane.columnSpan="4" >
+        <columns>
+        <TableColumn text="Table Number">
+            <cellValueFactory>
+                <PropertyValueFactory property="tableNum" />
+            </cellValueFactory>
+        </TableColumn>
+            <TableColumn text="Customer">
+                <cellValueFactory>
+                    <PropertyValueFactory property="customerUserName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="From">
+                <cellValueFactory>
+                    <PropertyValueFactory property="reservationDate" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="To">
+                <cellValueFactory>
+                    <PropertyValueFactory property="endReservationDate" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
 
     <stylesheets>
         <URL value="@../styles/WaiterDashboardPageStyleSheet.css" />

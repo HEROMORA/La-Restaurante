@@ -4,7 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import restaurant.reservation.Reservation;
+import restaurant.models.reservation.Reservation;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;

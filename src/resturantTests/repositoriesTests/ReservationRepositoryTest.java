@@ -1,7 +1,7 @@
 package resturantTests.repositoriesTests;
 
 import org.junit.jupiter.api.Test;
-import restaurant.reservation.Reservation;
+import restaurant.models.reservation.Reservation;
 import restaurant.data.repositories.ReservationRepository;
 
 import java.util.Calendar;

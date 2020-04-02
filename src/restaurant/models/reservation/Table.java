@@ -1,4 +1,4 @@
-package restaurant.reservation;
+package restaurant.models.reservation;
 
 public class Table implements Comparable<Table> {
     private int tableNumber;

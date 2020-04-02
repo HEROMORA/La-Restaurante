@@ -6,12 +6,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import restaurant.dish.*;
-import restaurant.order.Order;
-import restaurant.order.OrderDetails;
-import restaurant.reservation.Reservation;
-import restaurant.reservation.Table;
-import restaurant.users.*;
+import restaurant.models.dish.*;
+import restaurant.models.order.Order;
+import restaurant.models.order.OrderDetails;
+import restaurant.models.reservation.Reservation;
+import restaurant.models.reservation.Table;
+import restaurant.models.users.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

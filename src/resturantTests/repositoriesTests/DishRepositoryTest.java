@@ -1,8 +1,8 @@
 package resturantTests.repositoriesTests;
 
 import org.junit.jupiter.api.Test;
-import restaurant.dish.Dish;
-import restaurant.dish.DishType;
+import restaurant.models.dish.Dish;
+import restaurant.models.dish.DishType;
 import restaurant.data.repositories.DishRepository;
 
 import java.math.BigDecimal;

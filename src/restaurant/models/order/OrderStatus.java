@@ -1,4 +1,4 @@
-package restaurant.order;
+package restaurant.models.order;
 
 public enum OrderStatus {
     WAITING,

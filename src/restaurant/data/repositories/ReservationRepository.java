@@ -3,8 +3,8 @@ package restaurant.data.repositories;
 import restaurant.appUtils.AppUtilities;
 import restaurant.data.services.ReservationService;
 import restaurant.data.services.Service;
-import restaurant.reservation.Reservation;
-import restaurant.reservation.Table;
+import restaurant.models.reservation.Reservation;
+import restaurant.models.reservation.Table;
 
 import java.util.*;
 

@@ -11,7 +11,7 @@ public abstract class BaseService<T> implements Service<T> {
     protected File file;
 
     public BaseService(){
-        file = new File("data.xml");
+        file = new File("src/restaurant/data/files/data.xml");
     }
 
     protected Document connect() {

@@ -2,7 +2,7 @@ package restaurant.data.repositories;
 
 import restaurant.data.services.Service;
 import restaurant.data.services.UserService;
-import restaurant.users.*;
+import restaurant.models.users.*;
 
 import java.util.ArrayList;
 

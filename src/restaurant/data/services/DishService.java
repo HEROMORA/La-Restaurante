@@ -4,7 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import restaurant.dish.*;
+import restaurant.models.dish.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

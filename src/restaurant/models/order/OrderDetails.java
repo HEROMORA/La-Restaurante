@@ -1,6 +1,6 @@
-package restaurant.order;
+package restaurant.models.order;
 
-import restaurant.dish.Dish;
+import restaurant.models.dish.Dish;
 
 import java.math.BigDecimal;
 
@@ -8,6 +8,7 @@ public class OrderDetails {
     private int quantity;
     private Dish dish ;
     private String dishName = null;
+    private BigDecimal orderDetailPrice;
 
     public int getQuantity() {
         return quantity;
@@ -19,9 +20,10 @@ public class OrderDetails {
 
     public String getDishType() {return dish.getDishType().toString(); }
 
-    public void setDishName(String dish) { this.dish.setName(dish);
-
-        this.dishName = dish; }
+    public void setDishName(String dish) {
+        this.dish.setName(dish);
+        this.dishName = dish;
+    }
 
     public void setDish(Dish dish) {
         this.dish = dish;
@@ -40,10 +42,14 @@ public class OrderDetails {
         return calculateSubTotal().multiply(new BigDecimal(dish.taxes));
     }
 
+    public BigDecimal getOrderDetailPrice() {
+        return calculateSubTotal().add(calculateTax());
+    }
+/*
     @Override
     public String toString()
     {
         return String.format("Dish: %s, Type: %s, Quantity: %d, Price: %s", dish.getName(),dish.getDishType(), quantity, dish.getPrice());
     }
-
+*/
 }

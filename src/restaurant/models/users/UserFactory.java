@@ -1,4 +1,4 @@
-package restaurant.users;
+package restaurant.models.users;
 
 public class UserFactory {
 

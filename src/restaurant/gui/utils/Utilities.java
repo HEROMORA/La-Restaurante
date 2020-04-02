@@ -9,8 +9,8 @@ import restaurant.gui.pages.CustomerDashBoardPageController;
 import restaurant.gui.pages.OrderController;
 import restaurant.gui.pages.ManagerDashBoardController;
 import restaurant.gui.pages.WaiterDashboardController;
-import restaurant.reservation.Reservation;
-import restaurant.users.User;
+import restaurant.models.reservation.Reservation;
+import restaurant.models.users.User;
 
 import java.io.IOException;
 

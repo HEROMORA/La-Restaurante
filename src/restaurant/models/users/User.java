@@ -1,4 +1,4 @@
-package restaurant.users;
+package restaurant.models.users;
 
 public abstract class User {
     private String name;

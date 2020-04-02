@@ -3,15 +3,14 @@ package restaurant.data.repositories;
 
 import restaurant.data.services.DishService;
 import restaurant.data.services.Service;
-import restaurant.dish.Dish;
-import restaurant.dish.DishType;
+import restaurant.models.dish.Dish;
+import restaurant.models.dish.DishType;
 
 import java.util.ArrayList;
 
 public class DishRepository {
 
     private Service<Dish> dishService = new DishService();
-    private OrderRepository orderRepository = new OrderRepository();
     private ArrayList<Dish> dishes;
 
 

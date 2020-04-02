@@ -5,9 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import restaurant.reservation.Reservation;
+import restaurant.models.reservation.Reservation;
 import restaurant.data.repositories.ReservationRepository;
-import restaurant.users.User;
+import restaurant.models.users.User;
 
 import java.net.URL;
 import java.util.ArrayList;

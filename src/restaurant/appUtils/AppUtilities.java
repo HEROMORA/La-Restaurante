@@ -1,7 +1,7 @@
 package restaurant.appUtils;
 
-import restaurant.order.Order;
-import restaurant.order.OrderDetails;
+import restaurant.models.order.Order;
+import restaurant.models.order.OrderDetails;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -8,9 +8,9 @@ import javafx.scene.control.TableView;
 import restaurant.data.repositories.OrderRepository;
 import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.utils.Alerts;
-import restaurant.order.OrderDetails;
-import restaurant.reservation.Reservation;
-import restaurant.users.User;
+import restaurant.models.order.OrderDetails;
+import restaurant.models.reservation.Reservation;
+import restaurant.models.users.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -12,13 +12,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import restaurant.data.repositories.DishRepository;
 import restaurant.data.repositories.OrderRepository;
-import restaurant.dish.Dish;
-import restaurant.dish.DishType;
+import restaurant.models.dish.Dish;
+import restaurant.models.dish.DishType;
 import restaurant.gui.utils.Alerts;
-import restaurant.order.Order;
-import restaurant.order.OrderDetails;
-import restaurant.reservation.Reservation;
-import restaurant.users.User;
+import restaurant.models.order.Order;
+import restaurant.models.order.OrderDetails;
+import restaurant.models.reservation.Reservation;
 
 import java.math.BigDecimal;
 import java.net.URL;

@@ -11,7 +11,7 @@ import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.utils.Alerts;
 import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
-import restaurant.users.User;
+import restaurant.models.users.User;
 
 import java.text.ParseException;
 import java.time.LocalDate;

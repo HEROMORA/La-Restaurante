@@ -49,12 +49,12 @@
         <columns>
             <TableColumn text="Dish Name">
                 <cellValueFactory>
-                    <PropertyValueFactory property="getDishName" />
+                    <PropertyValueFactory property="dishName" />
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Dish Type">
                 <cellValueFactory>
-                    <PropertyValueFactory property="getDishType" />
+                    <PropertyValueFactory property="dishType" />
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Quantity">
@@ -64,7 +64,7 @@
             </TableColumn>
             <TableColumn text="Price">
                 <cellValueFactory>
-                    <PropertyValueFactory property="getSubTotal" />
+                    <PropertyValueFactory property="orderDetailPrice" />
                 </cellValueFactory>
             </TableColumn>
         </columns>

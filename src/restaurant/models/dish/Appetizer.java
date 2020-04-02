@@ -1,4 +1,4 @@
-package restaurant.dish;
+package restaurant.models.dish;
 
 import java.math.BigDecimal;
 

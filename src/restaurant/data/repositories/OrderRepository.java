@@ -3,9 +3,9 @@ package restaurant.data.repositories;
 import restaurant.appUtils.AppUtilities;
 import restaurant.data.services.OrderService;
 import restaurant.data.services.Service;
-import restaurant.order.Order;
-import restaurant.order.OrderDetails;
-import restaurant.order.OrderStatus;
+import restaurant.models.order.Order;
+import restaurant.models.order.OrderDetails;
+import restaurant.models.order.OrderStatus;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

@@ -6,11 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import restaurant.gui.utils.Alerts;
-import restaurant.order.OrderDetails;
-import restaurant.reservation.Reservation;
+import restaurant.models.order.OrderDetails;
+import restaurant.models.reservation.Reservation;
 import restaurant.data.repositories.OrderRepository;
 import restaurant.data.repositories.ReservationRepository;
-import restaurant.users.User;
+import restaurant.models.users.User;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 public class ManagerDashBoardController implements Initializable {
     public Label welcomeLabel;
     public Label totalTodayIncomeLabel;
+    public Label reservationPaidPriceLabel;
     public TableView<Reservation> reservationTableView;
     public TableView<OrderDetails> ordersTableView;
 
@@ -68,6 +69,8 @@ public class ManagerDashBoardController implements Initializable {
 
                 ObservableList<OrderDetails> data = FXCollections.observableArrayList(order.getOrdersDetails());
                 ordersTableView.setItems(data);
+
+                reservationPaidPriceLabel.setText(order.calculateTotalPrice().toString());
             } catch (NullPointerException ex) {
                 //User may have not ordered yet
             }

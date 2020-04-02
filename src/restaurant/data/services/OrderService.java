@@ -4,11 +4,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import restaurant.order.Order;
-import restaurant.order.OrderDetails;
+import restaurant.data.repositories.DishRepository;
+import restaurant.models.dish.Dish;
+import restaurant.models.order.Order;
+import restaurant.models.order.OrderDetails;
 
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class OrderService extends BaseService<Order> {
+
+    private DishRepository dishRepository = new DishRepository();
+
     @Override
     public void writeData(Order order) {
         Document doc = connect();
@@ -58,7 +62,7 @@ public class OrderService extends BaseService<Order> {
         totalPriceElement.appendChild(doc.createTextNode(String.valueOf(order.calculateTotalPrice())));
         newOrder.appendChild(totalPriceElement);
 
-        Element tableNumberElement = doc.createElement("tableNumberElement");
+        Element tableNumberElement = doc.createElement("tableNumber");
         tableNumberElement.appendChild(doc.createTextNode(String.valueOf(order.getTableNumber())));
         newOrder.appendChild(tableNumberElement);
 
@@ -103,7 +107,7 @@ public class OrderService extends BaseService<Order> {
         Document doc = connect();
         assert doc != null;
         doc.getDocumentElement().normalize();
-        NodeList nodeList = doc.getElementsByTagName("orders");
+        NodeList nodeList = doc.getElementsByTagName("order");
 
         for(int i = 0; i < nodeList.getLength(); i++) {
 
@@ -131,16 +135,25 @@ public class OrderService extends BaseService<Order> {
                 order.setDate(date);
 
                 ArrayList<OrderDetails> orderDetails = new ArrayList<>();
-                NodeList details = e.getElementsByTagName("orderDetail");
-                for(i=0;i<details.getLength();i++){
-                    Element orderDetailElement =(Element) details.item(i);
+                NodeList detailsNodeList = e.getElementsByTagName("orderDetail");
+                for (int j = 0; j < detailsNodeList.getLength(); j++) {
 
-                    OrderDetails orderDetail = new OrderDetails();
+                    Node detailsNode = detailsNodeList.item(j);
+                    if (detailsNode.getNodeType() == Node.ELEMENT_NODE) {
 
-                    orderDetail.setQuantity(Integer.parseInt(orderDetailElement.getElementsByTagName("quantity").item(0).getTextContent()));
-                    orderDetail.setDishName(orderDetailElement.getElementsByTagName("dishName").item(0).getTextContent());
+                        Element orderDetailElement = (Element)detailsNode;
 
-                    orderDetails.add(orderDetail);
+                        OrderDetails orderDetail = new OrderDetails();
+
+                        orderDetail.setQuantity(Integer.parseInt(orderDetailElement.getElementsByTagName("quantity").item(0).getTextContent()));
+                        String dishName = orderDetailElement.getElementsByTagName("dishName").item(0).getTextContent();
+                        Dish dish = dishRepository.getDishByName(dishName);
+
+                        orderDetail.setDish(dish);
+                        orderDetail.setDishName(dishName);
+
+                        orderDetails.add(orderDetail);
+                    }
                 }
 
                 order.setOrdersDetails(orderDetails);

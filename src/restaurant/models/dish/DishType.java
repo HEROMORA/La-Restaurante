@@ -1,4 +1,4 @@
-package restaurant.dish;
+package restaurant.models.dish;
 
 public enum DishType {
     MAINDISH,

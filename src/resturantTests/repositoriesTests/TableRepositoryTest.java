@@ -1,7 +1,7 @@
 package resturantTests.repositoriesTests;
 
 import org.junit.jupiter.api.Test;
-import restaurant.reservation.Table;
+import restaurant.models.reservation.Table;
 import restaurant.data.repositories.TableRepository;
 
 import static org.junit.jupiter.api.Assertions.*;

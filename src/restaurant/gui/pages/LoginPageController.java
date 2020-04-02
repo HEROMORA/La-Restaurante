@@ -10,7 +10,7 @@ import restaurant.gui.utils.Alerts;
 import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
 import restaurant.data.repositories.UserRepository;
-import restaurant.users.User;
+import restaurant.models.users.User;
 
 public class LoginPageController {
 

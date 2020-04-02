@@ -87,10 +87,10 @@ public class CustomerDashBoardPageController {
 
     private boolean validateInput()
     {
-        var v1 = validations.validateEmptyComboBox(fromHoursComboBox);
-        var v2 = validations.validateEmptyComboBox(fromMinsComboBox);
-        var v3 = validations.validateEmptyComboBox(toHoursComboBox);
-        var v4 = validations.validateEmptyComboBox(toMinsComboBox);
+        var v1 = validations.validateEmptyNumericComboBox(fromHoursComboBox);
+        var v2 = validations.validateEmptyNumericComboBox(fromMinsComboBox);
+        var v3 = validations.validateEmptyNumericComboBox(toHoursComboBox);
+        var v4 = validations.validateEmptyNumericComboBox(toMinsComboBox);
         var v5 = validations.validateSmokingType(isSmoking);
         var v6 = validations.validateDate(datePicker);
 

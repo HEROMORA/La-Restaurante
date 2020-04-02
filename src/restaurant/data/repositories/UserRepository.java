@@ -39,12 +39,16 @@ public class UserRepository {
     }
 
     public User signUp(String username, String password, String name, UserRole role) {
+        return signUp(username, password, name, role.toString());
+    }
+
+    public User signUp(String username, String password, String name, String role) {
 
         if (getUserByUsername(username) != null) {
             return null;
         }
 
-        User user = userFactory.createUser(role.toString());
+        User user = userFactory.createUser(role);
         user.setUserData(name, username, password);
 
         Service<User> us = new UserService();

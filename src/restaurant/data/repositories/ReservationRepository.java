@@ -55,6 +55,15 @@ public class ReservationRepository {
         return _reservations;
     }
 
+    public ArrayList<Reservation> getReservationsByDate(Date date){
+        ArrayList<Reservation> _reservations = new ArrayList<>();
+        for(Reservation reservation: getReservations()){
+            if(appUtilities.isSameDay(reservation.getReservationDate(),date))
+                _reservations.add(reservation);
+        }
+        return _reservations;
+    }
+
     public Reservation getReservationByCustomerUsername(String username)
     {
         for (Reservation reservation:reservations)
@@ -69,7 +78,7 @@ public class ReservationRepository {
     public Reservation makeReservation(String username, int numberOfSeats,
                                        Date reservationDate, Date endReservationDate, boolean isSmoking)
     {
-        ArrayList<Reservation> _reservations = getUpcomingReservations();
+        ArrayList<Reservation> _reservations = getReservationsByDate(reservationDate);
 
         var eligibleTables = tableRepository.getTablesByEligibleNumberOfSeatsAndSmoking(numberOfSeats, isSmoking);
         Collections.sort(eligibleTables);
@@ -87,7 +96,7 @@ public class ReservationRepository {
             if (reservedTablesMap.containsKey(table.getTableNumber()))
             {
                 var res = reservedTablesMap.get(table.getTableNumber());
-                if(!appUtilities.isTimeBetween(res.getReservationDate(), res.getEndReservationDate(), reservationDate)) {
+                if(!appUtilities.isTimeBetween(res.getReservationDate(), res.getEndReservationDate(), reservationDate,endReservationDate)) {
                     tableNumber = table.getTableNumber();
                     break;
                 }

@@ -6,6 +6,9 @@ import restaurant.models.order.OrderDetails;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,20 +19,13 @@ public class AppUtilities {
         if (date1 == null || date2 == null) {
             throw new IllegalArgumentException("The dates must not be null");
         }
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(date1);
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(date2);
-        return isSameDay(cal1, cal2);
-    }
-
-    public boolean isSameDay(Calendar cal1, Calendar cal2) {
-        if (cal1 == null || cal2 == null) {
-            throw new IllegalArgumentException("The dates must not be null");
-        }
-        return (cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) &&
-                cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR));
+        LocalDate localDate1 = date1.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        LocalDate localDate2 = date2.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        return localDate1.isEqual(localDate2);
     }
 
     public boolean isToday(Date date) {
@@ -40,23 +36,13 @@ public class AppUtilities {
         if (date1 == null || date2 == null) {
             throw new IllegalArgumentException("The dates must not be null");
         }
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(date1);
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(date2);
-        return isBeforeDay(cal1, cal2);
-    }
-
-
-    public boolean isBeforeDay(Calendar cal1, Calendar cal2) {
-        if (cal1 == null || cal2 == null) {
-            throw new IllegalArgumentException("The dates must not be null");
-        }
-        if (cal1.get(Calendar.ERA) < cal2.get(Calendar.ERA)) return true;
-        if (cal1.get(Calendar.ERA) > cal2.get(Calendar.ERA)) return false;
-        if (cal1.get(Calendar.YEAR) < cal2.get(Calendar.YEAR)) return true;
-        if (cal1.get(Calendar.YEAR) > cal2.get(Calendar.YEAR)) return false;
-        return cal1.get(Calendar.DAY_OF_YEAR) < cal2.get(Calendar.DAY_OF_YEAR);
+        LocalDate localDate1 = date1.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        LocalDate localDate2 = date2.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        return localDate1.isBefore(localDate2);
     }
 
     public Date getFullDate(LocalDate localDate, int hours, int mins) throws ParseException {
@@ -69,21 +55,18 @@ public class AppUtilities {
     }
 
     // FIXME
-    public boolean isTimeBetween(Date first, Date last, Date middle)
+    public boolean isTimeBetween(Date first, Date last, Date middleFirst, Date middleLast)
     {
+        LocalTime firstTime = LocalDateTime.ofInstant(first.toInstant(), ZoneId.systemDefault()).toLocalTime();
 
-        Calendar cFirst = Calendar.getInstance();
-        cFirst.setTime(first);
+        LocalTime lastTime = LocalDateTime.ofInstant(last.toInstant(), ZoneId.systemDefault()).toLocalTime();
 
-        Calendar cLast = Calendar.getInstance();
-        cLast.setTime(last);
+        LocalTime middleFirstTime = LocalDateTime.ofInstant(middleFirst.toInstant(), ZoneId.systemDefault()).toLocalTime();
 
-        Calendar cMiddle = Calendar.getInstance();
-        cMiddle.setTime(middle);
+        LocalTime middleLastTime = LocalDateTime.ofInstant(middleLast.toInstant(), ZoneId.systemDefault()).toLocalTime();
 
-        if (cMiddle.after(first.getTime()) && cMiddle.before(last.getTime()) && cMiddle.getTime().equals(cFirst.getTime()))
-            return middle.after(first) && middle.before(last) && !middle.equals(first);
-        return false;
+        return (middleFirstTime.isAfter(firstTime) && middleFirstTime.isBefore(lastTime)) || (middleFirstTime.equals(firstTime)) || (middleLastTime.isAfter(firstTime)  && middleLastTime.isBefore(lastTime)) || (middleLastTime.equals(lastTime));
+
     }
 
     // TILL HANDLING IT IN THE VIEW WITH MORE FRIENDLY WAY

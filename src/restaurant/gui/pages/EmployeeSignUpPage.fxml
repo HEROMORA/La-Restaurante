@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<GridPane fx:controller="restaurant.gui.pages.EmployeeSignUpController"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
+          styleClass="root">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+
+    <Text id="welcome-text" text="Welcome to the Restaurant"
+          GridPane.columnIndex="0" GridPane.rowIndex ="0"
+          GridPane.columnSpan="2"/>
+
+    <Label text="Full Name: "
+           GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+    <TextField fx:id="fullNameTextField"
+               GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Label text="Username: "
+           GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+    <TextField fx:id="usernameTextField"
+               GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <Label text="Password: "
+           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+    <PasswordField fx:id="passwordTextField"
+                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <HBox spacing="10" alignment="CENTER"
+          GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" >
+        <ComboBox fx:id="roleComboBox" value="Cooker"
+                  GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Cooker"/>
+                    <String fx:value="Waiter"/>
+                    <String fx:value="Manager"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER"
+          GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
+        <Button text="Sign Up"
+                onAction="#handleSubmitActionButton"/>
+    </HBox>
+
+    <stylesheets>
+        <URL value="@../styles/MainPageStyleSheet.css" />
+    </stylesheets>
+</GridPane>

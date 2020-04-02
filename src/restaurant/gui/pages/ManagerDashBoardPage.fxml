@@ -72,6 +72,8 @@
 
     <Label id="money-label" text="Total Today Income:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
     <Label id="moneyValue-label" fx:id="totalTodayIncomeLabel" text="Money" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Button fx:id="employeeSignUpButton" text="Employee SignUp" onAction="#handleEmployeeSignUpBtnClick"
+            GridPane.columnIndex="4" GridPane.rowIndex="9"/>
 
     <stylesheets>
         <URL value="@../styles/ManagerPageStyleSheet.css" />

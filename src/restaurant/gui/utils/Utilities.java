@@ -83,11 +83,25 @@ public class Utilities {
                 break;
         }
     }
+
     public void showOrdersPage(String fileName , String title, int width, int height, Stage stage, Reservation res){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
             OrderController oc = new OrderController(res);
             loader.setController(oc);
+            GridPane grid = loader.load();
+            stage.setTitle(title);
+            Scene sc = new Scene(grid, width, height);
+            stage.setScene(sc);
+            stage.show();
+        } catch (IOException ex) {
+            alerts.showErrorAlert("Data Error", "Something wrong happened!");
+        }
+    }
+
+    public void showEmployeeSignUpPage(String fileName , String title, int width, int height, Stage stage){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
             GridPane grid = loader.load();
             stage.setTitle(title);
             Scene sc = new Scene(grid, width, height);

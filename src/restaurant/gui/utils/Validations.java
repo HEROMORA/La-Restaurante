@@ -1,6 +1,7 @@
 package restaurant.gui.utils;
 
 import javafx.scene.control.*;
+import restaurant.models.dish.Dish;
 
 public class Validations {
 
@@ -151,6 +152,17 @@ public class Validations {
     {
         if (!validateEmptyTableView(tableView)) {
             alerts.showErrorAlert("No Elements add to cart", "Please add one or more dishes to the cart before ordering");
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean validateSelectedDish(Dish selectedDish)
+    {
+        if (selectedDish == null)
+        {
+            alerts.showErrorAlert("No item selected", "Please select an item to add it to the cart");
             return false;
         }
 

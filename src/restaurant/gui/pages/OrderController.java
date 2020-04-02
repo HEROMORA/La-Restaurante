@@ -5,12 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import restaurant.data.repositories.DishRepository;
 import restaurant.data.repositories.OrderRepository;
 import restaurant.gui.utils.Alerts;
-import restaurant.gui.utils.Utilities;
 import restaurant.gui.utils.Validations;
 import restaurant.models.dish.Dish;
 import restaurant.models.dish.DishType;
@@ -40,7 +42,6 @@ public class OrderController implements Initializable {
     private ObservableList<OrderDetails> oOrderDetails= FXCollections.observableArrayList();
     private Reservation reservation;
     private Alerts alerts = new Alerts();
-    private Utilities utilities = new Utilities();
     private DishRepository dr = new DishRepository();
     private Validations validations = new Validations();
 
@@ -171,7 +172,8 @@ public class OrderController implements Initializable {
     private boolean validateAddToCartClick()
     {
         var v1 = validations.validatePositiveIntegerNumericTextField(quantityTextField);
-        return v1;
+        var v2 = validations.validateSelectedDish(selectedDish);
+        return v1 && v2;
     }
 
     private boolean validateOrderClick()

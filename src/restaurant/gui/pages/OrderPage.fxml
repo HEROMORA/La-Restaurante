@@ -69,9 +69,14 @@
                     <PropertyValueFactory property="dishName"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="quantity">
+            <TableColumn text="Quantity">
                 <cellValueFactory>
                     <PropertyValueFactory property="quantity"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Price Incl Taxes">
+                <cellValueFactory>
+                    <PropertyValueFactory property="orderDetailPrice"/>
                 </cellValueFactory>
             </TableColumn>
         </columns>
@@ -82,11 +87,15 @@
     <Text text="Total Price: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
 
     <Label fx:id="totalPriceLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <Label fx:id="totalPriceWithTaxes" />
 
     <Button fx:id="orderBtn" text="Order" GridPane.columnIndex="1" GridPane.rowIndex="4"
             onAction="#handleOrderActionBtnClick"
     />
     <Button fx:id="addToCartButton" text="Add to Cart" GridPane.columnIndex="2" GridPane.rowIndex="2"
             onAction="#handleAddToCartBtnClick" />
+
+    <Button fx:id="removeItemFromCart" text="Remove from Cart" GridPane.columnIndex="2" GridPane.rowIndex="3"
+            onAction="#handleRemoveFromCartBtnClick"/>
 
 </GridPane>

@@ -2,17 +2,16 @@ package restaurant.gui.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import restaurant.gui.pages.CookDashBoardController;
-import restaurant.gui.pages.CustomerDashBoardPageController;
-import restaurant.gui.pages.OrderController;
-import restaurant.gui.pages.ManagerDashBoardController;
-import restaurant.gui.pages.WaiterDashboardController;
+import restaurant.gui.pages.*;
+import restaurant.models.dish.Dish;
 import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Utilities {
 
@@ -96,6 +95,31 @@ public class Utilities {
             stage.show();
         } catch (IOException ex) {
             alerts.showErrorAlert("Data Error", "Something wrong happened!");
+        }
+    }
+
+    public Dish listenForSelections(TableView<Dish> tableView, ArrayList<TableView> tableViewArrayList)
+    {
+        final Dish[] dish = new Dish[1];
+        tableView.setOnMouseClicked(event -> {
+            dish[0] = null;
+            try {
+                 dish[0] = tableView.getSelectionModel().getSelectedItem();
+            } catch (NullPointerException ex) {
+                dish[0] = null;
+            }
+        });
+
+        Dish selectedDish = dish[0];
+        clearSelections(tableViewArrayList);
+        return selectedDish;
+    }
+
+    private void clearSelections(ArrayList<TableView> tableViewArrayList)
+    {
+        for (TableView tableView:tableViewArrayList)
+        {
+            tableView.getSelectionModel().clearSelection();
         }
     }
 }

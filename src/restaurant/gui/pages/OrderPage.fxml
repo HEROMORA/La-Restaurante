@@ -83,19 +83,25 @@
     </TableView>
     <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
     <Label text="quantity: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Text text="Total Price without Taxes" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
 
-    <Text text="Total Price: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <Label fx:id="priceWithoutTaxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-    <Label fx:id="totalPriceLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-    <Label fx:id="totalPriceWithTaxes" />
+    <Text text="Taxes" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
-    <Button fx:id="orderBtn" text="Order" GridPane.columnIndex="1" GridPane.rowIndex="4"
+    <Label fx:id="taxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+    <Text text="Total Price: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+
+    <Label fx:id="totalPriceLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+    <Button fx:id="orderBtn" text="Order" GridPane.columnIndex="1" GridPane.rowIndex="6"
             onAction="#handleOrderActionBtnClick"
     />
     <Button fx:id="addToCartButton" text="Add to Cart" GridPane.columnIndex="2" GridPane.rowIndex="2"
             onAction="#handleAddToCartBtnClick" />
 
-    <Button fx:id="removeItemFromCart" text="Remove from Cart" GridPane.columnIndex="2" GridPane.rowIndex="3"
+    <Button fx:id="removeItemFromCart" text="Remove from Cart" GridPane.columnIndex="2" GridPane.rowIndex="5"
             onAction="#handleRemoveFromCartBtnClick"/>
 
 </GridPane>

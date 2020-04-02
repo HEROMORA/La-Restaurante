@@ -8,17 +8,14 @@ public abstract class Dish {
     private DishType dishType;
     private BigDecimal price;
 
-    public static double taxes;
+    public final double taxes;
 
-    public Dish(String name, DishType dishType, BigDecimal price) {
+    public Dish(String name, DishType dishType, BigDecimal price,double taxes) {
         this.name = name;
         this.dishType = dishType;
         this.price = price;
+        this.taxes = taxes;
     }
-    public Dish(){
-
-    }
-
     public String getName() {
         return name;
     }
@@ -33,6 +30,8 @@ public abstract class Dish {
     }
 
     public void setName(String name) { this.name = name; }
+
+    public double getTaxes() { return taxes; }
 
     @Override
     public String toString()

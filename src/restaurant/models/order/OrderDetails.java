@@ -39,7 +39,7 @@ public class OrderDetails {
 
     public BigDecimal calculateTax()
     {
-        return calculateSubTotal().multiply(new BigDecimal(dish.taxes));
+        return calculateSubTotal().multiply(BigDecimal.valueOf(this.dish.getTaxes()));
     }
 
     public BigDecimal getOrderDetailPrice() {

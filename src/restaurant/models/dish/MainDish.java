@@ -3,9 +3,8 @@ package restaurant.models.dish;
 import java.math.BigDecimal;
 
 public class MainDish extends Dish {
-    public static final double taxes = 0.15;
 
     public MainDish(String name, DishType dishType, BigDecimal price) {
-        super(name, dishType, price);
+        super(name, dishType, price,0.15);
     }
 }

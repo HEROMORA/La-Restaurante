@@ -32,6 +32,8 @@ public class OrderController implements Initializable {
     public Label totalPriceLabel;
     public TextField quantityTextField;
     public TableView<OrderDetails> cartTableView;
+    public Label taxesLabel;
+    public Label priceWithoutTaxesLabel;
 
     private Dish selectedDish;
     private OrderDetails selectedOrderDetails;
@@ -67,21 +69,37 @@ public class OrderController implements Initializable {
 
         cartTableView.setItems(oOrderDetails);
 
-        BigDecimal totalPrice = BigDecimal.valueOf(Double.parseDouble( totalPriceLabel.getText()));
-        totalPrice = totalPrice.add(orderDetails.calculateSubTotal());
-
-        totalPriceLabel.setText(totalPrice.toString());
+        handleLabels("add",orderDetails);
     }
 
     @FXML
     private void handleRemoveFromCartBtnClick(ActionEvent actionEvent) {
-        if(selectedOrderDetails == null) alerts.showErrorAlert("Invalid removal", "Please select an item before clicking remove from cart");
+        if(selectedOrderDetails == null) {alerts.showErrorAlert("Invalid removal", "Please select an item before clicking remove from cart"); return;}
+
+        handleLabels("remove",selectedOrderDetails);
+
         oOrderDetails.remove(selectedOrderDetails);
+    }
 
+    private void handleLabels(String operation,OrderDetails orderDetails){
         BigDecimal totalPrice = BigDecimal.valueOf(Double.parseDouble( totalPriceLabel.getText()));
-        totalPrice = totalPrice.subtract(selectedOrderDetails.calculateSubTotal());
-
+        BigDecimal price = BigDecimal.valueOf(Double.parseDouble(priceWithoutTaxesLabel.getText()));
+        BigDecimal taxes = BigDecimal.valueOf(Double.parseDouble(taxesLabel.getText()));
+        switch (operation){
+            case "add":
+                totalPrice = totalPrice.add(orderDetails.getOrderDetailPrice());
+                taxes = taxes.add(orderDetails.calculateTax());
+                price = price.add(orderDetails.calculateSubTotal());
+                break;
+            case "remove":
+                totalPrice = totalPrice.subtract(orderDetails.getOrderDetailPrice());
+                taxes = taxes.subtract(orderDetails.calculateTax());
+                price = price.subtract(orderDetails.calculateSubTotal());
+                break;
+        }
         totalPriceLabel.setText(totalPrice.toString());
+        taxesLabel.setText(taxes.toString());
+        priceWithoutTaxesLabel.setText(price.toString());
     }
 
     @FXML

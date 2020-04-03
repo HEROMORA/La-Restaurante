@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.pages.*;
 import restaurant.models.dish.Dish;
 import restaurant.models.reservation.Reservation;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 public class Utilities {
 
+    private ReservationRepository reservationRepository = new ReservationRepository();
     private Alerts alerts = new Alerts();
     private User loggedInUser;
 

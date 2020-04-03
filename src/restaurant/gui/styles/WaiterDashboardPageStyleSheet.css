@@ -17,3 +17,31 @@ root {
         -fx-text-fill: #333333;
         -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
+
+#logoutButton{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #25371c 0%, #254016 100%),
+            #41801d,
+            #254016,
+            radial-gradient(center 50% 50%, radius 100%, #3e7c1a, #51a321);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.1em;
+}
+
+#logoutButton:hover{
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #25371c 0%, #254016 100%),
+            #41801d,
+            #254016,
+            radial-gradient(center 50% 50%, radius 100%, #51a321, #3e7c1a);
+}
+
+#logoutButton:pressed{
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}

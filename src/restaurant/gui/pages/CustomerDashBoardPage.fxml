@@ -152,6 +152,11 @@
     <Button fx:id="reserveBtn" text="Reserve"
             GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="2"
             onAction="#handleSubmitActionButton"/>
+
+    <Button fx:id="logoutButton" text="Logout"
+            GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.columnSpan="2"
+            onAction="#handleLogoutActionButton" />
+
     <stylesheets>
         <URL value="@../styles/CustomerDashBoardStyleSheet.css" />
     </stylesheets>

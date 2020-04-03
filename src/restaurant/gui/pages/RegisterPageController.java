@@ -39,15 +39,21 @@ public class RegisterPageController {
         if (user == null)
             alerts.showErrorAlert("Existing username", "A user with the same username already exists");
         else {
-            //TODO: Navigate to the Customer Dashboard
+            alerts.showSuccessAlert("Registered Successfully", "You have signed up successfully please login with your credentials");
+            navigateToLoginPage();
         }
     }
 
     @FXML
     private void handleSignInActionButton(ActionEvent actionEvent) {
+        navigateToLoginPage();
+    }
+
+    private void navigateToLoginPage()
+    {
         Stage stage;
         stage = (Stage)signInBtn.getScene().getWindow();
-        utilities.showPage("../pages/LoginPage.fxml", "Login", 1200, 700, stage);
+        utilities.showPageWithoutController("../pages/LoginPage.fxml", "Login", 1200, 700, stage);
     }
 
     private boolean validateForm()

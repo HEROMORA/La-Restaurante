@@ -26,6 +26,7 @@ public class ManagerDashBoardController implements Initializable {
     public Label totalTodayIncomeLabel;
     public Label reservationPaidPriceLabel;
     public Button employeeSignUpButton;
+    public Button logoutButton;
     public TableView<Reservation> reservationTableView;
     public TableView<OrderDetails> ordersTableView;
 
@@ -89,7 +90,12 @@ public class ManagerDashBoardController implements Initializable {
     private void handleEmployeeSignUpBtnClick(ActionEvent actionEvent) {
         Stage stage;
         stage = (Stage)employeeSignUpButton.getScene().getWindow();
-        utilities.showEmployeeSignUpPage("../pages/EmployeeSignUpPage.fxml", "Employee SignUp", 1200, 700, stage);
+        utilities.showPageWithoutController("../pages/EmployeeSignUpPage.fxml", "Employee SignUp", 1200, 700, stage);
+    }
+
+    @FXML
+    private void handleLogoutActionButton(ActionEvent actionEvent) {
+        utilities.logout((Stage)logoutButton.getScene().getWindow());
     }
 
     private void getTodayTotalIncome()
@@ -98,7 +104,7 @@ public class ManagerDashBoardController implements Initializable {
             BigDecimal totalPrice = orderRepository.getTodayTotalPrice();
             totalTodayIncomeLabel.setText(totalPrice.toString());
         } catch (NullPointerException ex) {
-
+            // Not showing error if the list is empty because there are no reservations yet
         }
 
     }

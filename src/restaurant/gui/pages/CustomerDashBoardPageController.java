@@ -27,6 +27,7 @@ public class CustomerDashBoardPageController {
     public Button smokingBtn;
     public Button nonSmokingBtn;
     public Button reserveBtn;
+    public Button logoutButton;
 
     private Boolean isSmoking = null;
 
@@ -83,6 +84,10 @@ public class CustomerDashBoardPageController {
         isSmoking = false;
     }
 
+    @FXML
+    private void handleLogoutActionButton(ActionEvent actionEvent) {
+        utilities.logout((Stage)logoutButton.getScene().getWindow());
+    }
 
 
     private boolean validateInput()

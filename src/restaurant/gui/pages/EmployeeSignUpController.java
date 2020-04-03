@@ -6,8 +6,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import restaurant.data.repositories.UserRepository;
-import restaurant.gui.utils.Alerts;
-import restaurant.gui.utils.Validations;
+import restaurant.gui.guiUtils.Alerts;
+import restaurant.gui.guiUtils.Validations;
 
 public class EmployeeSignUpController {
     public TextField fullNameTextField;

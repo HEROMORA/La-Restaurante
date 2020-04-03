@@ -6,13 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import restaurant.gui.utils.Alerts;
-import restaurant.gui.utils.Utilities;
-import restaurant.gui.utils.Validations;
+import restaurant.gui.guiUtils.Alerts;
+import restaurant.gui.guiUtils.Navigation;
+import restaurant.gui.guiUtils.Validations;
 import restaurant.data.repositories.UserRepository;
 import restaurant.models.users.UserRole;
 
-public class RegisterPageController {
+public class RegisterController {
 
     public Button signInBtn;
     public TextField fullNameTextField;
@@ -23,7 +23,7 @@ public class RegisterPageController {
     private UserRepository userRepository = new UserRepository();
 
     private Validations validations = new Validations();
-    private Utilities utilities = new Utilities();
+    private Navigation navigation = new Navigation();
     private Alerts alerts = new Alerts();
 
     @FXML
@@ -53,7 +53,7 @@ public class RegisterPageController {
     {
         Stage stage;
         stage = (Stage)signInBtn.getScene().getWindow();
-        utilities.showPageWithoutController("../pages/LoginPage.fxml", "Login", 1200, 700, stage);
+        navigation.showPageWithoutController("../pages/LoginPage.fxml", "Login", 1200, 700, stage);
     }
 
     private boolean validateForm()

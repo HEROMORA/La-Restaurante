@@ -158,6 +158,6 @@
             onAction="#handleLogoutActionButton" />
 
     <stylesheets>
-        <URL value="@../styles/CustomerDashBoardStyleSheet.css" />
+        <URL value="@../styles/CustomerDashBoardPageStyleSheet.css" />
     </stylesheets>
 </GridPane>

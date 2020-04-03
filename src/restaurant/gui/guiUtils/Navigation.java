@@ -1,4 +1,4 @@
-package restaurant.gui.utils;
+package restaurant.gui.guiUtils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +11,7 @@ import restaurant.models.users.User;
 
 import java.io.IOException;
 
-public class Utilities {
+public class Navigation {
 
     private ReservationRepository reservationRepository = new ReservationRepository();
     private Alerts alerts = new Alerts();
@@ -41,7 +41,7 @@ public class Utilities {
         switch (user.getUserRole()){
 
             case CUSTOMER:
-                CustomerDashBoardPageController cdc = new CustomerDashBoardPageController(user);
+                CustomerDashBoardController cdc = new CustomerDashBoardController(user);
                 loader.setController(cdc);
                 break;
 

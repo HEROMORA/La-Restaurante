@@ -1,4 +1,4 @@
-package restaurant.gui.utils;
+package restaurant.gui.guiUtils;
 
 import javafx.scene.control.Alert;
 

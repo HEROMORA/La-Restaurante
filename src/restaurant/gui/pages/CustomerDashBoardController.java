@@ -8,15 +8,15 @@ import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import restaurant.appUtils.AppUtilities;
 import restaurant.data.repositories.ReservationRepository;
-import restaurant.gui.utils.Alerts;
-import restaurant.gui.utils.Utilities;
-import restaurant.gui.utils.Validations;
+import restaurant.gui.guiUtils.Alerts;
+import restaurant.gui.guiUtils.Navigation;
+import restaurant.gui.guiUtils.Validations;
 import restaurant.models.users.User;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 
-public class CustomerDashBoardPageController {
+public class CustomerDashBoardController {
 
     public ComboBox numberOfSeatsComboBox;
     public DatePicker datePicker;
@@ -35,11 +35,11 @@ public class CustomerDashBoardPageController {
     private Alerts alerts = new Alerts();
     private AppUtilities appUtilities = new AppUtilities();
     private ReservationRepository reservationRepository = new ReservationRepository();
-    private Utilities utilities = new Utilities();
+    private Navigation navigation = new Navigation();
 
     private User user;
 
-    public CustomerDashBoardPageController(User user)
+    public CustomerDashBoardController(User user)
     {
         this.user = user;
     }
@@ -68,8 +68,8 @@ public class CustomerDashBoardPageController {
         }
         reservationRepository.saveReservation(reservation);
 
-        utilities.setLoggedInUser(user);
-        utilities.showOrdersPage("../pages/OrderPage.fxml","Make an Order",1200,700,(Stage)reserveBtn.getScene().getWindow(),reservation);
+        navigation.setLoggedInUser(user);
+        navigation.showOrdersPage("../pages/OrderPage.fxml","Make an Order",1200,700,(Stage)reserveBtn.getScene().getWindow(),reservation);
 
         alerts.showSuccessAlert("Booking Completed", "You've booked successfully!");
     }
@@ -86,7 +86,7 @@ public class CustomerDashBoardPageController {
 
     @FXML
     private void handleLogoutActionButton(ActionEvent actionEvent) {
-        utilities.logout((Stage)logoutButton.getScene().getWindow());
+        navigation.logout((Stage)logoutButton.getScene().getWindow());
     }
 
 

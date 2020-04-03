@@ -11,8 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import restaurant.data.repositories.OrderRepository;
 import restaurant.data.repositories.ReservationRepository;
-import restaurant.gui.utils.Alerts;
-import restaurant.gui.utils.Utilities;
+import restaurant.gui.guiUtils.Alerts;
+import restaurant.gui.guiUtils.Navigation;
 import restaurant.models.order.OrderDetails;
 import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
@@ -28,7 +28,7 @@ public class CookDashBoardController implements Initializable {
 
     private User user;
     private Alerts alerts = new Alerts();
-    private Utilities utilities = new Utilities();
+    private Navigation navigation = new Navigation();
     private ReservationRepository reservationRepository = new ReservationRepository();
     private OrderRepository orderRepository = new OrderRepository();
 
@@ -46,7 +46,7 @@ public class CookDashBoardController implements Initializable {
 
     @FXML
     private void handleLogoutActionButton(ActionEvent actionEvent) {
-        utilities.logout((Stage)logoutButton.getScene().getWindow());
+        navigation.logout((Stage)logoutButton.getScene().getWindow());
     }
 
     private void greet()

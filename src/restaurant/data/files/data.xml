@@ -30,7 +30,7 @@
             <username>hobbens_tom</username>
             <password>cooker_pass</password>
         </user>
-    <user><name>Fady Muhammed</name><role>Client</role><username>FadyMo</username><password>fady123fady</password></user><user><name>Omar</name><role>Client</role><username>omaralaa</username><password>aaaaaa</password></user><user><name>ahmed muhammed</name><role>Cooker</role><username>ahmed</username><password>ahmed123</password></user><user><name>mazen muhammed</name><role>Waiter</role><username>mazen</username><password>mazen123</password></user></users>
+    <user><name>Fady Muhammed</name><role>Client</role><username>FadyMo</username><password>fady123fady</password></user><user><name>Omar</name><role>Client</role><username>omaralaa</username><password>aaaaaa</password></user><user><name>ahmed muhammed</name><role>Cooker</role><username>ahmed</username><password>ahmed123</password></user><user><name>mazen muhammed</name><role>Waiter</role><username>mazen</username><password>mazen123</password></user><user><name>Yosra Emad</name><role>Client</role><username>yosraemad</username><password>yosra123</password></user><user><name>michael scott</name><role>Client</role><username>prisonmike</username><password>mike123</password></user><user><name>pam beesly</name><role>Client</role><username>pamela</username><password>123456</password></user></users>
     <tables>
         <table>
             <number>1</number>

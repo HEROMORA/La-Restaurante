@@ -44,7 +44,7 @@ public class LoginPageController {
     @FXML
     private void handleSignUpActionButton(ActionEvent actionEvent) {
         Stage stage = (Stage)signUpBtn.getScene().getWindow();
-        utilities.showPage("../pages/RegisterPage.fxml", "Register", 1200, 700, stage);
+        utilities.showPageWithoutController("../pages/RegisterPage.fxml", "Register", 1200, 700, stage);
     }
 
     private boolean validateForm()

@@ -143,6 +143,34 @@ public class Validations {
         return  true;
     }
 
+    public boolean validateStartEndDates(ComboBox fromHoursComboBox, ComboBox fromMinsComboBox,
+                                         ComboBox toHoursComboBox, ComboBox toMinsComboBox)
+    {
+        int fromHours, fromMinutes, toHours, toMinutes;
+        try {
+            fromHours = Integer.parseInt(fromHoursComboBox.getValue().toString());
+            fromMinutes = Integer.parseInt(fromMinsComboBox.getValue().toString());
+            toHours = Integer.parseInt(toHoursComboBox.getValue().toString());
+            toMinutes = Integer.parseInt(toMinsComboBox.getValue().toString());
+        } catch (NullPointerException ex)
+        {
+            return false;
+        }
+
+        boolean result;
+
+        if (fromHours == toHours)
+            result = toMinutes > fromMinutes;
+        else
+            result =  toHours > fromHours;
+
+        if (!result) {
+            alerts.showErrorAlert("Invalid dates", "Please set valid times for the reservation.");
+        }
+
+        return result;
+    }
+
     public boolean validateEmptyTableView(TableView tableView)
     {
         return tableView.getItems().size() != 0;

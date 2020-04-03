@@ -2,19 +2,18 @@ package restaurant.gui.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.pages.*;
-import restaurant.models.dish.Dish;
 import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Utilities {
 
+    private ReservationRepository reservationRepository = new ReservationRepository();
     private Alerts alerts = new Alerts();
     private User loggedInUser;
 
@@ -99,7 +98,7 @@ public class Utilities {
         }
     }
 
-    public void showEmployeeSignUpPage(String fileName , String title, int width, int height, Stage stage){
+    public void showPageWithoutController(String fileName , String title, int width, int height, Stage stage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
             GridPane grid = loader.load();
@@ -112,28 +111,9 @@ public class Utilities {
         }
     }
 
-    public Dish listenForSelections(TableView<Dish> tableView, ArrayList<TableView> tableViewArrayList)
+    public void logout(Stage stage)
     {
-        final Dish[] dish = new Dish[1];
-        tableView.setOnMouseClicked(event -> {
-            dish[0] = null;
-            try {
-                 dish[0] = tableView.getSelectionModel().getSelectedItem();
-            } catch (NullPointerException ex) {
-                dish[0] = null;
-            }
-        });
-
-        Dish selectedDish = dish[0];
-        clearSelections(tableViewArrayList);
-        return selectedDish;
-    }
-
-    private void clearSelections(ArrayList<TableView> tableViewArrayList)
-    {
-        for (TableView tableView:tableViewArrayList)
-        {
-            tableView.getSelectionModel().clearSelection();
-        }
+        int width = 1200; int height = 720;
+        showPageWithoutController("../pages/LoginPage.fxml", "Login", width, height, stage);
     }
 }

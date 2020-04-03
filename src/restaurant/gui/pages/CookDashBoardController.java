@@ -2,12 +2,17 @@ package restaurant.gui.pages;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 import restaurant.data.repositories.OrderRepository;
 import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.utils.Alerts;
+import restaurant.gui.utils.Utilities;
 import restaurant.models.order.OrderDetails;
 import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
@@ -19,9 +24,11 @@ public class CookDashBoardController implements Initializable {
     public Label welcomeLabel;
     public TableView<Reservation> reservationTableView;
     public TableView<OrderDetails> ordersTableView;
+    public Button logoutButton;
 
     private User user;
     private Alerts alerts = new Alerts();
+    private Utilities utilities = new Utilities();
     private ReservationRepository reservationRepository = new ReservationRepository();
     private OrderRepository orderRepository = new OrderRepository();
 
@@ -35,6 +42,11 @@ public class CookDashBoardController implements Initializable {
         greet();
         fillList();
         listenForSelections();
+    }
+
+    @FXML
+    private void handleLogoutActionButton(ActionEvent actionEvent) {
+        utilities.logout((Stage)logoutButton.getScene().getWindow());
     }
 
     private void greet()

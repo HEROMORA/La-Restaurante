@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="center" hgap="10" vgap="10"
+          styleClass="root">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+
+    <Label fx:id="welcomeLabel" id="welcomeLabel" text="Hello, Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Label id="headerLabel" text="Here are you current Reservation" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+    <TableView fx:id="orderDetailsTableView"
+               GridPane.columnIndex="0" GridPane.columnSpan="5"
+               GridPane.rowIndex="2" GridPane.rowSpan="3" >
+        <columns>
+            <TableColumn text="Dish Name">
+                <cellValueFactory>
+                    <PropertyValueFactory property="dishName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Dish Type">
+                <cellValueFactory>
+                    <PropertyValueFactory property="dishType" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Quantity">
+                <cellValueFactory>
+                    <PropertyValueFactory property="quantity" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Price">
+                <cellValueFactory>
+                    <PropertyValueFactory property="orderDetailPrice" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <Label id="reservationDateLabel" text="Reservation Date" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+    <Label id="dateLabel" fx:id="dateLabel" text="Date" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+    <stylesheets>
+        <URL value="@../styles/AlreadyReservedPageStyleSheet.css" />
+    </stylesheets>
+</GridPane>

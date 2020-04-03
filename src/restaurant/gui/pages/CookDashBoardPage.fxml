@@ -59,6 +59,11 @@
         </columns>
     </TableView>
 
+    <Button fx:id="logoutButton" text="Logout"
+            GridPane.columnIndex="0" GridPane.rowIndex="11"
+            onAction="#handleLogoutActionButton" />
+
+
     <stylesheets>
         <URL value="@../styles/CookDashboardPageStyleSheet.css" />
     </stylesheets>

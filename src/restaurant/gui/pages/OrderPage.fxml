@@ -8,19 +8,20 @@
 
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<GridPane fx:id="grid" xmlns="http://javafx.com/javafx"
+<?import java.net.URL?>
+<GridPane fx:id="grid" xmlns="http://javafx.com/javafx" alignment="CENTER"
           xmlns:fx="http://javafx.com/fxml"
           prefHeight="400.0" prefWidth="600.0">
-    <Text text="Main Course" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Text id="menu" text="Main Course" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
 
     <TableView fx:id="mainCourseTableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <columns>
-            <TableColumn text="Dish Name" >
+            <TableColumn text="Dish Name" minWidth="60" >
                 <cellValueFactory>
                     <PropertyValueFactory property="name"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="price">
+            <TableColumn text="price" minWidth="60">
                 <cellValueFactory>
                     <PropertyValueFactory property="price"/>
                 </cellValueFactory>
@@ -28,7 +29,7 @@
         </columns>
     </TableView>
 
-    <Text text="Appetizers" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <Text id="menu" text="Appetizers" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
 
     <TableView fx:id="appetizersTableView" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
@@ -45,7 +46,7 @@
         </columns>
     </TableView>
 
-    <Text text="Desserts" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+    <Text id="menu" text="Desserts" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
 
     <TableView fx:id="dessertsTableView" GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columns>
@@ -62,6 +63,8 @@
         </columns>
     </TableView>
 
+    <Text id="cart" text="Cart" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
+
     <TableView fx:id="cartTableView" GridPane.columnIndex="3" GridPane.rowIndex="1">
         <columns>
             <TableColumn text="Dish Name" >
@@ -74,7 +77,7 @@
                     <PropertyValueFactory property="quantity"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="Price Incl Taxes">
+            <TableColumn text="Price">
                 <cellValueFactory>
                     <PropertyValueFactory property="orderDetailPrice"/>
                 </cellValueFactory>
@@ -82,16 +85,19 @@
         </columns>
     </TableView>
     <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <Label text="quantity: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <Text text="Total Price without Taxes" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <Label text="quantity: " GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+    <Text id="txt" text="Total Price without Taxes: " GridPane.rowIndex="3" GridPane.columnIndex="0"
+        GridPane.halignment="RIGHT"/>
 
     <Label fx:id="priceWithoutTaxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-    <Text text="Taxes" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <Text id="txt" text="Taxes: " GridPane.columnIndex="0" GridPane.rowIndex="4"
+        GridPane.halignment="RIGHT"/>
 
     <Label fx:id="taxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-    <Text text="Total Price: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <Text id="txt" text="Total Price: " GridPane.columnIndex="0" GridPane.rowIndex="5"
+        GridPane.halignment="RIGHT"/>
 
     <Label fx:id="totalPriceLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 
@@ -103,5 +109,9 @@
 
     <Button fx:id="removeItemFromCart" text="Remove from Cart" GridPane.columnIndex="2" GridPane.rowIndex="5"
             onAction="#handleRemoveFromCartBtnClick"/>
+
+    <stylesheets>
+        <URL value="@../styles/OrderPageStyleSheet.css" />
+    </stylesheets>
 
 </GridPane>

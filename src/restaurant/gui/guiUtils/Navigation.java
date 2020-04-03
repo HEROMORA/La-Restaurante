@@ -116,4 +116,20 @@ public class Navigation {
         int width = 1200; int height = 720;
         showPageWithoutController("../pages/LoginPage.fxml", "Login", width, height, stage);
     }
+
+    public void showAlreadyReservedController(Stage stage , User user){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AlreadyReservedPage.fxml"));
+            AlreadyReservedController arc = new AlreadyReservedController(user);
+            loader.setController(arc);
+            GridPane grid = loader.load();
+            stage.setTitle("Hello Customer");
+            Scene sc = new Scene(grid, 1200, 700);
+            stage.setScene(sc);
+            stage.show();
+        } catch (IOException ex) {
+            alerts.showErrorAlert("Data Error", "Something wrong happened!");
+        }
+
+    }
 }

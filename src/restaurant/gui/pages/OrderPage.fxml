@@ -1,117 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import java.net.URL?>
-<GridPane fx:id="grid" xmlns="http://javafx.com/javafx" alignment="CENTER"
-          xmlns:fx="http://javafx.com/fxml"
-          prefHeight="400.0" prefWidth="600.0">
-    <Text id="menu" text="Main Course" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
+<GridPane fx:id="grid" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <Text id="menu" text="Main Course" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
 
     <TableView fx:id="mainCourseTableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <columns>
-            <TableColumn text="Dish Name" minWidth="60" >
+            <TableColumn minWidth="60" prefWidth="126" text="Dish Name">
                 <cellValueFactory>
-                    <PropertyValueFactory property="name"/>
+                    <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="price" minWidth="60">
+            <TableColumn minWidth="60" prefWidth="89.2" text="price">
                 <cellValueFactory>
-                    <PropertyValueFactory property="price"/>
+                    <PropertyValueFactory property="price" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
     </TableView>
 
-    <Text id="menu" text="Appetizers" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
+    <Text id="menu" text="Appetizers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
 
     <TableView fx:id="appetizersTableView" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-            <TableColumn text="Dish Name" >
+            <TableColumn prefWidth="104.6" text="Dish Name">
                 <cellValueFactory>
-                    <PropertyValueFactory property="name"/>
+                    <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="price">
+            <TableColumn prefWidth="81" text="price">
                 <cellValueFactory>
-                    <PropertyValueFactory property="price"/>
+                    <PropertyValueFactory property="price" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
     </TableView>
 
-    <Text id="menu" text="Desserts" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
+    <Text id="menu" text="Desserts" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
 
     <TableView fx:id="dessertsTableView" GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columns>
-            <TableColumn text="Dish Name" >
+            <TableColumn prefWidth="87.6" text="Dish Name">
                 <cellValueFactory>
-                    <PropertyValueFactory property="name"/>
+                    <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="price">
+            <TableColumn prefWidth="66" text="price">
                 <cellValueFactory>
-                    <PropertyValueFactory property="price"/>
+                    <PropertyValueFactory property="price" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
     </TableView>
 
-    <Text id="cart" text="Cart" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="CENTER"/>
+    <Text id="cart" text="Cart" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
 
     <TableView fx:id="cartTableView" GridPane.columnIndex="3" GridPane.rowIndex="1">
         <columns>
-            <TableColumn text="Dish Name" >
+            <TableColumn text="Dish Name">
                 <cellValueFactory>
-                    <PropertyValueFactory property="dishName"/>
+                    <PropertyValueFactory property="dishName" />
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Quantity">
                 <cellValueFactory>
-                    <PropertyValueFactory property="quantity"/>
+                    <PropertyValueFactory property="quantity" />
                 </cellValueFactory>
             </TableColumn>
             <TableColumn text="Price">
                 <cellValueFactory>
-                    <PropertyValueFactory property="orderDetailPrice"/>
+                    <PropertyValueFactory property="orderDetailPrice" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
     </TableView>
-    <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <Label text="quantity: " GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
-    <Text id="txt" text="Total Price without Taxes: " GridPane.rowIndex="3" GridPane.columnIndex="0"
-        GridPane.halignment="RIGHT"/>
+    <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="quantity: " GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+    <Text id="txt" text="Total Price without Taxes: " GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
 
-    <Label fx:id="priceWithoutTaxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <Label fx:id="priceWithoutTaxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Text id="txt" text="Taxes: " GridPane.columnIndex="0" GridPane.rowIndex="4"
-        GridPane.halignment="RIGHT"/>
+    <Text id="txt" text="Taxes: " GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
 
-    <Label fx:id="taxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    <Label fx:id="taxesLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-    <Text id="txt" text="Total Price: " GridPane.columnIndex="0" GridPane.rowIndex="5"
-        GridPane.halignment="RIGHT"/>
+    <Text id="txt" text="Total Price: " GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
 
-    <Label fx:id="totalPriceLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+    <Label fx:id="totalPriceLabel" text="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-    <Button fx:id="orderBtn" text="Order" GridPane.columnIndex="1" GridPane.rowIndex="6"
-            onAction="#handleOrderActionBtnClick"
-    />
-    <Button fx:id="addToCartButton" text="Add to Cart" GridPane.columnIndex="2" GridPane.rowIndex="2"
-            onAction="#handleAddToCartBtnClick" />
+    <Button fx:id="orderBtn" onAction="#handleOrderActionBtnClick" text="Order" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Button fx:id="addToCartButton" onAction="#handleAddToCartBtnClick" text="Add to Cart" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-    <Button fx:id="removeItemFromCart" text="Remove from Cart" GridPane.columnIndex="2" GridPane.rowIndex="5"
-            onAction="#handleRemoveFromCartBtnClick"/>
+    <Button fx:id="removeItemFromCart" onAction="#handleRemoveFromCartBtnClick" text="Remove from Cart" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
     <stylesheets>
         <URL value="@../styles/OrderPageStyleSheet.css" />
     </stylesheets>
-
 </GridPane>

@@ -10,15 +10,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import restaurant.data.repositories.DishRepository;
 import restaurant.data.repositories.OrderRepository;
+import restaurant.data.repositories.UserRepository;
 import restaurant.gui.guiUtils.Alerts;
+import restaurant.gui.guiUtils.Navigation;
 import restaurant.gui.guiUtils.Validations;
 import restaurant.models.dish.Dish;
 import restaurant.models.dish.DishType;
 import restaurant.models.order.Order;
 import restaurant.models.order.OrderDetails;
 import restaurant.models.reservation.Reservation;
+import restaurant.models.users.User;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -44,6 +48,8 @@ public class OrderController implements Initializable {
     private Alerts alerts = new Alerts();
     private DishRepository dr = new DishRepository();
     private Validations validations = new Validations();
+    private Navigation navigation = new Navigation();
+    private UserRepository userRepository = new UserRepository();
 
     public OrderController(Reservation reservation)
     {
@@ -117,6 +123,12 @@ public class OrderController implements Initializable {
         orderRepository.saveOrder(order);
 
         alerts.showSuccessAlert("Order Completed", "You've ordered successfully!");
+
+        Stage stage = (Stage) orderBtn.getScene().getWindow();
+
+        User user = userRepository.getUserByUsername(reservation.getCustomerUserName());
+
+        navigation.showAlreadyReservedController(stage,user);
     }
 
     private void populateLists()

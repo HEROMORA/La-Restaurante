@@ -6,10 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.guiUtils.Alerts;
 import restaurant.gui.guiUtils.Navigation;
 import restaurant.gui.guiUtils.Validations;
 import restaurant.data.repositories.UserRepository;
+import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
 
 public class LoginController {
@@ -24,6 +26,7 @@ public class LoginController {
     private Navigation navigation = new Navigation();
 
     private UserRepository userRepository = new UserRepository();
+    private ReservationRepository reservationRepository = new ReservationRepository();
 
     @FXML
     private void handleSubmitActionButton(ActionEvent actionEvent) {
@@ -37,8 +40,7 @@ public class LoginController {
         if (user == null) { alerts.showErrorAlert("False Credentials", "Wrong username or password"); return;}
         Stage stage = (Stage)signInBtn.getScene().getWindow();
 
-        navigation.setLoggedInUser(user);
-        navigation.showPageByRole(user, stage);
+        showNextPage(user,stage);
     }
 
     @FXML
@@ -53,5 +55,18 @@ public class LoginController {
         var v2 = validations.validateEmptyTextField(passwordTextField);
 
         return v1 && v2;
+    }
+
+
+    private void showNextPage(User user,Stage stage){
+        Reservation res = reservationRepository.getReservationByCustomerUsername(user.getUsername());
+
+        if(res == null){
+            navigation.setLoggedInUser(user);
+            navigation.showPageByRole(user, stage);
+        }
+        else{
+            navigation.showAlreadyReservedController(stage,user);
+        }
     }
 }

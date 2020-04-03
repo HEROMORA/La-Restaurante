@@ -54,7 +54,7 @@ public class AppUtilities {
         return date;
     }
 
-    // FIXME
+
     public boolean isTimeBetween(Date first, Date last, Date middleFirst, Date middleLast)
     {
         LocalTime firstTime = LocalDateTime.ofInstant(first.toInstant(), ZoneId.systemDefault()).toLocalTime();

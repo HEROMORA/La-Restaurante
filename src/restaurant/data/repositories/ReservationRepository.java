@@ -84,10 +84,17 @@ public class ReservationRepository {
         var eligibleTables = tableRepository.getTablesByEligibleNumberOfSeatsAndSmoking(numberOfSeats, isSmoking);
         Collections.sort(eligibleTables);
 
-        HashMap<Integer, Reservation> reservedTablesMap = new HashMap<>();
+        HashMap<Integer, ArrayList<Reservation>> reservedTablesMap = new HashMap<>();
 
-        for(Reservation res: _reservations)
-            reservedTablesMap.put(res.getTableNum(), res);
+        for(Reservation res: _reservations) {
+            ArrayList<Reservation> _reservs = new ArrayList<>();
+            if (reservedTablesMap.containsKey(res.getTableNum())) {
+                var reservsForSameTable = reservedTablesMap.get(res.getTableNum());
+                _reservs.addAll(reservsForSameTable);
+            }
+            _reservs.add(res);
+            reservedTablesMap.put(res.getTableNum(), _reservs);
+        }
 
         int tableNumber = -1;
 
@@ -96,10 +103,15 @@ public class ReservationRepository {
 
             if (reservedTablesMap.containsKey(table.getTableNumber()))
             {
-                var res = reservedTablesMap.get(table.getTableNumber());
-                if(!appUtilities.isTimeBetween(res.getReservationDate(), res.getEndReservationDate(), reservationDate,endReservationDate)) {
-                    tableNumber = table.getTableNumber();
-                    break;
+                var reservations = reservedTablesMap.get(table.getTableNumber());
+                for (Reservation res: reservations) {
+
+                    if (!appUtilities.isTimeBetween(res.getReservationDate(), res.getEndReservationDate(),
+                            reservationDate, endReservationDate)) {
+
+                        tableNumber = table.getTableNumber();
+                        break;
+                    }
                 }
             }
 

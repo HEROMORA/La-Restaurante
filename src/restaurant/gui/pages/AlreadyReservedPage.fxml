@@ -44,7 +44,7 @@
     <Label id="dateLabel" fx:id="dateLabel" text="Date" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
     <Label id="tableNumberLabel" text="Table Number" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.halignment="RIGHT"/>
-    <Label id="tableLabel" text="Table Number" fx:id="tableNum" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    <Label id="tableLabel" text="Table Number" fx:id="tableNumLabel" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
     <Button fx:id="logOutBtn" text="LogOut" GridPane.rowIndex="7" GridPane.columnIndex="1" onAction="#handleLogOutButtonClick"/>
 

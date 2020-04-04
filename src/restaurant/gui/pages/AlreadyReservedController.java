@@ -26,6 +26,7 @@ public class AlreadyReservedController implements Initializable {
     public Label welcomeLabel;
     public TableView<OrderDetails> orderDetailsTableView;
     public Label dateLabel;
+    public Label tableNumLabel;
     public Button logOutBtn;
 
     private User user;
@@ -70,6 +71,8 @@ public class AlreadyReservedController implements Initializable {
         orderDetailsTableView.setItems(data);
 
         dateLabel.setText(reservation.getReservationDate().toString());
+
+        tableNumLabel.setText(String.valueOf(reservation.getTableNum()));
     }
 
     @FXML

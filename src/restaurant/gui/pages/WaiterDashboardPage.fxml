@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<?import java.net.URL?>
-<GridPane fx:id="root" alignment="CENTER"
-          xmlns:fx="http://javafx.com/fxml" hgap="10" vgap="10"
-          styleClass="root" prefWidth="1200" prefHeight="700">
+<?import javafx.scene.text.*?>
 
-    <padding><Insets top="120" bottom="80"/></padding>
+<GridPane fx:id="root" alignment="CENTER" hgap="10" prefHeight="700" prefWidth="1200" styleClass="root" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal">
 
-    <Label fx:id="welcomeLabel"
-            text="Hello, Waiter!"
-            GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="4" GridPane.halignment="CENTER"
-    />
-    <Text id="text1" text="Here are today's reservations"
-          GridPane.columnIndex="0" GridPane.rowIndex="10" GridPane.columnSpan="4" GridPane.halignment="CENTER"/>
+    <padding><Insets bottom="80" top="120" /></padding>
 
-    <TableView id="reservations-tableView" fx:id="reservationsTableView"
-               prefWidth="750"
-               GridPane.rowIndex="0" GridPane.columnIndex="0"
-               GridPane.rowSpan="8" GridPane.columnSpan="4" >
+    <Label fx:id="welcomeLabel" text="Hello, Waiter!" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+    <Text id="text1" text="Here are today's reservations" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+
+    <TableView id="reservations-tableView" fx:id="reservationsTableView" prefWidth="750" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0" GridPane.rowSpan="8">
         <columns>
         <TableColumn text="Table Number">
             <cellValueFactory>
@@ -45,11 +37,12 @@
                 </cellValueFactory>
             </TableColumn>
         </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
     </TableView>
 
-    <Button fx:id="logoutButton" text="Logout"
-            GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="2"
-            onAction="#handleLogoutActionButton" />
+    <Button fx:id="logoutButton" onAction="#handleLogoutActionButton" text="Logout" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="8" />
 
     <stylesheets>
         <URL value="@../styles/WaiterDashboardPageStyleSheet.css" />

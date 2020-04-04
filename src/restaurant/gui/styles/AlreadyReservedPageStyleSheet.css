@@ -2,7 +2,7 @@ root {
     display:block;
 }
 .root {
-    -fx-background-image: url("../images/CustomerBackground.jpg");
+    -fx-background-image: url("../images/OrderPageBackground.jpg");
     -fx-background-size: cover;
 }
 
@@ -15,9 +15,8 @@ root {
 
 #welcomeLabel {
     -fx-font-size: 32px;
-    -fx-font-family: "Arial Black";
-    -fx-text-fill: #f0b11b;
-    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+           -fx-font-family: "Arial Black";
+           -fx-fill: black;
 }
 
 #headerLabel {
@@ -27,10 +26,10 @@ root {
     -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
 }
 
-#dateLabel {
+#dateLabel,#tableLabel {
     -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: yellow;
+    -fx-text-fill: #e54105;
     -fx-effect: dropshadow( gaussian , rgba(100,0,255,0.5) , 0,0,0,1 );
 }
 
@@ -60,4 +59,42 @@ root {
 .button:pressed{
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+.table-view{
+-fx-base: transparent;
+   -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient( rgba(20,15,7,1) 0%, rgba(221,125,35,1) 70%, rgba(202,105,40,1) 89%, rgba(255,136,0,1) 100%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: black;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, rgba(249, 183, 63,0.5);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:selected .table-cell{
+    -fx-background-color: #020a0c;
+    -fx-text-fill: #dfe1de;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+.table-row-cell:empty {
+    -fx-background-color: transparent;
 }

@@ -9,8 +9,8 @@
 <GridPane alignment="center" hgap="10" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
-    <Label id="welcomeLabel" fx:id="welcomeLabel" text="Hello, Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <Label id="headerLabel" text="Here are you current Reservation" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label id="welcomeLabel" fx:id="welcomeLabel" text="Hello Customer," GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Label id="headerLabel" text="Here is your current order" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <TableView fx:id="orderDetailsTableView" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="2" GridPane.rowSpan="3">
         <columns>
@@ -40,10 +40,13 @@
       </columnResizePolicy>
     </TableView>
 
-    <Label id="reservationDateLabel" text="Reservation Date" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <Label id="reservationDateLabel" text="Reservation Date" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="RIGHT" />
     <Label id="dateLabel" fx:id="dateLabel" text="Date" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-    <Button fx:id="logOutBtn" text="LogOut" GridPane.rowIndex="6" GridPane.columnIndex="1" onAction="#handleLogOutButtonClick"/>
+    <Label id="tableNumberLabel" text="Table Number" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.halignment="RIGHT"/>
+    <Label id="tableLabel" text="Table Number" fx:id="tableNum" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+    <Button fx:id="logOutBtn" text="LogOut" GridPane.rowIndex="7" GridPane.columnIndex="1" onAction="#handleLogOutButtonClick"/>
 
     <stylesheets>
         <URL value="@../styles/AlreadyReservedPageStyleSheet.css" />

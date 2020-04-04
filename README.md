@@ -23,7 +23,7 @@ reservations and provide the needed information for it's customers and employees
 
 ### New Users
 
-New customers are allowed to sign up to the program by clicking on the signup button and adding their data
+New customers are allowed to sign up to the program by clicking on the sign up button and adding their data
 - They should provide their full name ex 'John Smith'
 - Username should not contain spaces
 - Password should be 6 chars or more
@@ -52,7 +52,7 @@ The price for each dish should be visible to the user and total amount money to 
 
 **After creating a successful order customer is promoted to a page where it contains the details of his order and date of the reservation**
 
-Everytime the user tries to login while having an upcomming reservation this page will appear to him.
+Every time the user tries to login while having an upcoming reservation this page will appear to him.
 Customer will be allowed to create a new Reservation and be navigated to the page where he can make a reservation when the time of his reservation is already over
 
 ### Waiters
@@ -77,7 +77,7 @@ A List of reservations should be available to him. When he clicks an element of 
 
 He is also allowed to see the total income of the restaurant today.
 
-The Manager is also **the only one allowed to navigate to the employee signup page** where he will be allowed to register his new employees and select their roles
+The Manager is also **the only one allowed to navigate to the employee sign up page** where he will be allowed to register his new employees and select their roles
 by clicking on the employee sign up button
 
 
@@ -119,13 +119,13 @@ The **models** package contains all the required models and data types for the a
 
 the model package contains different packages which group each models with things in common or related to each other
 
-**Factory Design Pattern** was implemented in the creation of the User model to offer more reuseability and much more clean code
+**Factory Design Pattern** was implemented in the creation of the User model to offer more reusability  and much more clean code
 
 ### Utilities
 
 The application had two utilities packages.
 * Utility package for GUI Only which existed in the **gui/utils** package *which was mainly focused on navigation*
-* Utility package for the rest of the application **a General one** which existed in **gui/utils** *which was mainly focused on calendar and date manpilation*
+* Utility package for the rest of the application **a General one** which existed in **gui/utils** *which was mainly focused on calendar and date manipulation*
 
 ### Testing
 
@@ -133,7 +133,7 @@ The application some unit test cases for the repositories layer of the applicati
 
 The tests exists in the **restuarantTest** Package
 
-**Note**: it's taken into note that in more compilcated applications we should implement the tests on a mocked file or database not to ruin the restaurant main data
+**Note**: it's taken into note that in more complicated applications we should implement the tests on a mocked file or database not to ruin the restaurant main data
 but for the sake of simplicity we tested on the same file
 
 
@@ -157,7 +157,7 @@ La Restaurante is a collaboration of hard work of the team of the project who sp
 the needs of a user and meet the requirements and standards of any modern application
 
 It is a simple application which depends on files in ing its data , but the way it's designed allows it to be extended
-and have much more features without much dependancies between classes and can easily be converted to *Database-based application*
+and have much more features without much dependencies between classes and can easily be converted to *Database-based application*
 
 Thank you.
 

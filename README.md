@@ -14,7 +14,7 @@ reservations and provide the needed information for it's customers and employees
 
 ## Features
 
-- Allows the customers to make reservations which is suitable with the restaurant schedule and tables and order dishes from a menu and know the price for each dish
+- Allows the customers to make reservations which is suitable with the restaurant schedule and available tables and order dishes from a menu and know the price for each dish
 - Allows the waiters to see the reservations for today to be able to set the tables ready for them
 - Allows the chefs to see ordered dishes for today with the time of reservation to be able to cook the dishes on time
 - Allows the manager to see all the reservations for today and to see the total income of the restaurant for today and the check for each customer

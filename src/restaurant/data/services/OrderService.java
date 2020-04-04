@@ -44,7 +44,7 @@ public class OrderService extends BaseService<Order> {
         Element dateElement = doc.createElement("date");
 
         Date date = order.getDate();
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String dateString = df.format(date);
 
         dateElement.appendChild(doc.createTextNode(dateString));
@@ -125,7 +125,7 @@ public class OrderService extends BaseService<Order> {
                 Date date = null;
 
                 try {
-                    date = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
+                    date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
                             .parse(e.getElementsByTagName("date").item(0).getTextContent());
 
                 } catch (ParseException ex) {

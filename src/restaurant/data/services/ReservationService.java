@@ -24,7 +24,7 @@ public class ReservationService extends BaseService<Reservation> {
         assert doc != null;
 
         Date date = res.getReservationDate();
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String dateString = df.format(date);
         String endDateString = df.format(res.getEndReservationDate());
 
@@ -96,9 +96,9 @@ public class ReservationService extends BaseService<Reservation> {
                 Date endDate = null;
 
                 try {
-                    date = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
+                    date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
                             .parse(e.getElementsByTagName("start_date").item(0).getTextContent());
-                    endDate = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
+                    endDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
                             .parse(e.getElementsByTagName("end_date").item(0).getTextContent());
                 } catch (ParseException ex) {
                     ex.printStackTrace();

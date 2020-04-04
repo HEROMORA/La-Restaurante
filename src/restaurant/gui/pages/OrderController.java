@@ -70,9 +70,25 @@ public class OrderController implements Initializable {
         OrderDetails orderDetails = new OrderDetails();
 
         orderDetails.setDish(selectedDish);
-        orderDetails.setQuantity(Integer.parseInt(quantityTextField.getText()));
 
-        oOrderDetails.add(orderDetails);
+        var newQuantity = Integer.parseInt(quantityTextField.getText());
+        orderDetails.setQuantity(newQuantity);
+
+        boolean flag = false;
+        for (OrderDetails orderDetail: oOrderDetails)
+        {
+            if (orderDetail.getDishName().equals(selectedDish.getName()))
+            {
+                var oldQuantity = orderDetail.getQuantity();
+                orderDetail.setQuantity(oldQuantity + newQuantity);
+                cartTableView.refresh();
+                flag = true;
+                break;
+            }
+        }
+
+        if (!flag)
+            oOrderDetails.add(orderDetails);
 
         cartTableView.setItems(oOrderDetails);
 

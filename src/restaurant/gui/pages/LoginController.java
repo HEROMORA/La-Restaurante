@@ -7,12 +7,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import restaurant.data.repositories.ReservationRepository;
+import restaurant.data.repositories.UserRepository;
 import restaurant.gui.guiUtils.Alerts;
 import restaurant.gui.guiUtils.Navigation;
 import restaurant.gui.guiUtils.Validations;
-import restaurant.data.repositories.UserRepository;
 import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class LoginController {
 
@@ -59,14 +62,25 @@ public class LoginController {
 
 
     private void showNextPage(User user,Stage stage){
-        Reservation res = reservationRepository.getReservationByCustomerUsername(user.getUsername());
+        boolean result = hasCurrentReservation(user);
 
-        if(res == null){
+        if(!result){
             navigation.setLoggedInUser(user);
             navigation.showPageByRole(user, stage);
         }
         else{
             navigation.showAlreadyReservedController(stage,user);
         }
+    }
+
+    private boolean hasCurrentReservation(User user)
+    {
+        Reservation res = reservationRepository.getReservationByCustomerUsername(user.getUsername());
+        if (res == null) return false;
+
+        var endDate = res.getEndReservationDate();
+        LocalDateTime localEndDate = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        return LocalDateTime.now().isBefore(localEndDate);
     }
 }

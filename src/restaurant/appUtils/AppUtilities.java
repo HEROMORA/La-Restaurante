@@ -1,8 +1,5 @@
 package restaurant.appUtils;
 
-import restaurant.models.order.Order;
-import restaurant.models.order.OrderDetails;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -68,18 +65,5 @@ public class AppUtilities {
         return (middleFirstTime.isAfter(firstTime) && middleFirstTime.isBefore(lastTime)) || (middleFirstTime.equals(firstTime)) || (middleLastTime.isAfter(firstTime)  && middleLastTime.isBefore(lastTime)) || (middleLastTime.equals(lastTime));
 
     }
-
-    // TILL HANDLING IT IN THE VIEW WITH MORE FRIENDLY WAY
-    public String getOrderDetailsForCook(Order order)
-    {
-        String s = String.format("Table: %d", order.getTableNumber());
-        for (OrderDetails orderDetail:order.getOrdersDetails())
-        {
-            s += String.format(", Dish: %s, Quantity: %d", orderDetail.getDishName(), orderDetail.getQuantity());
-        }
-
-        return s;
-    }
-
 
 }

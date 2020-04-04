@@ -97,11 +97,10 @@ public class CustomerDashBoardController {
         var v3 = validations.validateEmptyNumericComboBox(toHoursComboBox);
         var v4 = validations.validateEmptyNumericComboBox(toMinsComboBox);
         var v5 = validations.validateSmokingType(isSmoking);
-        var v6 = validations.validateDate(datePicker);
-        var v7 = validations.validateStartEndDates(fromHoursComboBox, fromMinsComboBox, toHoursComboBox, toMinsComboBox);
+        var v6 = validations.validateStartEndDates
+                (fromHoursComboBox, fromMinsComboBox, toHoursComboBox, toMinsComboBox, datePicker);
 
-
-        return v1 && v2 && v3 && v4 && v5 && v6 && v7;
+        return v1 && v2 && v3 && v4 && v5  && v6;
 
     }
 

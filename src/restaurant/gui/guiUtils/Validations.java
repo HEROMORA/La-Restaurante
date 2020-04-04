@@ -1,11 +1,16 @@
 package restaurant.gui.guiUtils;
 
 import javafx.scene.control.*;
+import restaurant.appUtils.AppUtilities;
 import restaurant.models.dish.Dish;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Validations {
 
     private Alerts alerts = new Alerts();
+    private AppUtilities appUtilities = new AppUtilities();
 
     public boolean validateEmptyTextField(TextField textField)
     {
@@ -136,6 +141,13 @@ public class Validations {
     {
         try {
             String text = datePicker.getValue().toString();
+
+            if (LocalDate.now().isAfter(datePicker.getValue())) {
+                alerts.showErrorAlert("Invalid Date", "Please selected an Upcomming date");
+                return false;
+            }
+
+
         } catch (NullPointerException ex) {
             alerts.showErrorAlert("Empty Date Picker", "You should select a date");
             return false;
@@ -144,8 +156,10 @@ public class Validations {
     }
 
     public boolean validateStartEndDates(ComboBox fromHoursComboBox, ComboBox fromMinsComboBox,
-                                         ComboBox toHoursComboBox, ComboBox toMinsComboBox)
+                                         ComboBox toHoursComboBox, ComboBox toMinsComboBox, DatePicker datePicker)
     {
+        if (!validateDate(datePicker)) return false;
+
         int fromHours, fromMinutes, toHours, toMinutes;
         try {
             fromHours = Integer.parseInt(fromHoursComboBox.getValue().toString());
@@ -157,6 +171,12 @@ public class Validations {
             return false;
         }
 
+        LocalTime reservTime = LocalTime.of(fromHours, fromMinutes);
+        if (LocalTime.now().isAfter(reservTime) && datePicker.getValue().isEqual(LocalDate.now())) {
+            alerts.showErrorAlert("Invalid times", "This time has already passed");
+            return false;
+        }
+
         boolean result;
 
         if (fromHours == toHours)
@@ -165,7 +185,7 @@ public class Validations {
             result =  toHours > fromHours;
 
         if (!result) {
-            alerts.showErrorAlert("Invalid dates", "Please set valid times for the reservation.");
+            alerts.showErrorAlert("Invalid times", "Please set valid times for the reservation.");
         }
 
         return result;

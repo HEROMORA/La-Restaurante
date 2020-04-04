@@ -47,12 +47,13 @@ public class OrderRepository {
 
     public Order getOrderByCustomerName(String customerName)
     {
+        Order _order = null;
         for (Order order:orders) {
             if (order.getCustomerName().equals(customerName))
-                return order;
+                _order = order;
         }
 
-        return null;
+        return _order;
     }
 
     public ArrayList<Order> getTodayOrders()

@@ -66,13 +66,14 @@ public class ReservationRepository {
 
     public Reservation getReservationByCustomerUsername(String username)
     {
+        Reservation res = null;
         for (Reservation reservation:reservations)
         {
             if (reservation.getCustomerUserName().equals(username))
-                return reservation;
+                res = reservation;
         }
 
-        return null;
+        return res;
     }
 
     public Reservation makeReservation(String username, int numberOfSeats,

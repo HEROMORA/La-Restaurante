@@ -12,6 +12,9 @@ import restaurant.gui.guiUtils.Validations;
 import restaurant.data.repositories.UserRepository;
 import restaurant.models.users.UserRole;
 
+/*
+Controller for customer sign up page
+ */
 public class RegisterController {
 
     public Button signInBtn;
@@ -49,6 +52,7 @@ public class RegisterController {
         navigateToLoginPage();
     }
 
+    //after finishing sign up the customer returns to the sign up page
     private void navigateToLoginPage()
     {
         Stage stage;
@@ -56,6 +60,7 @@ public class RegisterController {
         navigation.showPageWithoutController("../pages/LoginPage.fxml", "Login", 1200, 700, stage);
     }
 
+    //validations
     private boolean validateForm()
     {
         var v1 = validations.validateFullNameTextField(fullNameTextField);

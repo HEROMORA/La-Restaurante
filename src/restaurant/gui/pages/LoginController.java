@@ -17,6 +17,9 @@ import restaurant.models.users.User;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+/*
+Controller for login page
+ */
 public class LoginController {
 
     public Button signUpBtn;
@@ -52,6 +55,7 @@ public class LoginController {
         navigation.showPageWithoutController("../pages/RegisterPage.fxml", "Register", 1200, 700, stage);
     }
 
+    //validations
     private boolean validateForm()
     {
         var v1 = validations.validateEmptyTextField(usernameTextField);
@@ -60,7 +64,7 @@ public class LoginController {
         return v1 && v2;
     }
 
-
+    //checks if customer has a reservation to show either alreadyReservedPage or user page
     private void showNextPage(User user,Stage stage){
         boolean result = hasCurrentReservation(user);
 
@@ -73,6 +77,7 @@ public class LoginController {
         }
     }
 
+    //checks if a customer has a reservation
     private boolean hasCurrentReservation(User user)
     {
         Reservation res = reservationRepository.getReservationByCustomerUsername(user.getUsername());

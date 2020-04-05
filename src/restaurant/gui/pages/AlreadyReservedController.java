@@ -21,6 +21,10 @@ import restaurant.models.users.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/*
+    Controller for the already reserved page
+    Helps the customer to see his upcoming reservation
+ */
 public class AlreadyReservedController implements Initializable {
 
     public Label welcomeLabel;

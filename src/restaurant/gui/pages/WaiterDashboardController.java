@@ -19,6 +19,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/*
+    Controller for waiter dashboard
+    Helps the waiter see today's reservations and tables so that he can serve them
+ */
 public class WaiterDashboardController implements Initializable {
     public Label welcomeLabel;
     public Button logoutButton;

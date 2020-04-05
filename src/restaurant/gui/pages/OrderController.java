@@ -29,6 +29,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/*
+    Controller for order page
+    Helps the customer make an order with a list of pre-defined dishes that he can order from
+ */
 public class OrderController implements Initializable {
     public GridPane grid;
     public TableView<Dish> mainCourseTableView;
@@ -104,6 +108,7 @@ public class OrderController implements Initializable {
         oOrderDetails.remove(selectedOrderDetails);
     }
 
+    //Handles the labels that show total price,taxes and price without taxes
     private void handleLabels(String operation,OrderDetails orderDetails){
         BigDecimal totalPrice = BigDecimal.valueOf(Double.parseDouble( totalPriceLabel.getText()));
         BigDecimal price = BigDecimal.valueOf(Double.parseDouble(priceWithoutTaxesLabel.getText()));
@@ -197,6 +202,7 @@ public class OrderController implements Initializable {
     }
 
 
+    //validations
     private boolean validateAddToCartClick()
     {
         var v1 = validations.validatePositiveIntegerNumericTextField(quantityTextField);

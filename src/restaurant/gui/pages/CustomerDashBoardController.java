@@ -16,6 +16,10 @@ import restaurant.models.users.User;
 import java.text.ParseException;
 import java.time.LocalDate;
 
+/*
+Controller for Customer Dashboard page
+Helps the user to make a reservation
+ */
 public class CustomerDashBoardController {
 
     public ComboBox numberOfSeatsComboBox;
@@ -90,6 +94,7 @@ public class CustomerDashBoardController {
     }
 
 
+    //validations
     private boolean validateInput()
     {
         var v1 = validations.validateEmptyNumericComboBox(fromHoursComboBox);

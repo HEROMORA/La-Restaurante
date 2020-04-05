@@ -12,6 +12,9 @@ import restaurant.gui.guiUtils.Navigation;
 import restaurant.gui.guiUtils.Validations;
 import restaurant.models.users.Manager;
 
+/*
+Controller for employee sign up page
+ */
 public class EmployeeSignUpController {
     public TextField fullNameTextField;
     public TextField usernameTextField;

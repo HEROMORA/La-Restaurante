@@ -20,6 +20,10 @@ import restaurant.models.users.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/*
+Controller for cook dashboard
+Helps the cook see the upcoming reservations and orders of each reservation
+ */
 public class CookDashBoardController implements Initializable {
     public Label welcomeLabel;
     public TableView<Reservation> reservationTableView;
@@ -56,6 +60,7 @@ public class CookDashBoardController implements Initializable {
         welcomeLabel.setText(String.format("Hello, %s!", firstName));
     }
 
+    //fills the reservation table view with today's reservations
     private void fillList()
     {
         try {
@@ -67,6 +72,7 @@ public class CookDashBoardController implements Initializable {
         }
     }
 
+    //action listeners for the reservation table view
     private void listenForSelections()
     {
         reservationTableView.setOnMouseClicked(event -> {

@@ -22,6 +22,12 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/*
+    Controller for the manager dashboard page
+    Helps the manager see today's reservations and money paid with each reservation
+    Helps the manager see total income of the restaurant today
+    Manager can access the employee sign up page which he can use when he hires a new employee
+ */
 public class ManagerDashBoardController implements Initializable {
     public Label welcomeLabel;
     public Label totalTodayIncomeLabel;

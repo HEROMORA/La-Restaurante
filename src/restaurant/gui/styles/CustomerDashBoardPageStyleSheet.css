@@ -2,7 +2,7 @@ root {
     display:block;
 }
 .root {
-    -fx-background-image: url("../images/CustomerBackground.jpg");
+    -fx-background-image: url("../images/CustomerBackground1.jpg");
     -fx-background-size: cover;
 }
 .label {

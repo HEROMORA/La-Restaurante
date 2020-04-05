@@ -61,6 +61,17 @@ public class OrderRepository {
         return _order;
     }
 
+    public Order getOrderByCustomerUserNameAndDate(String username, Date date)
+    {
+        for (Order order:orders)
+        {
+            if (order.getCustomerName().equals(username) && order.getDate().equals(date))
+                return order;
+        }
+
+        return null;
+    }
+
     public ArrayList<Order> getTodayOrders()
     {
         ArrayList<Order> _orders = new ArrayList<>();

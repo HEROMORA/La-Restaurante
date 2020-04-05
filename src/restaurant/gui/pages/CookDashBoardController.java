@@ -72,7 +72,7 @@ public class CookDashBoardController implements Initializable {
         reservationTableView.setOnMouseClicked(event -> {
             try {
                 var reservation = reservationTableView.getSelectionModel().getSelectedItem();
-                var order = orderRepository.getOrderByCustomerName(reservation.getCustomerUserName());
+                var order = orderRepository.getOrderByCustomerUserNameAndDate(reservation.getCustomerUserName(), reservation.getReservationDate());
 
                 ObservableList<OrderDetails> data = FXCollections.observableArrayList(order.getOrdersDetails());
                 ordersTableView.setItems(data);

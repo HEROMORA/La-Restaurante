@@ -7,6 +7,9 @@ import restaurant.models.reservation.Table;
 import java.util.ArrayList;
 
 public class TableRepository {
+
+    // This Class provides the querying and data manipulating for the tables objects
+
     private Service<Table> tableService = new TableService();
     private ArrayList<Table> tables;
 
@@ -38,6 +41,7 @@ public class TableRepository {
         return null;
     }
 
+    // Get by exact number of seats
     public ArrayList<Table> getTablesByNumberOfSeats(int numberOfSeats)
     {
         ArrayList<Table> _tables = new ArrayList<>();
@@ -50,6 +54,7 @@ public class TableRepository {
         return _tables;
     }
 
+    // Get table by specific preferences and return tables that has the required seat *OR MORE*
     public ArrayList<Table> getTablesByEligibleNumberOfSeatsAndSmoking(int numberOfSeats, boolean isSmoking)
     {
         ArrayList<Table> _tables = new ArrayList<>();

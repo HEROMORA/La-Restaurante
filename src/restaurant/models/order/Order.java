@@ -37,6 +37,7 @@ public class Order {
         return orderStatus;
     }
 
+    // Sets orderStatus using string
     public void setOrderStatus(String orderStatus)
     {
         OrderStatus result;
@@ -79,6 +80,8 @@ public class Order {
         this.tableNumber = tableNumber;
     }
 
+
+    // Calculates total price and adds the taxes to it
     public BigDecimal calculateTotalPrice()
     {
         BigDecimal total = new BigDecimal("0.00");
@@ -91,6 +94,7 @@ public class Order {
         return total;
     }
 
+    // calculates the tax for each order detail in order
     public BigDecimal calculateTax()
     {
         BigDecimal tax = new BigDecimal("0.00");

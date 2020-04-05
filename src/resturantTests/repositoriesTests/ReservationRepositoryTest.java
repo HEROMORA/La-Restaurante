@@ -1,18 +1,14 @@
 package resturantTests.repositoriesTests;
 
-import org.junit.jupiter.api.Test;
-import restaurant.models.reservation.Reservation;
 import restaurant.data.repositories.ReservationRepository;
-
-import java.util.Calendar;
-import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReservationRepositoryTest {
     private ReservationRepository reservationRepository = new ReservationRepository();
 
+    // Because we dont have a mocking file for the testing so running this function will mess up the systems
+    // so this function should be ran either of mock file, or the added reservation should be deleted right after
 
+ /*
     @Test
     public void testAddingReservation()
     {
@@ -26,4 +22,5 @@ public class ReservationRepositoryTest {
         var res = reservationRepository.getReservationByCustomerUsername(customerName);
         assertEquals(tableNumber, res.getTableNum());
     }
+  */
 }

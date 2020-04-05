@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DishRepositoryTest {
 
+    // Unit test cases for the DishRepository Class
+
     private DishRepository dishRepository = new DishRepository();
 
     @Test

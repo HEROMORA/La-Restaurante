@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserRepositoryTest {
 
+    // Unit test cases for the UserRepository Class
+
     private UserRepository userRepository;
 
     @Test

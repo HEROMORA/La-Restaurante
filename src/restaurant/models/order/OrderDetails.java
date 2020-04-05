@@ -32,16 +32,19 @@ public class OrderDetails {
 
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
+    // Calculates the money for this order details without taxes
     public BigDecimal calculateSubTotal()
     {
         return dish.getPrice().multiply(new BigDecimal(quantity));
     }
 
+    // Calculates the taxes for this orderDetail
     public BigDecimal calculateTax()
     {
         return calculateSubTotal().multiply(BigDecimal.valueOf(this.dish.getTaxes()));
     }
 
+    // Calculate the total money for this OrderDetail including taxes
     public BigDecimal getOrderDetailPrice() {
         return calculateSubTotal().add(calculateTax());
     }

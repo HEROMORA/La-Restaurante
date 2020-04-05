@@ -14,6 +14,8 @@ import java.util.Date;
 
 public class OrderRepository {
 
+    // This Class provides the querying and data manipulating for the orders objects
+
     private Service<Order> orderService = new OrderService();
     private AppUtilities appUtilities = new AppUtilities();
     private ArrayList<Order> orders;
@@ -23,10 +25,13 @@ public class OrderRepository {
         loadOrders();
     }
 
+    // This function refreshes the orders list from the file  and to listen for new added elements
     private void loadOrders()
     {
         orders = orderService.readData();
     }
+
+    // READING FUNCTIONS
 
     public ArrayList<Order> getOrders()
     {
@@ -84,13 +89,17 @@ public class OrderRepository {
         return totalPrice;
     }
 
+    // WRITING FUNCTIONS
+
     public void saveOrder(Order order)
     {
         orderService.writeData(order);
     }
 
-    public Order makeOrder(Date date, String customerName, int tableNum, ArrayList<OrderDetails> orderDetails){
-        Order order = new Order(date,OrderStatus.WAITING,tableNum,orderDetails);
+    // This function handles the creation of an order object
+    public Order makeOrder(Date date, String customerName, int tableNum, ArrayList<OrderDetails> orderDetails) {
+
+        Order order = new Order(date,OrderStatus.WAITING, tableNum, orderDetails);
         order.setCustomerName(customerName);
 
         return order;

@@ -10,6 +10,8 @@ import java.util.*;
 
 public class ReservationRepository {
 
+    // This Class provides the querying and data manipulating for the reservation objects
+
     private Service<Reservation> reservationService = new ReservationService();
     private TableRepository tableRepository = new TableRepository();
     private ArrayList<Reservation> reservations;
@@ -25,11 +27,13 @@ public class ReservationRepository {
         return reservations;
     }
 
+    // This function refreshes the orders list from the file  and to listen for new added elements
     private void loadReservations()
     {
         reservations = reservationService.readData();
     }
 
+    // Gets the reservations for today
     public ArrayList<Reservation> getTodayReservations()
     {
         ArrayList<Reservation> _reservations = new ArrayList<>();
@@ -43,6 +47,7 @@ public class ReservationRepository {
         return  _reservations;
     }
 
+    // Gets the reservation the it's date hasn't came yet
     public ArrayList<Reservation> getUpcomingReservations()
     {
         ArrayList<Reservation> _reservations = new ArrayList<>();
@@ -76,6 +81,12 @@ public class ReservationRepository {
         return res;
     }
 
+    // WRITING FUNCTIONS
+
+
+    // Note: This function is complicated due to our trial to create an O(n) solution
+    // In Database application we would join tables
+    // This function handles the process of creation an Reservation object
     public Reservation makeReservation(String username, int numberOfSeats,
                                        Date reservationDate, Date endReservationDate, boolean isSmoking)
     {
@@ -86,24 +97,29 @@ public class ReservationRepository {
 
         HashMap<Integer, ArrayList<Reservation>> reservedTablesMap = new HashMap<>();
 
+        // Handles if the table has more the one reservation at different times
         for(Reservation res: _reservations) {
             ArrayList<Reservation> _reservs = new ArrayList<>();
+
+            // Adds the previous reservation to the same table if they key exists
             if (reservedTablesMap.containsKey(res.getTableNum())) {
                 var reservsForSameTable = reservedTablesMap.get(res.getTableNum());
                 _reservs.addAll(reservsForSameTable);
             }
+
             _reservs.add(res);
             reservedTablesMap.put(res.getTableNum(), _reservs);
         }
 
         int tableNumber = -1;
 
+        // Looping through the eligible tables for user's requirements
         for (Table table:eligibleTables)
         {
-
             if (reservedTablesMap.containsKey(table.getTableNumber()))
             {
                 var reservations = reservedTablesMap.get(table.getTableNumber());
+                // for each reservation in this key check if there is a collision between the times
                 for (Reservation res: reservations) {
 
                     if (!appUtilities.isTimeBetween(res.getReservationDate(), res.getEndReservationDate(),
@@ -115,7 +131,8 @@ public class ReservationRepository {
                 }
             }
 
-            if(!reservedTablesMap.containsKey(table.getTableNumber())) {
+            // Reserve the table if it does not have any reservation constraints
+            if (!reservedTablesMap.containsKey(table.getTableNumber())) {
                 tableNumber = table.getTableNumber();
                 break;
             }
@@ -126,7 +143,7 @@ public class ReservationRepository {
         return new Reservation(tableNumber, username, reservationDate, endReservationDate);
     }
 
-
+    // Saves the reservation to the file and refreshes the list
     public void saveReservation(Reservation reservation)
     {
         reservationService.writeData(reservation);

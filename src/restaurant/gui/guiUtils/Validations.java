@@ -1,7 +1,6 @@
 package restaurant.gui.guiUtils;
 
 import javafx.scene.control.*;
-import restaurant.appUtils.AppUtilities;
 import restaurant.models.dish.Dish;
 
 import java.time.LocalDate;
@@ -9,8 +8,9 @@ import java.time.LocalTime;
 
 public class Validations {
 
+    // This class provides the required validations to handle the user input errors in gui
+
     private Alerts alerts = new Alerts();
-    private AppUtilities appUtilities = new AppUtilities();
 
     public boolean validateEmptyTextField(TextField textField)
     {
@@ -160,6 +160,7 @@ public class Validations {
     {
         if (!validateDate(datePicker)) return false;
 
+        // checks if values are numeric types
         int fromHours, fromMinutes, toHours, toMinutes;
         try {
             fromHours = Integer.parseInt(fromHoursComboBox.getValue().toString());
@@ -171,6 +172,7 @@ public class Validations {
             return false;
         }
 
+        // checks if the time had already passed
         LocalTime reservTime = LocalTime.of(fromHours, fromMinutes);
         if (LocalTime.now().isAfter(reservTime) && datePicker.getValue().isEqual(LocalDate.now())) {
             alerts.showErrorAlert("Invalid times", "This time has already passed");
@@ -178,6 +180,8 @@ public class Validations {
         }
 
         boolean result;
+
+        // Checks if the after hours are before the from hours
 
         if (fromHours == toHours)
             result = toMinutes > fromMinutes;

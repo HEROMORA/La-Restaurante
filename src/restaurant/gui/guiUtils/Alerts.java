@@ -4,6 +4,8 @@ import javafx.scene.control.Alert;
 
 public class Alerts {
 
+    // This class provides a self made template for displaying different types of alerts
+
     public void showSuccessAlert(String header, String errorMsg)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

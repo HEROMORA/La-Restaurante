@@ -6,6 +6,9 @@ import java.util.Date;
 
 
 public class Reservation {
+
+    // This class handles the reservation between the customer and table
+
     private int tableNum;
     private String customerUserName;
     private Date reservationDate;

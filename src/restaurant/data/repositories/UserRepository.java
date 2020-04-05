@@ -7,6 +7,9 @@ import restaurant.models.users.*;
 import java.util.ArrayList;
 
 public class UserRepository {
+
+    // This Class provides the querying and data manipulating for the users objects
+
     private Service<User> userService = new UserService();
     private UserFactory userFactory = new UserFactory();
 
@@ -27,6 +30,7 @@ public class UserRepository {
 
     // READ FUNCTIONS
 
+    // this function checks if the user's credentials meets any in the xml file
     public User login(String username, String password)
     {
         for (User user:users)
@@ -38,10 +42,12 @@ public class UserRepository {
         return null;
     }
 
+    // Overloading for the Signup method
     public User signUp(String username, String password, String name, UserRole role) {
         return signUp(username, password, name, role.toString());
     }
 
+    // Allows to create new users and add it to the application
     public User signUp(String username, String password, String name, String role) {
 
         if (getUserByUsername(username) != null) {

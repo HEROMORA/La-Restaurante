@@ -33,6 +33,7 @@ public class Table implements Comparable<Table> {
         this.tableNumber = tableNumber;
     }
 
+    // To be able to sort tables by its number of seats
     @Override
     public int compareTo(Table table) {
         if (getNumberOfSeats() == table.getNumberOfSeats()) return 0;

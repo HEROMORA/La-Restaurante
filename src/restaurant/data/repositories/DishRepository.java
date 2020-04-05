@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class DishRepository {
 
+    // This Class provides the querying and data manipulating for the dishes objects
+
     private Service<Dish> dishService = new DishService();
     private ArrayList<Dish> dishes;
 

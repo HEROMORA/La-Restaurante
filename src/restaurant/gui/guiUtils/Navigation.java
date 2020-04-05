@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import restaurant.data.repositories.ReservationRepository;
 import restaurant.gui.pages.*;
 import restaurant.models.reservation.Reservation;
 import restaurant.models.users.User;
@@ -13,10 +12,14 @@ import java.io.IOException;
 
 public class Navigation {
 
-    private ReservationRepository reservationRepository = new ReservationRepository();
+    // This class provides navigation tools for the rest of the gui classes and helps them navigate smoothly
+    // with the most kind of abstraction
+
     private Alerts alerts = new Alerts();
     private User loggedInUser;
 
+
+    // Creates a new page and creates a controller which takes the logged in user as a parameter in constructor
     public void showPage(String fileName ,String title, int width, int height, Stage stage)
     {
         try {
@@ -32,10 +35,12 @@ public class Navigation {
 
     }
 
+    // this functions sets the logged in user object
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
 
+    // Creates a controller instance for the different roles of the application
     private GridPane createControllerInstance(User user , FXMLLoader loader) throws IOException {
 
         switch (user.getUserRole()){
@@ -63,6 +68,7 @@ public class Navigation {
         return loader.load();
     }
 
+    // Shows the page depending on the user role
     public void showPageByRole(User user, Stage stage) {
         int width = 1200;
         int height = 700;
@@ -83,6 +89,7 @@ public class Navigation {
         }
     }
 
+    // function that loads the orders page with the required parameters for it controller
     public void showOrdersPage(String fileName , String title, int width, int height, Stage stage, Reservation res){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
@@ -98,6 +105,7 @@ public class Navigation {
         }
     }
 
+    // General function that loads the page without any additional parameters in construction
     public void showPageWithoutController(String fileName , String title, int width, int height, Stage stage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fileName));
@@ -111,12 +119,14 @@ public class Navigation {
         }
     }
 
+    // Function that logs out the user and return him to sign in page
     public void logout(Stage stage)
     {
         int width = 1200; int height = 720;
         showPageWithoutController("../pages/LoginPage.fxml", "Login", width, height, stage);
     }
 
+    // function that loads the already rserved page with the required parameters for it controller
     public void showAlreadyReservedController(Stage stage , User user){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AlreadyReservedPage.fxml"));

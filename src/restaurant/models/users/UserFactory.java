@@ -2,6 +2,8 @@ package restaurant.models.users;
 
 public class UserFactory {
 
+    // Implementing the factory design pattern to ease the process of creating the user
+
     public User createUser(String userType)
     {
         if (userType == null || userType.isEmpty())

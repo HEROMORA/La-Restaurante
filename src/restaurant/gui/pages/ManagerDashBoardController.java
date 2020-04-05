@@ -15,6 +15,7 @@ import restaurant.gui.guiUtils.Alerts;
 import restaurant.gui.guiUtils.Navigation;
 import restaurant.models.order.OrderDetails;
 import restaurant.models.reservation.Reservation;
+import restaurant.models.users.Manager;
 import restaurant.models.users.User;
 
 import java.math.BigDecimal;
@@ -90,7 +91,7 @@ public class ManagerDashBoardController implements Initializable {
     private void handleEmployeeSignUpBtnClick(ActionEvent actionEvent) {
         Stage stage;
         stage = (Stage)employeeSignUpButton.getScene().getWindow();
-        navigation.showPageWithoutController("../pages/EmployeeSignUpPage.fxml", "Employee SignUp", 1200, 700, stage);
+        navigation.showEmployeeSignUp(stage,(Manager) user);
     }
 
     @FXML

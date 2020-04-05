@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import restaurant.gui.pages.*;
 import restaurant.models.reservation.Reservation;
+import restaurant.models.users.Manager;
 import restaurant.models.users.User;
 
 import java.io.IOException;
@@ -119,6 +120,23 @@ public class Navigation {
         }
     }
 
+    //Function that loads the Employee Sign Up Page with required parameters
+    public void showEmployeeSignUp(Stage stage, Manager manager){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/EmployeeSignUpPage.fxml"));
+            EmployeeSignUpController esuc = new EmployeeSignUpController();
+            esuc.setManager(manager);
+            loader.setController(esuc);
+            GridPane grid = loader.load();
+            stage.setTitle("Employee Sign Up");
+            Scene sc = new Scene(grid, 1200, 700);
+            stage.setScene(sc);
+            stage.show();
+        } catch (IOException ex) {
+            alerts.showErrorAlert("Data Error", "Something wrong happened!");
+        }
+    }
+
     // Function that logs out the user and return him to sign in page
     public void logout(Stage stage)
     {
@@ -126,7 +144,7 @@ public class Navigation {
         showPageWithoutController("../pages/LoginPage.fxml", "Login", width, height, stage);
     }
 
-    // function that loads the already rserved page with the required parameters for it controller
+    // function that loads the already reserved page with the required parameters for it controller
     public void showAlreadyReservedController(Stage stage , User user){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../pages/AlreadyReservedPage.fxml"));

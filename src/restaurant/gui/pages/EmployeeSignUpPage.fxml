@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Text?>
 <?import java.lang.String?>
 <?import java.net.URL?>
-<GridPane fx:controller="restaurant.gui.pages.EmployeeSignUpController"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
+<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
           styleClass="root">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 

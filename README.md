@@ -55,7 +55,7 @@ The price for each dish should be visible to the user and total amount money to 
 Every time the user tries to login while having an upcoming reservation this page will appear to him.
 Customer will be allowed to create a new Reservation and be navigated to the page where he can make a reservation when the time of his reservation is already over
 
-![Image of alreadyReservedPage](https://im4.ezgif.com/tmp/ezgif-4-e79d66cbac10.gif)
+![Image of alreadyReservedPage](https://i.imgur.com/oytxNne.gif)
 
 ### Waiters
 
@@ -79,7 +79,7 @@ A List of reservations should be available to him. When he clicks an element of 
 
 He is also allowed to see the total income of the restaurant today.
 
-![Image of ManagerPage](https://im4.ezgif.com/tmp/ezgif-4-110f4c3a7425.gif)
+![Image of ManagerPage](https://i.imgur.com/BWl6jH3.gif)
 
 
 The Manager is also **the only one allowed to navigate to the employee sign up page** where he will be allowed to register his new employees and select their roles
@@ -167,6 +167,13 @@ but for the sake of simplicity we tested on the same file
 
 ![Image of Testing](https://i.giphy.com/media/gw3IWyGkC0rsazTi/200.gif)
 
+
+## UML
+
+The UML Class Diagram for the project is provided within the pdf file "UML-Class-Diagram.pdf"
+
+And for more detailed accessibility: 
+[Restaurant Reservation Class Diagram](https://www.lucidchart.com/invitations/accept/0af63cde-343e-4276-9a3b-a30ff4b3f713) 
 
 
 ## The Process of Creating the Application

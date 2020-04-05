@@ -55,6 +55,8 @@ The price for each dish should be visible to the user and total amount money to 
 Every time the user tries to login while having an upcoming reservation this page will appear to him.
 Customer will be allowed to create a new Reservation and be navigated to the page where he can make a reservation when the time of his reservation is already over
 
+![Image of alreadyReservedPage](https://im4.ezgif.com/tmp/ezgif-4-e79d66cbac10.gif)
+
 ### Waiters
 
 Waiters should be able to access their dashboard through logging in from the login page using their username and password
@@ -76,6 +78,9 @@ Manager is allowed to see all reservations for today, the customer which are res
 A List of reservations should be available to him. When he clicks an element of it the amount the customer paid be and the meals he ordered should be visible
 
 He is also allowed to see the total income of the restaurant today.
+
+![Image of ManagerPage](https://im4.ezgif.com/tmp/ezgif-4-110f4c3a7425.gif)
+
 
 The Manager is also **the only one allowed to navigate to the employee sign up page** where he will be allowed to register his new employees and select their roles
 by clicking on the employee sign up button
@@ -99,7 +104,11 @@ The Project is built on the MVC (Model- View - Controller) Design Pattern which 
 for our solution and helped us in maintaining a clean code environment with ease of data access to the views layer
 with the separation of models, business logic and views
 
-Creational design patterns like factory with implemented in the process of creating a user.
+
+![Image of MVC](https://hackernoon.com/drafts/126z19ld.png)
+
+
+Creational design patterns like factory design pattern was implemented in the process of creating a user.
 
 ### GUI Layer
 
@@ -109,6 +118,17 @@ The Application GUI is located at **restaurant/gui** package with it's dependenc
 - **gui/guiUtils** package contains the needed dependencies for the gui and the navigation between the pages
 - **gui/StyleSheets** package contains the style sheets (.css files) for the fxml pages
 - **gui/Images** package contains the needed images for the application
+
+### Styling
+
+The Styling of the application 
+
+We associated each fxml page with its style sheet page to create a unique beautiful user interface for each page
+And we were able to solve the problems and challenges that faced us while designing
+
+
+![Image of chefPage](https://gifimage.net/wp-content/uploads/2017/10/css-gif-5.gif)
+
 
 ### Data Access Layer
 
@@ -143,6 +163,10 @@ The tests exists in the **restuarantTest** Package
 
 **Note**: it's taken into note that in more complicated applications we should implement the tests on a mocked file or database not to ruin the restaurant main data
 but for the sake of simplicity we tested on the same file
+
+
+![Image of Testing](https://i.giphy.com/media/gw3IWyGkC0rsazTi/200.gif)
+
 
 
 ## The Process of Creating the Application

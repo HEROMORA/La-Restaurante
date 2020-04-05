@@ -93,6 +93,14 @@ And the process of signing up the employees is the exact same as signing up new 
 
 ## Project Structure
 
+### Design Patterns
+
+The Project is built on the MVC (Model- View - Controller) Design Pattern which we found a suitable design pattern
+for our solution and helped us in maintaining a clean code environment with ease of data access to the views layer
+with the separation of models, business logic and views
+
+Creational design patterns like factory with implemented in the process of creating a user.
+
 ### GUI Layer
 
 The Application GUI is located at **restaurant/gui** package with it's dependencies
@@ -145,6 +153,11 @@ File transfers between the team was mainly based on gitlab by pushing and pullin
 which allowed them to handle the changes in a professional way and allowed them to handle and overcome the conflicts and challenges
 that resulted from a problems from dealing with the version control system
 
+### LucidChart
+
+We used LucidChart application to collaborate and have a live communication to create the UML Class Diagram for the project
+which allowed us to represent the relationship between the classes and packages in the project. 
+
 ### Labor Division
 
 We would create a list of tasks and divide the tasks by each other and brief each other when completing a task about the
@@ -156,7 +169,7 @@ how each single small component of the system works and how it is put together
 La Restaurante is a collaboration of hard work of the team of the project who spent much time to make sure it fits
 the needs of a user and meet the requirements and standards of any modern application
 
-It is a simple application which depends on files in ing its data , but the way it's designed allows it to be extended
+It is a simple application which depends on files to provide its data , but the way it's designed allows it to be extended
 and have much more features without much dependencies between classes and can easily be converted to *Database-based application*
 
 Thank you.
